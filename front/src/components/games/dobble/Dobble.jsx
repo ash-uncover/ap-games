@@ -7,29 +7,52 @@ import './Dobble.scss'
 
 class Dobble extends React.Component {
 
-	constructor(props) {
-		super(props)
+    constructor(props) {
+        super(props)
 
-		this.onClick = this._onClick.bind(this)
-        this.state = { label: '' }
-	}
+        this.onClickFirst = this._onClickFirst.bind(this)
+        this.onClickSecond = this._onClickSecond.bind(this)
 
-	_onClick(cardId, symbolId) {
-		this.setState({ label: DobbleGame.SYMBOLS[symbolId].name})
-	}
+        this.state = { 
+            card1: DobbleGame.CARDS[2],
+            card2: DobbleGame.CARDS[1],
+            label: '',
+            status: ''
+        }
 
-	render() { 
-		return (
-			<div className='dobble'>
+    }
+
+    _onClickFirst(cardId, symbolId) {
+        let result = DobbleGame.isCommonSymbol(this.state.card1.id, this.state.card2.id, symbolId)
+        this.setState({ 
+            label: DobbleGame.SYMBOLS[symbolId].name,
+            status: result ? 'TROUVE' : 'NON'
+        })
+    }
+    _onClickSecond(cardId, symbolId) {
+        let result = DobbleGame.isCommonSymbol(this.state.card1.id, this.state.card2.id, symbolId)
+        this.setState({ 
+            label: DobbleGame.SYMBOLS[symbolId].name,
+            status: result ? 'TROUVE' : 'NON'
+        })
+    }
+
+    render() { 
+        return (
+            <div className='dobble'>
                 <div>
-    				<DobbleCard onClick={this.onClick} {...DobbleGame.CARDS[0]} />
+                    <DobbleCard onClick={this.onClickFirst} {...this.state.card1} rotate={180} />
+                    <DobbleCard onClick={this.onClickSecond} {...this.state.card2} />
                 </div>
                 <div>
                     {this.state.label}
                 </div>
-			</div>
-		)
-	}
+                <p>
+                    {this.state.status}
+                </p>
+            </div>
+        )
+    }
 }
 
 export default Dobble

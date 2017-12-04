@@ -25,6 +25,9 @@ export default class DobbleCard extends React.Component {
     }
 
     resize() {
+    	if (this.props.rotate) {
+    		this.image.style.transform = 'rotate(' + this.props.rotate + 'deg)'
+    	}
         let clientRect = this.container.getBoundingClientRect();
         let clientWidth = clientRect.width
         let clientHeight = clientRect.height
@@ -47,8 +50,8 @@ export default class DobbleCard extends React.Component {
         return (
             <div className='dobble-card' ref={(c) => this.container = c}>
                 <div className='dobble-card-content' ref={(c) => this.content = c}>
-                    <img src={'assets/images/dobble/flick/done/card-' + this.props.id + '.png'} useMap='#Map' ref={(c) => this.image = c} />
-                    <map name='Map' id='Map'>
+                    <img src={'assets/images/dobble/flick/done/card-' + this.props.id + '.png'} useMap={'#Map' + this.props.id} ref={(c) => this.image = c} />
+                    <map name={'Map' + this.props.id} id={'Map' + this.props.id}>
                         {this.props.symbols.map(this.buildSymbol)}
                     </map>
                 </div>

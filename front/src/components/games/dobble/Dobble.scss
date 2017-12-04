@@ -1,15 +1,16 @@
 .dobble {
     user-select: none;
-}
+    min-height: 100%;
 
-.dobble-card {
-    height: 400px;
-    width: 400px;
-    overflow: hidden;
-    display: inline-block;
+    .dobble-card {
+        height: 400px;
+        width: 400px;
+        overflow: hidden;
+        display: inline-block;
 
-    .dobble-card-content {
-        border-radius: 50%;
-        transform-origin: 0 0;
+        .dobble-card-content {
+            border-radius: 50%;
+            transform-origin: 0 0;
+        }
     }
 }
