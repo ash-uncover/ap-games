@@ -15,7 +15,9 @@ class Dobble extends React.Component {
 
         this.state = { 
             card1: DobbleGame.CARDS[2],
-            card2: DobbleGame.CARDS[1],
+            card2: DobbleGame.CARDS[0],
+            left: 34,
+            errors: 4,
             label: '',
             status: ''
         }
@@ -40,8 +42,12 @@ class Dobble extends React.Component {
     render() { 
         return (
             <div className='dobble'>
-                <div>
-                    <DobbleCard onClick={this.onClickFirst} {...this.state.card1} rotate={180} />
+                <div className='dobble-score'>
+                    <div>Cartes restantes: {this.state.left}</div>
+                    <div>Erreurs: {this.state.errors}</div>
+                </div>
+                <div className='dobble-cards'>
+                    <DobbleCard onClick={this.onClickFirst} {...this.state.card1} />
                     <DobbleCard onClick={this.onClickSecond} {...this.state.card2} />
                 </div>
                 <div>
