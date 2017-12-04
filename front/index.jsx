@@ -12,6 +12,6 @@ import SudokuStore from 'flux/SudokuStore';
 // Our root component handling routing in the application
 import AppRouter from 'components/AppRouter.jsx'
 
-render((
-	<AppRouter/>
-), document.getElementById('app'))
+import './assets/styles/styles.css'
+
+render((<AppRouter/>), document.getElementById('app'))

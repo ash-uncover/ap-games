@@ -1,10 +1,13 @@
 import React from 'react'
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 
-import Dispatcher from 'flux/core/Dispatcher.js';
-import App from 'components/App.jsx';
+import Dispatcher from 'flux/core/Dispatcher'
 
-import './styles.css'
+import App from 'components/App'
+
+import MasterMind from 'components/games/mastermind/MasterMind'
+import Sudoku from 'components/games/sudoku/Sudoku'
+import Dobble from 'components/games/dobble/Dobble'
 
 class AppRouter extends React.Component {
 
@@ -19,13 +22,16 @@ class AppRouter extends React.Component {
 
 			}
 		};
-		//Dispatcher.issue('ROUTER_CHANGED', params);
 	}
 
 	render() {
 		return (
 			<Router history={browserHistory}>
-				<Route path='/' component={App} onEnter={this.onRouteEnter}/>
+				<Route path='/' component={App} onEnter={this.onRouteEnter}>
+					<Route path='/mastermind' component={MasterMind} />
+					<Route path='/sudoku' component={Sudoku} />
+					<Route path='/dobble' component={Dobble} />
+				</Route>
 			</Router>
 		);
 	}

@@ -21,6 +21,6 @@ SudokuStore.onGetImage = function (result, param) {
 	img.src = source;
 	
 };
-Dispatcher.register('GET_IMAGE', SudokuStore.onGetImage);
+//Dispatcher.register('GET_IMAGE', SudokuStore.onGetImage);
 
 export default SudokuStore;
