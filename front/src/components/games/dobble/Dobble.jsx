@@ -1,8 +1,7 @@
 import React from 'react'
 
 import DobbleCard from './DobbleCard'
-import DobbleCard01 from './DobbleCard01'
-import DobbleGame from './DobbleGame'
+import DobbleGame from 'game-data/dobble/DobbleGame'
 
 import './Dobble.scss'
 
@@ -12,19 +11,22 @@ class Dobble extends React.Component {
 		super(props)
 
 		this.onClick = this._onClick.bind(this)
+        this.state = { label: '' }
 	}
 
 	_onClick(cardId, symbolId) {
-		console.log(...arguments)
+		this.setState({ label: DobbleGame.SYMBOLS[symbolId].name})
 	}
 
 	render() { 
 		return (
 			<div className='dobble'>
-				<DobbleCard {...DobbleGame.CARDS.CARD_01} onClick={this.onClick}/>
-				<DobbleCard {...DobbleGame.CARDS.CARD_02} onClick={this.onClick}/>
-				<DobbleCard01 onClick={this.onClick} />
-				<DobbleCard01 />
+                <div>
+    				<DobbleCard onClick={this.onClick} {...DobbleGame.CARDS[0]} />
+                </div>
+                <div>
+                    {this.state.label}
+                </div>
 			</div>
 		)
 	}
