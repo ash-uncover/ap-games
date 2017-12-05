@@ -27,13 +27,12 @@ class Dobble extends React.Component {
         this.prepareGame()
     }
     _prepareGame() {
+        //let cards = ArrayUtils.shuffle(DobbleCards.CARDS.concat(DobbleCards.CARDS).concat(DobbleCards.CARDS).concat(DobbleCards.CARDS))
         let cards = ArrayUtils.shuffle(DobbleCards.CARDS)
-        console.log(cards)
         this.setState({
             card1: cards.pop(),
             card2: cards.pop(),
             cards: cards,
-            left: cards.length + 2,
             errors: 0,
             label: '',
             status: ''
@@ -60,10 +59,11 @@ class Dobble extends React.Component {
     }
 
     render() { 
+        console.log(this.state)
         return (
             <div className='dobble'>
                 <div className='dobble-score'>
-                    <div>Cartes restantes: {this.state.left}</div>
+                    <div>Cartes restantes: {this.state.cards ? this.state.cards.length + 1 : 0}</div>
                     <div>Erreurs: {this.state.errors}</div>
                 </div>
                 <div className='dobble-cards'>
