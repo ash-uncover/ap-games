@@ -19,7 +19,7 @@ DobbleSymbols.SYMBOLS = [
     { id: '15', category: 'purple', name: 'Dobble' },
     { id: '16', category: 'purple', name: 'Bougie' },
     { id: '17', category: 'orange', name: 'Voiture' },
-    { id: '18', category: 'orange', name: 'Marteau' },
+    { id: '18', category: 'orange', name: 'Stop', name2: 'Marteau' },
     { id: '19', category: 'orange', name: 'Clé de sol' },
     { id: '20', category: 'orange', name: 'Biberon' },
     { id: '21', category: 'orange', name: 'Ancre' },
