@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import DobbleSymbols from 'game-data/dobble/DobbleSymbols'
 import DobbleGame from 'game-data/dobble/DobbleGame'
 
 import './Dobble.scss'
@@ -40,7 +41,7 @@ export default class DobbleCard extends React.Component {
             <area 
                 key={symbol.id}
                 onClick={this.onClick.bind(this, symbol.id)} 
-                title={DobbleGame.SYMBOLS[symbol.id].name}
+                title={DobbleSymbols.SYMBOLS[symbol.id].name}
                 shape='poly' 
                 coords={symbol.coords} />
         )

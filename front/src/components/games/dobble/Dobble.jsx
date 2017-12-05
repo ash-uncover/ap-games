@@ -1,7 +1,12 @@
 import React from 'react'
 
-import DobbleCard from './DobbleCard'
+import DobbleCards from 'game-data/dobble/DobbleCards'
 import DobbleGame from 'game-data/dobble/DobbleGame'
+import DobbleSymbols from 'game-data/dobble/DobbleSymbols'
+
+import ArrayUtils from 'utils-lib/ArrayUtils'
+
+import DobbleCard from './DobbleCard'
 
 import './Dobble.scss'
 
@@ -12,31 +17,46 @@ class Dobble extends React.Component {
 
         this.onClickFirst = this._onClickFirst.bind(this)
         this.onClickSecond = this._onClickSecond.bind(this)
+        this.prepareGame = this._prepareGame.bind(this)
 
-        this.state = { 
-            card1: DobbleGame.CARDS[2],
-            card2: DobbleGame.CARDS[0],
-            left: 34,
-            errors: 4,
+        this.state = {}
+        
+    }
+
+    componentDidMount() {
+        this.prepareGame()
+    }
+    _prepareGame() {
+        let cards = ArrayUtils.shuffle(DobbleCards.CARDS)
+        console.log(cards)
+        this.setState({
+            card1: cards.pop(),
+            card2: cards.pop(),
+            cards: cards,
+            left: cards.length + 2,
+            errors: 0,
             label: '',
             status: ''
-        }
-
+        })
     }
 
     _onClickFirst(cardId, symbolId) {
-        let result = DobbleGame.isCommonSymbol(this.state.card1.id, this.state.card2.id, symbolId)
-        this.setState({ 
-            label: DobbleGame.SYMBOLS[symbolId].name,
-            status: result ? 'TROUVE' : 'NON'
-        })
+        this.onClickSecond(cardId, symbolId)
     }
     _onClickSecond(cardId, symbolId) {
         let result = DobbleGame.isCommonSymbol(this.state.card1.id, this.state.card2.id, symbolId)
-        this.setState({ 
-            label: DobbleGame.SYMBOLS[symbolId].name,
-            status: result ? 'TROUVE' : 'NON'
-        })
+        let nextState = { 
+            label: DobbleSymbols.SYMBOLS[symbolId].name,
+            status: result ? 'TROUVE' : 'NON',
+            errors: this.state.errors + (result ? 0 : 1)
+        }
+        if (result) {
+            nextState = { 
+                card1: this.state.cards.pop(),
+                card2: this.state.card1
+            }   
+        }
+        this.setState(nextState)
     }
 
     render() { 
@@ -47,8 +67,8 @@ class Dobble extends React.Component {
                     <div>Erreurs: {this.state.errors}</div>
                 </div>
                 <div className='dobble-cards'>
-                    <DobbleCard onClick={this.onClickFirst} {...this.state.card1} />
-                    <DobbleCard onClick={this.onClickSecond} {...this.state.card2} />
+                    {this.state.card1 ? <DobbleCard onClick={this.onClickFirst} {...this.state.card1} /> : null}
+                    {this.state.card2 ? <DobbleCard onClick={this.onClickSecond} {...this.state.card2} /> : null}
                 </div>
                 <div>
                     {this.state.label}
