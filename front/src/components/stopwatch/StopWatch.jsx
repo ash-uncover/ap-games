@@ -12,7 +12,7 @@ export default class StopWatch extends React.Component {
     render() { 
         return (
             <div className='stop-watch'>
-                
+                {this.props.state} {this.props.startTime} {this.props.stopTime}
             </div>
         )
     }
