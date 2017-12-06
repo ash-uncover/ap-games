@@ -1,5 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
+// actions
+import { stopwatchStart, stopwatchStop } from 'actions'
+
 // Components
 import StopWatch from 'components/stopwatch/StopWatch'
 
@@ -12,7 +16,14 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-    return {}
+    return {
+        onStart: () => {
+            dispatch(stopwatchStart())
+        },
+        onStop: () => {
+            dispatch(stopwatchStop())
+        }
+    }
 }
 
 const StopWatchContainer = connect(

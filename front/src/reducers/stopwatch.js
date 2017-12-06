@@ -19,24 +19,24 @@ const reducer = (state = defaultState, action) => {
             state: 'STARTED'
         }
     case 'STOPWATCH_PAUSE':
-        return {
+        return Object.assign({}, state, {
             pauseStamp: new Date().getTime(),
             state: 'PAUSED'
-        }
+        })
     case 'STOPWATCH_RESUME':
-        return {
-            startStamp: state.startStamp + (new Date().getTime() - state.pauseStamp)
+        return Object.assign({}, state, {
+            startStamp: state.startStamp + (new Date().getTime() - state.pauseStamp),
             pauseStamp: null,
             state: 'STARTED'
-        }
+        })
     case 'STOPWATCH_STOP':
         let stop = new Date().getTime()
-        return {
+        return Object.assign({}, state, {
             stopTime: stop,
             stopStamp: stop,
             lastDuration: stop - state.startStamp,
             state: 'STOPPED'
-        }
+        })
     default:
         return state
     }   
