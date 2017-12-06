@@ -6,6 +6,9 @@ let DateUtils = {
             minutes: Math.floor(duration / 60000) % 60,
             hours: Math.floor(duration / 3600000)
         }
+    },
+    logTime: function(value) {
+		return (value < 10 ? '0' : '') + value
     }
 }
 export default DateUtils

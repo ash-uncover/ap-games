@@ -9,20 +9,18 @@ export default class StopWatch extends React.Component {
         super(props)
     }
 
-    componentWillReceiveProps(props) {
-        console.log('newprops')
-        console.log(props)
-    }
-
     renderDuration() {
         if (this.props.startTime && this.props.stopTime) {
             let data = DateUtils.durationToHumanTime(this.props.stopTime - this.props.startTime);
-            return data.hours + 'h' + data.minutes + 'm' + data.seconds + 's'
+            if (data.hours) {
+                return DateUtils.logTime(data.hours) + 'h' + DateUtils.logTime(data.minutes) + 'm' + DateUtils.logTime(data.seconds) + 's'
+            }
+            return DateUtils.logTime(data.minutes) + ':' + DateUtils.logTime(data.seconds) + 's'
         }
         return ''
     }
 
-    render() { 
+    render() {
         return (
             <div className='stop-watch'>
                 {this.props.state === 'STOPPED' ? (<button onClick={this.props.onStart}>Start</button>) : null }

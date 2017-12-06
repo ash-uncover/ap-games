@@ -14,10 +14,9 @@ import './assets/styles/styles.css'
 
 const store = createStore(reducer)
 
-
 render(
     <Provider store={store}>
         <AppRouter/>
     </Provider>,
-    document.getElementById('app')
+    document.getElementById('reactroot')
 )

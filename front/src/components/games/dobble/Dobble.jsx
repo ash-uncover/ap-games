@@ -1,5 +1,7 @@
 import React from 'react'
 
+import StopWatchContainer from 'containers/stopwatch/StopWatchContainer'
+
 import DobbleCards from 'game-data/dobble/DobbleCards'
 import DobbleGame from 'game-data/dobble/DobbleGame'
 import DobbleSymbols from 'game-data/dobble/DobbleSymbols'
@@ -63,6 +65,7 @@ class Dobble extends React.Component {
             <div className='dobble'>
                 <div className='dobble-score'>
                     <div>Cartes restantes: {this.state.cards ? this.state.cards.length + 1 : 0}</div>
+                    <StopWatchContainer />
                     <div>Erreurs: {this.state.errors}</div>
                 </div>
                 <div className='dobble-cards'>
