@@ -1,17 +1,23 @@
-// Globally import the bootstrap css
-//import 'bootstrap/dist/css/bootstrap.css';
-// React modules
 import React from 'react'
 import { render } from 'react-dom'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
 
-// Import Actions
-import SudokuActions from 'flux/SudokuActions';
-// Import Stores
-import SudokuStore from 'flux/SudokuStore';
+import reducer from 'reducers'
 
-// Our root component handling routing in the application
+import SudokuActions from 'flux/SudokuActions'
+import SudokuStore from 'flux/SudokuStore'
+
 import AppRouter from 'components/AppRouter.jsx'
 
 import './assets/styles/styles.css'
 
-render((<AppRouter/>), document.getElementById('reactroot'))
+const store = createStore(reducer)
+
+
+render(
+    <Provider store={store}>
+        <AppRouter/>
+    </Provider>,
+    document.getElementById('app')
+)
