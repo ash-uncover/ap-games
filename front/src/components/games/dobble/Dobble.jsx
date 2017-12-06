@@ -4,7 +4,7 @@ import DobbleCards from 'game-data/dobble/DobbleCards'
 import DobbleGame from 'game-data/dobble/DobbleGame'
 import DobbleSymbols from 'game-data/dobble/DobbleSymbols'
 
-import ArrayUtils from 'utils-lib/ArrayUtils'
+import { ArrayUtils } from 'utils-lib'
 
 import DobbleCard from './DobbleCard'
 
