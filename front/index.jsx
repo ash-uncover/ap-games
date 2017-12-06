@@ -14,4 +14,4 @@ import AppRouter from 'components/AppRouter.jsx'
 
 import './assets/styles/styles.css'
 
-render((<AppRouter/>), document.getElementById('app'))
+render((<AppRouter/>), document.getElementById('reactroot'))
