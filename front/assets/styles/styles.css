@@ -10,7 +10,7 @@ body {
 	position: relative;
 }
 
-#app {
+#reactroot {
 	position: absolute;
 	top: 0;
 	left: 0;

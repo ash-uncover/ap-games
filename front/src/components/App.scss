@@ -1,3 +1,21 @@
 .app {
-	min-height: 100%
+	min-height: 100%;
+	display: flex;
+
+	.mainMenu, .subMenu, .mainContent {
+		height: 100%;
+		flex-grow: 0;
+	}
+
+	.mainMenu {
+		background: grey;
+		width: 100px;
+	}
+	.subMenu {
+		background: darkgrey;
+		width: 200px;	
+	}
+	.mainContent {
+		flex-grow: 1;
+	}
 }

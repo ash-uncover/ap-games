@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './App.scss'
+
 class App extends React.Component {
 
 	constructor(props) {
@@ -9,7 +11,13 @@ class App extends React.Component {
 	render() { 
 		return (
 			<div className='app'>
-				{this.props.children}
+				<div className='mainMenu'>
+				</div>
+				<div className='subMenu'>
+				</div>
+				<div className='mainContent'>
+					{this.props.children}
+				</div>
 			</div>
 		)
 	}
