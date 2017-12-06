@@ -8,7 +8,7 @@ let DateUtils = {
         }
     },
     logTime: function(value) {
-		return (value < 10 ? '0' : '') + value
+        return (value < 10 ? '0' : '') + value
     }
 }
 export default DateUtils
