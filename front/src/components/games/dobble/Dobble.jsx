@@ -1,7 +1,5 @@
 import React from 'react'
 
-import StopWatchContainer from 'containers/stopwatch/StopWatchContainer'
-
 import DobbleCards from 'game-data/dobble/DobbleCards'
 import DobbleGame from 'game-data/dobble/DobbleGame'
 import DobbleSymbols from 'game-data/dobble/DobbleSymbols'
@@ -17,67 +15,59 @@ class Dobble extends React.Component {
     constructor(props) {
         super(props)
 
-        this.onClickFirst = this._onClickFirst.bind(this)
-        this.onClickSecond = this._onClickSecond.bind(this)
-        this.prepareGame = this._prepareGame.bind(this)
-
-        this.state = {}
-        
+        this.onCardClick = this._onCardClick.bind(this)
     }
 
-    componentDidMount() {
-        this.prepareGame()
-    }
-    _prepareGame() {
-        //let cards = ArrayUtils.shuffle(DobbleCards.CARDS.concat(DobbleCards.CARDS).concat(DobbleCards.CARDS).concat(DobbleCards.CARDS))
-        let cards = ArrayUtils.shuffle(DobbleCards.CARDS)
-        this.setState({
-            card1: cards.pop(),
-            card2: cards.pop(),
-            cards: cards,
-            errors: 0,
-            label: '',
-            status: ''
-        })
+    _onCardClick(cardId, symbolId) {
+        this.props.onSelectSymbol(symbolId)
     }
 
-    _onClickFirst(cardId, symbolId) {
-        this.onClickSecond(cardId, symbolId)
-    }
-    _onClickSecond(cardId, symbolId) {
-        let result = DobbleGame.isCommonSymbol(this.state.card1.id, this.state.card2.id, symbolId)
-        let nextState = { 
-            label: DobbleSymbols.SYMBOLS[symbolId].name,
-            status: result ? 'TROUVE' : 'NON',
-            errors: this.state.errors + (result ? 0 : 1)
+    render() {
+        console.log('RERENDER DOBBLE')
+        switch (this.props.state) {
+            case 'NOT_STARTED': return this.renderNotStarted()
+            case 'STARTED': return this.renderStarted()
+            case 'FINISHED': return this.renderFinished()
         }
-        if (result) {
-            nextState = { 
-                card1: this.state.cards.pop(),
-                card2: this.state.card1
-            }   
-        }
-        this.setState(nextState)
     }
 
-    render() { 
+    renderNotStarted() {
+        return (
+            <div className='dobble'>
+                <div className='dobble-message-container'>
+                    <div className='dobble-message'>
+                        <p>Bienvenue à DOBBLE</p>
+                        <button onClick={this.props.onStart}>Démarrer</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    renderStarted() {
         return (
             <div className='dobble'>
                 <div className='dobble-score'>
-                    <div>Cartes restantes: {this.state.cards ? this.state.cards.length + 1 : 0}</div>
-                    <StopWatchContainer />
-                    <div>Erreurs: {this.state.errors}</div>
+                    <div>Cartes restantes: {this.props.cardsLeft.length + 1}</div>
+                    <div>Erreurs: {this.props.errors}</div>
                 </div>
                 <div className='dobble-cards'>
-                    {this.state.card1 ? <DobbleCard onClick={this.onClickFirst} {...this.state.card1} /> : null}
-                    {this.state.card2 ? <DobbleCard onClick={this.onClickSecond} {...this.state.card2} /> : null}
+                    <DobbleCard onClick={this.onCardClick} {...this.props.cardsLeft[this.props.cardsLeft.length - 1]} />
+                    <DobbleCard onClick={this.onCardClick} {...this.props.cardsFound[this.props.cardsFound.length - 1]} />
                 </div>
-                <div>
-                    {this.state.label}
+            </div>
+        )
+    }
+
+    renderFinished() {
+        return (
+            <div className='dobble'>
+                <div className='dobble-message-container'>
+                    <div className='dobble-message'>
+                        <p>Partie terminée</p>
+                        <button onClick={this.props.onStart}>Rejouer</button>
+                    </div>
                 </div>
-                <p>
-                    {this.state.status}
-                </p>
             </div>
         )
     }

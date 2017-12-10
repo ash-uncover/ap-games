@@ -5,7 +5,7 @@ import Dispatcher from 'flux/core/Dispatcher'
 
 import App from 'components/App'
 
-import Dobble from 'components/games/dobble/Dobble'
+import DobbleContainer from 'containers/dobble/DobbleContainer'
 import MasterMind from 'components/games/mastermind/MasterMind'
 import Pendu from 'components/games/pendu/Pendu'
 import Sudoku from 'components/games/sudoku/Sudoku'
@@ -29,7 +29,7 @@ class AppRouter extends React.Component {
 		return (
 			<Router history={browserHistory}>
 				<Route path='/' component={App} onEnter={this.onRouteEnter}>
-					<Route path='/dobble' component={Dobble} />
+					<Route path='/dobble' component={DobbleContainer} />
                     <Route path='/mastermind' component={MasterMind} />
                     <Route path='/pendu' component={Pendu} />
                     <Route path='/sudoku' component={Sudoku} />
