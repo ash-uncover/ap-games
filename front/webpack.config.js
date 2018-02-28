@@ -1,15 +1,35 @@
-var path = require('path');
-var node_modules = path.resolve(__dirname, 'node_modules');
-var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
 
-var webpack = require('webpack');
- 
+const node_modules = path.resolve(__dirname, 'node_modules');
+const pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+
+const pathsName = {
+    DIST: 'dist',
+    ASSETS: 'assets',
+    NODE_MODULES: 'node_modules',
+    SRC: 'src'
+}
+const paths = {
+    DIST: path.resolve(__dirname, pathsName.DIST),
+    ASSETS: path.resolve(__dirname, pathsName.ASSETS),
+    NODE_MODULES: path.resolve(__dirname, pathsName.NODE_MODULES),
+    SRC: path.resolve(__dirname, pathsName.SRC)
+}
+
 module.exports = {
 
-    entry: path.resolve(__dirname, './index.jsx'),
+    context: __dirname,
+
+    entry: path.resolve(paths.SRC, './index.jsx'),
+
+    plugins: [
+        new CleanWebpackPlugin([pathsName.DIST])
+    ],
 
     output: {
-        path: path.resolve(__dirname, 'build'), 
+        path: paths.DIST, 
         filename: 'bundle.js'
     },
 
@@ -20,12 +40,12 @@ module.exports = {
     },
 
     resolve: {
-        modulesDirectories: ['node_modules', './src'],
-        extensions: ['', '.js', '.jsx']
+        modules: ['node_modules', './src', './assets'],
+        extensions: ['.js', '.jsx']
     },
 
     module: {
-        loaders: [
+        rules: [
             {
                 test: /.jsx?$/,
                 exclude: /node_modules/,
