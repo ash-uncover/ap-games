@@ -4,8 +4,8 @@ import dobble from 'reducers/dobble'
 import stopwatch from 'reducers/stopwatch'
 
 const index = combineReducers({
-    dobble, 
-    stopwatch
+  dobble,
+  stopwatch
 })
 
 export default index

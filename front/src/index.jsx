@@ -18,10 +18,10 @@ import '../assets/styles/styles.css'
 const store = createStore(reducer)
 
 render(
-    <BrowserRouter>
-        <Provider store={store}>
-            <App/>
-        </Provider>
-    </BrowserRouter>,
-    document.getElementById('reactroot')
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById('reactroot')
 )

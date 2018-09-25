@@ -1,20 +1,19 @@
-import React from 'react';
+import React from 'react'
 
-import SudokuGrid from 'components/games/sudoku/SudokuGrid.jsx';
+import SudokuGrid from 'components/games/sudoku/SudokuGrid.jsx'
 
 import './Sudoku.css'
 
 class SudokuBoard extends React.Component {
+  constructor (props) {
+    super(props)
+  }
 
-	constructor(props) {
-		super(props);
-	}
-
-	render() { 
-		return (
-			<SudokuGrid onTileSelect={this.props.onTileSelect} values={this.props.values}/>
-		);
-	}
+  render () {
+    return (
+      <SudokuGrid onTileSelect={this.props.onTileSelect} values={this.props.values} />
+    )
+  }
 }
 
-export default SudokuBoard;
+export default SudokuBoard
