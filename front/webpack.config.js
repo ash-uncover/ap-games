@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
@@ -24,6 +26,15 @@ module.exports = {
 
   entry: path.resolve(paths.SRC, './index.jsx'),
 
+  node: {
+    console: true,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
+
+  devtool: 'eval-source-map',
+
   plugins: [
     new CleanWebpackPlugin([pathsName.DIST])
   ],
@@ -39,9 +50,21 @@ module.exports = {
     port: 8080
   },
 
+  optimization: {
+    minimizer: []
+  },
+
   resolve: {
-    modules: ['node_modules', './src', './assets'],
-    extensions: ['.js', '.jsx']
+    modules: [
+      'node_modules',
+      './src',
+      './assets'
+    ],
+    extensions: [
+      '.js',
+      '.json',
+      '.jsx'
+    ]
   },
 
   module: {
@@ -49,10 +72,7 @@ module.exports = {
       {
         test: /.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
-        }
+        loader: 'babel-loader'
       }, {
         test: /node_modules\/jquery\/.+\.(jsx|js)$/,
         loader: 'imports?jQuery=jquery,$=jquery,this=>window'

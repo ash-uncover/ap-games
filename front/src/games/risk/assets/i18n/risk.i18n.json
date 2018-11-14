@@ -1,0 +1,9 @@
+{
+  "risk.name": "Risk",
+  
+  "risk.menu.newgame": "New Game",
+  "risk.menu.loadgame": "Load Game",
+  "risk.menu.options": "Options",
+  "risk.menu.credits": "Credits",
+  "risk.menu.exit": "Quit"
+}

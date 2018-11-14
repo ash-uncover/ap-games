@@ -1,4 +1,4 @@
-let DateUtils = {
+const DateUtils = {
   durationToHumanTime: function (duration) {
     return {
       millis: duration % 1000,

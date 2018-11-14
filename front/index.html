@@ -1,33 +1,39 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta charset="utf-8">
-        <meta content="IE=edge" http-equiv="X-UA-Compatible">
-        <meta content="width=device-width, initial-scale=1" name="viewport">
+  <head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
 
-        <style>
-            html {
-                height: 100%;
-            }
-            body {
-                min-height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            .app {
-                height: 100%;
-            }
-        </style>
+    <style>
+      html {
+        height: 100%;
+        background: black;
+      }
+      body {
+        position: relative;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #reactroot {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
 
-        <title>Sudoku</title>
+    <title>Sudoku</title>
 
-    </head>
-    
-    <body>
-        <div id="reactroot" />
-        <script src="/bundle.js"></script>
-    </body>
+  </head>
+  
+  <body>
+    <div id="reactroot" />
+    <script src="/bundle.js"></script>
+  </body>
 
     
 </html>

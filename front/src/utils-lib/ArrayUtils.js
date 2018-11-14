@@ -1,5 +1,4 @@
-let ArrayUtils = {
-
+const ArrayUtils = {
   shuffle: function (array) {
     let source = [].concat(array)
     let result = []

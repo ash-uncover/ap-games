@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
-import dobble from 'reducers/dobble'
-import stopwatch from 'reducers/stopwatch'
+import i18n from 'reducers/i18n.reducer'
+import risk from 'games/risk/reducers/RiskReducer'
 
 const index = combineReducers({
-  dobble,
-  stopwatch
+  i18n,
+  risk
 })
 
 export default index

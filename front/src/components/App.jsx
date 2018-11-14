@@ -1,11 +1,8 @@
 import React from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
-import './App.scss'
+import './_app.scss'
 
-import DobbleContainer from 'containers/dobble/DobbleContainer'
-import MasterMind from 'components/games/mastermind/MasterMind'
-import Pendu from 'components/games/pendu/Pendu'
-import Sudoku from 'components/games/sudoku/Sudoku'
+import GameRegistry from 'core/games/GameRegistry'
 
 class App extends React.Component {
   constructor (props) {
@@ -18,20 +15,18 @@ class App extends React.Component {
         <header className='mainMenu'>
           <nav>
             <ul>
-              <li><Link to='/dobble'>Dobble</Link></li>
-              <li><Link to='/mastermind'>Master Mind</Link></li>
-              <li><Link to='/pendu'>Pendu</Link></li>
-              <li><Link to='/sudoku'>Soduku</Link></li>
+              {Object.keys(GameRegistry.GAMES).map((gameId) => (
+                <li><Link to={`/${gameId}`}>{GameRegistry.GAMES[gameId].name}</Link></li>
+              ))}
             </ul>
           </nav>
         </header>
         <div className='subMenu' />
         <div className='mainContent'>
           <Switch>
-            <Route path='/dobble' component={DobbleContainer} />
-            <Route path='/mastermind' component={MasterMind} />
-            <Route path='/pendu' component={Pendu} />
-            <Route path='/sudoku' component={Sudoku} />
+            {Object.keys(GameRegistry.GAMES).map((gameId) => (
+              <Route path={`/${gameId}`} component={GameRegistry.GAMES[gameId].component} />
+            ))}
           </Switch>
         </div>
       </main>
