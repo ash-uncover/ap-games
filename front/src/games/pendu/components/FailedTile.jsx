@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './Pendu.scss'
+import './_pendu.scss'
 
 export default class FailedTile extends React.Component {
   constructor (props) {

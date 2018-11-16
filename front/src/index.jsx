@@ -11,6 +11,7 @@ import reducer from 'reducers'
 
 import '../assets/styles/styles.css'
 
+import Pendu from 'games/pendu'
 import Risk from 'games/risk'
 
 const store = createStore(reducer)

@@ -1,7 +1,8 @@
 import React from 'react'
-import './Pendu.scss'
 
-import PenduData from 'game-data/pendu/PenduData'
+import PenduData from '../model/PenduData'
+
+import './_pendu.scss'
 
 export default class SecretTile extends React.Component {
   constructor (props) {

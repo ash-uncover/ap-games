@@ -1,7 +1,8 @@
 import React from 'react'
-import './Pendu.scss'
 
-import PenduData from 'game-data/pendu/PenduData'
+import './_pendu.scss'
+
+import PenduData from '../model/PenduData'
 
 import FailedTile from './FailedTile'
 import SecretTile from './SecretTile'
@@ -86,7 +87,7 @@ export default class Pendu extends React.Component {
     return (
       <div className={(this.state.lost ? 'lost ' : (this.state.won ? 'won ' : '')) + 'pendu'} >
         <div>
-          <img src={'assets/images/pendu/' + this.state.status + '.png'} />
+          <img src={'/src/games/pendu/assets/img/' + this.state.status + '.png'} />
         </div>
         <input autoFocus ref='input' onBlur={this.onBlur} className='userInput' value={''} onChange={this.onChange} />
         <div className='secretTiles'>
@@ -101,10 +102,10 @@ export default class Pendu extends React.Component {
             : '' }
         </div>
         <div className='score'>
-                    MOTS TROUVES : {this.state.score || 0}
+          MOTS TROUVES : {this.state.score || 0}
         </div>
         <div className='score'>
-                    MOTS PERDUS : {this.state.lscore || 0}
+          MOTS PERDUS : {this.state.lscore || 0}
         </div>
       </div>
     )
