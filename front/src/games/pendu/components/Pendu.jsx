@@ -1,113 +1,72 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { Link, Switch, Route } from 'react-router-dom'
+ 
+import Home from './home/Home'
+import Board from './board/Board'
+import Helper from '../actions/PenduActionsHelper'
 
 import './_pendu.scss'
 
-import PenduData from '../model/PenduData'
-
-import FailedTile from './FailedTile'
-import SecretTile from './SecretTile'
-
-export default class Pendu extends React.Component {
+class Pendu extends React.Component {
   constructor (props) {
     super(props)
-
-    let word = PenduData.WORDS[Math.floor((Math.random() * PenduData.WORDS.length))]
-    let secret = []
-    for (var i = 0; i < word.length; i++) {
-      secret.push(word[i].toUpperCase())
-    }
-    let found = secret.map(function (v, index) {
-      if (index === 0) {
-        return v
-      }
-      return (PenduData.REGEX.test(v) ? '' : v)
-    })
-    this.state = {
-      lost: false,
-      won: false,
-      status: 0,
-      secret: secret,
-      failed: [],
-      found: found
-    }
-
-    this.buildSecretTile = this._buildSecretTile.bind(this)
-    this.buildFailedTile = this._buildFailedTile.bind(this)
-
-    this.onBlur = this._onBlur.bind(this)
-    this.onChange = this._onChange.bind(this)
   }
 
-  _buildSecretTile (s, index) {
-    return (
-      <SecretTile key={index} value={s} secret={this.state.secret[index]} />
-    )
-  }
-  _buildFailedTile (s, index) {
-    return (
-      <FailedTile key={index} value={s} />
-    )
+  /* LIFECYCLE */
+
+  componentWillMount() {
+    console.log('will mount')
+    this.checkLoad({
+        loaded: this.props.loaded,
+        loading: this.props.loading,
+        loadingError: this.props.loadingError
+      })
   }
 
-  _onChange (event) {
-    if (!this.state.lost && !this.state.won) {
-      let v = event.target.value.toUpperCase()
-      if (PenduData.REGEX.test(v)) {
-        for (let i = 0; i < this.state.secret.length; i++) {
-          if (this.state.secret[i] === v) {
-            this.state.found[i] = v
-          }
-        }
-        if (this.state.found.indexOf('') === -1) {
-          this.state.score = (this.state.score || 0) + 1
-          this.state.won = true
-        }
-        if (this.state.secret.indexOf(v) === -1 && this.state.failed.indexOf(v) === -1) {
-          this.state.failed.push(v)
-          this.state.status++
-          if (this.state.status > 10) {
-            this.state.lscore = (this.state.lscore || 0) + 1
-            this.state.lost = true
-            this.state.found = this.state.secret
-          }
-        }
-        this.forceUpdate()
-      }
+  componentWillReceiveProps(props) {
+      this.checkLoad(props)
+  }
+
+  checkLoad(args) {
+    if(!args.loaded && !args.loading && !args.loadingError) {
+      this.props.onLoadData()
     }
   }
 
-  replay () {
-    this.setState(this.getInitialState())
-  }
-  _onBlur () {
-    this.refs.input.focus()
-  }
+  /* RENDERING */
 
   render () {
+    const url = this.props.match.url
     return (
-      <div className={(this.state.lost ? 'lost ' : (this.state.won ? 'won ' : '')) + 'pendu'} >
-        <div>
-          <img src={'/src/games/pendu/assets/img/' + this.state.status + '.png'} />
-        </div>
-        <input autoFocus ref='input' onBlur={this.onBlur} className='userInput' value={''} onChange={this.onChange} />
-        <div className='secretTiles'>
-          {this.state.found.map(this.buildSecretTile)}
-        </div>
-        <div className='failedTiles'>
-          {this.state.failed.map(this.buildFailedTile)}
-        </div>
-        <div>
-          {this.state.lost || this.state.won
-            ? <button onClick={this.replay}>Rejouer</button>
-            : '' }
-        </div>
-        <div className='score'>
-          MOTS TROUVES : {this.state.score || 0}
-        </div>
-        <div className='score'>
-          MOTS PERDUS : {this.state.lscore || 0}
-        </div>
+      <div className='pendu'>
+        <Switch>
+          <Route path={url + '/game'} component={Board} />
+          <Route path={url + '/'} component={Home} />
+        </Switch>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  const { loaded, loading, loadingError } = state.pendu.data
+  return {
+    loaded,
+    loading,
+    loadingError
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoadData: () => { Helper.loadData(dispatch) }
+  }
+}
+
+const PenduContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Pendu)
+
+export default PenduContainer

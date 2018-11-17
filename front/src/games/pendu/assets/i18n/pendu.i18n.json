@@ -1,0 +1,14 @@
+{
+  "pendu.name": "Le Pendu",
+  
+  "pendu.menu.newgame": "Nouvelle Partie",
+  "pendu.menu.back": "Retour",
+  "pendu.menu.options": "Options",
+  "pendu.menu.credits": "Credits",
+  "pendu.menu.exit": "Quitter",
+
+  "pendu.difficulty": "Difficulté",
+  "pendu.difficulty.easy": "Trop Facile",
+  "pendu.difficulty.medium": "Facile",
+  "pendu.difficulty.hard": "Normal"
+}

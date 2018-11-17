@@ -1,44 +1,11 @@
 .pendu {
-  height: 100%;
-  min-height: 500px;
-  text-align: center;
-  background: grey;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  overflow: auto;
 
-  &.won {
-      background: green;
-  }
-  &.lost {
-      background: orange;
-  }
-}
-.userInput {
-  position: fixed;
-  top: -500px;
-  margin-bottom: 30px;
-}
-.secretTiles {
-  display: flex;
-  justify-content: center;
-}
-.secretTile {
-  display: inline-block;
-  border-bottom: 1px solid black;
-  margin: 5px;
-  min-width: 15px;
-  min-height: 20px;
-  text-align: center;
-}
-.secretTile.nonAlpha {
-  border-bottom: 1px solid transparent;
-}
-.failedTiles {
-  margin-top: 30px;
-}
-.failedTile {
-  display: inline-block;
-  color: red;
-  margin: 5px;
-}
-.score {
-  margin-top: 30px;
+  background: grey;
 }
