@@ -51,13 +51,6 @@ const reducer = (state = defaultState, action) => {
       break
 
     case ActionRegistry.PENDU_START_GAME: {
-      const word = PenduData.WORDS[Math.floor((Math.random() * PenduData.WORDS.length))]
-      const secret = []
-      for (let i = 0; i < word.length; i++) {
-        secret.push(word[i].toUpperCase())
-      }
-      newState.letters = []
-      newState.secret = secret
       newState.game.difficulty = action.args.difficulty
       newState.game.started = true
       newState.game.finished = false
