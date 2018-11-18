@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import './_board.scss'
+import './_word.scss'
 
-class BoardErrors extends React.Component {
+class WordErrors extends React.Component {
   constructor (props) {
     super(props)
   }
@@ -14,14 +14,14 @@ class BoardErrors extends React.Component {
     return this.props.letters
       .filter((letter) => this.props.secret.indexOf(letter) === -1)
       .map((letter) => (
-        <span key={`board-error-${letter}`}>
+        <span key={`word-error-${letter}`}>
           {letter}
         </span>
       ))
   }
   render () {
     return (
-      <div className='board-errors' >
+      <div className='word-errors' >
         <div className='failedTiles'>
           {this.buildLetters()}
         </div>
@@ -31,9 +31,10 @@ class BoardErrors extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  const { secret, letters } = state.pendu.game.current
   return {
-    letters: state.pendu.letters,
-    secret: state.pendu.secret
+    letters,
+    secret
   }
 }
 
@@ -41,9 +42,9 @@ const mapDispatchToProps = (dispatch) => {
   return {}
 }
 
-const BoardErrorsContainer = connect(
+const WordErrorsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(BoardErrors)
+)(WordErrors)
 
-export default BoardErrorsContainer
+export default WordErrorsContainer

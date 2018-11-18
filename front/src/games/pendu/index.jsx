@@ -6,6 +6,8 @@ import Pendu from './components/Pendu'
 const PenduGame = {
   id: 'pendu',
   name: 'pendu.name',
+  icon: '/src/games/pendu/assets/img/icon.svg',
+  actions: PenduActions,
   reducer: PenduReducer,
   component: Pendu
 }

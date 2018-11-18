@@ -1,5 +1,6 @@
 import ActionRegistry from 'core/actions/ActionRegistry'
-import PenduData from '../model/PenduData'
+
+import PenduHelper from '../model/PenduHelper'
 
 const defaultState = {
   data: {
@@ -7,9 +8,21 @@ const defaultState = {
     loading: false,
     loadingError: null
   },
-  difficulty: 0,
-  letters: [],
-  secret: []
+  game: {
+    started: false,
+    finished: false,
+    difficulty: null,
+    gameLost: 0,
+    gameWon: 0,
+    current: {
+      won: false,
+      lost: false,
+      startTime: null,
+      endTime: null,
+      letters: [],
+      secret: []
+    }
+  }
 }
 
 const reducer = (state = defaultState, action) => {
@@ -45,14 +58,42 @@ const reducer = (state = defaultState, action) => {
       }
       newState.letters = []
       newState.secret = secret
+      newState.game.difficulty = action.args.difficulty
+      newState.game.started = true
+      newState.game.finished = false
+      newState.game.gameLost = 0
+      newState.game.gameWon = 0
+      newState.game.current = PenduHelper.initGame(action.args.difficulty)
       break
     }
-    
+
+    case ActionRegistry.PENDU_GIVE_UP_WORD: {
+      newState.game.gameLost++
+      newState.game.current.lost = true
+      break
+    }
+
+    case ActionRegistry.PENDU_NEXT_WORD: {
+      newState.game.current = PenduHelper.initGame(newState.game.difficulty)
+      break
+    }
+
     case ActionRegistry.PENDU_SEND_LETTER: {
-      const letter = action.args.letter.toUpperCase()
-      if (newState.letters.indexOf(letter) === -1) {
-        newState.letters.push(letter)
+      PenduHelper.addLetter(
+        newState.game.current,
+        action.args.letter
+      )
+      if (newState.game.current.won) {
+        newState.game.gameWon++
       }
+      if (newState.game.current.lost) {
+        newState.game.gameLost++
+      }
+      break
+    }
+
+    case ActionRegistry.PENDU_END_GAME: {
+      newState.game.finished = true
       break
     }
   }

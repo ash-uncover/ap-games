@@ -1,67 +1,102 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import I18NHelper from 'utils-lib/i18n/I18NHelper'
 
-import ActionRegistry from 'core/actions/ActionRegistry'
-
-import BoardErrors from './BoardErrors'
-import BoardInput from './BoardInput'
-import BoardStatus from './BoardStatus'
-import BoardWord from './BoardWord'
+import Word from './word/Word'
 
 import './_board.scss'
 
 class Board extends React.Component {
   constructor (props) {
     super(props)
-
-    this.onNewGame = this.onNewGame.bind(this)
   }
 
-  onNewGame () {
-    this.props.onStartGame()
+  /* LIFECYCLE */
+
+  componentWillMount() {
+    if (!this.props.started) {
+      this.props.history.push('/pendu')
+    }
   }
+
+  /* RENDERING */
 
   render () {
+    if (this.props.finished) {
+      return this.renderFinished()
+    }
+    if (this.props.started) {
+      return this.renderStarted()
+    }
+    return <div className='board' />
+  }
+
+  renderStarted() {
     return (
       <div className='board'>
-        <BoardStatus />
-        <BoardWord />
-        <BoardErrors />
-        {!this.props.won && !this.props.lost && this.props.started ?
-          <BoardInput />
-        : null }
-        {this.props.won ?
-          <div>GAGNE</div>
-        : null}
-        {this.props.lost ?
-          <div>PERDU</div>
-        : null}
-        {this.props.won || this.props.lost || !this.props.started ?
-          <div>
-            <button onClick={this.onNewGame}>Rejouer</button>
-          </div>
-        : null}
+        <div>
+          {`${I18NHelper.get('pendu.difficulty')}: ${I18NHelper.get(this.props.difficulty.text)}`}
+        </div>
+        <div>
+          {`${I18NHelper.get('pendu.game.played')}: ${this.props.gameWon + this.props.gameLost}`}
+        </div>
+        <div>
+          {`${I18NHelper.get('pendu.game.won')}: ${this.props.gameWon}`}
+        </div>
+        <div>
+          {`${I18NHelper.get('pendu.game.lost')}: ${this.props.gameLost}`}
+        </div>
+        <Word />
+      </div>
+    )
+  }
+
+  renderFinished() {
+    return (
+      <div className='board'>
+        Partie terminée
+        <div>
+          {`${I18NHelper.get('pendu.difficulty')}: ${I18NHelper.get(this.props.difficulty.text)}`}
+        </div>
+        <div>
+          {`${I18NHelper.get('pendu.game.played')}: ${this.props.gameWon + this.props.gameLost}`}
+        </div>
+        <div>
+          {`${I18NHelper.get('pendu.game.won')}: ${this.props.gameWon}`}
+        </div>
+        <div>
+          {`${I18NHelper.get('pendu.game.lost')}: ${this.props.gameLost}`}
+        </div>
+        <Link to={`/pendu`}>
+          <button className='menu-entry menu-action'>
+          {I18NHelper.get('pendu.menu.back')}
+          </button>
+        </Link>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  const { secret, letters } = state.pendu
-  const started = Boolean(secret.length)
-  const won = started && !secret.some((letter) => letters.indexOf(letter) === -1)
-  const lost = letters.filter((letter) => secret.indexOf(letter) === -1).length > 10
-  return {
+  const {
+    gameWon,
+    gameLost,
     started,
-    won,
-    lost
+    finished,
+    difficulty
+  } = state.pendu.game
+  return {
+    difficulty,
+    gameWon,
+    gameLost,
+    started,
+    finished
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    onStartGame: (letter) => dispatch(ActionRegistry.penduStartGame())
-  }
+  return {}
 }
 
 const BoardContainer = connect(

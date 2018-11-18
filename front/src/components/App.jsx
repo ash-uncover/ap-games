@@ -21,7 +21,7 @@ class App extends React.Component {
       I18NHelper.reset()
       I18NHelper.loadData(this.props.data)
     }
-    console.log(this.props.data)
+    //console.log(this.props.data)
     return (
       <main className='app'>
         <header className='mainMenu'>

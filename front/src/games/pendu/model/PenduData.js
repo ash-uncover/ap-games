@@ -1,7 +1,6 @@
 let PenduData = {
   REGEX: /^[a-zA-Z]+$/,
   WORDS: [
-    'a',
     'abandonne',
     'abeille',
     'abime',

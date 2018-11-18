@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import './_board.scss'
+import './_word.scss'
 
-class BoardStatus extends React.Component {
+class WordStatus extends React.Component {
   constructor (props) {
     super(props)
   }
@@ -12,7 +12,7 @@ class BoardStatus extends React.Component {
 
   render () {
     return (
-      <div className='board-status' >
+      <div className='word-status' >
         <img src={'/src/games/pendu/assets/img/' + this.props.nbErrors + '.png'} />
       </div>
     )
@@ -20,8 +20,8 @@ class BoardStatus extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { letters, secret } = state.pendu
-  const nbErrors = letters.filter((letter) => secret.indexOf(letter) === -1).length
+  const { letters, secret, difficulty } = state.pendu.game.current
+  const nbErrors = letters.filter((letter) => secret.indexOf(letter) === -1).length + difficulty.value
   return {
     nbErrors
   }
@@ -31,9 +31,9 @@ const mapDispatchToProps = (dispatch) => {
   return {}
 }
 
-const BoardStatusContainer = connect(
+const WordStatusContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(BoardStatus)
+)(WordStatus)
 
-export default BoardStatusContainer
+export default WordStatusContainer

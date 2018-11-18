@@ -24,7 +24,7 @@ class NewMenu extends React.Component {
   /* VIEW CALLBACKS */
 
   onNewGame () {
-    this.props.onStartGame()
+    this.props.onStartGame(this.state.difficulty)
     this.props.history.push('/pendu/game')
   }
   
@@ -98,7 +98,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onStartGame: () => dispatch(ActionRegistry.penduStartGame())
+    onStartGame: (difficulty) => dispatch(ActionRegistry.penduStartGame(difficulty))
   }
 }
 

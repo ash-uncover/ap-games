@@ -1,11 +1,21 @@
 {
   "pendu.name": "Le Pendu",
+
+  "pendu.game.victory": "Gagné",
+  "pendu.game.defeat": "Perdu",
+  "pendu.game.played": "Parties jouées",
+  "pendu.game.won": "Parties gagnées",
+  "pendu.game.lost": "Parties perdues",
   
   "pendu.menu.newgame": "Nouvelle Partie",
   "pendu.menu.back": "Retour",
   "pendu.menu.options": "Options",
   "pendu.menu.credits": "Credits",
   "pendu.menu.exit": "Quitter",
+  "pendu.menu.endgame": "Fin de la partie",
+  "pendu.menu.replay": "Rejouer",
+  "pendu.menu.giveup": "Je donne ma langue au chat",
+  "pendu.menu.stop": "Arrêter",
 
   "pendu.difficulty": "Difficulté",
   "pendu.difficulty.easy": "Trop Facile",

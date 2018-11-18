@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 
 import ActionRegistry from 'core/actions/ActionRegistry'
 
-import PenduData from '../../model/PenduData'
+import PenduData from '../../../model/PenduData'
 
-import './_board.scss'
+import './_word.scss'
 
-class BoardInput extends React.Component {
+class WordInput extends React.Component {
   constructor (props) {
     super(props)
     
@@ -33,7 +33,7 @@ class BoardInput extends React.Component {
   render () {
     return (
       <input
-        className='board-input'
+        className='word-input'
         autoFocus ref='input'
         onBlur={this.onBlur}
         value={''}
@@ -43,7 +43,7 @@ class BoardInput extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { letters } = state.pendu
+  const { letters } = state.pendu.game.current
   return {
     letters
   }
@@ -55,9 +55,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const BoardInputContainer = connect(
+const WordInputContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(BoardInput)
+)(WordInput)
 
-export default BoardInputContainer
+export default WordInputContainer

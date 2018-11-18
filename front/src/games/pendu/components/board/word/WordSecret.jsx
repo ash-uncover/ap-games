@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import './_board.scss'
+import './_word.scss'
 
-class BoardWord extends React.Component {
+class WordSecret extends React.Component {
   constructor (props) {
     super(props)
   }
@@ -12,11 +12,11 @@ class BoardWord extends React.Component {
 
   render () {
     return (
-      <div className='board-word' >
+      <div className='word-secret' >
         {this.props.word.map((letter, index) => (
           <span
             key={`letter-${index}`}
-            className='board-word-letter'>
+            className='word-secret-letter'>
             {letter}
           </span>
         ))}
@@ -26,8 +26,7 @@ class BoardWord extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { letters, secret } = state.pendu
-  const lost = letters.filter((letter) => secret.indexOf(letter) === -1).length > 10
+  const { letters, secret, lost } = state.pendu.game.current
   const word = secret.map((letter) => {
     if (!lost && letters.indexOf(letter) === -1) {
       return '_'
@@ -43,9 +42,9 @@ const mapDispatchToProps = (dispatch) => {
   return {}
 }
 
-const BoardWordContainer = connect(
+const WordSecretContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(BoardWord)
+)(WordSecret)
 
-export default BoardWordContainer
+export default WordSecretContainer

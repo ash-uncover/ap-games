@@ -23,8 +23,8 @@ class Home extends React.Component {
       <div className='home'>
         <div className='home-logo'>
           <img
-            src='/src/games/pendu/assets/images/pendu_logo.png'
-            alt='LE PENDU' />
+            src='/src/games/pendu/assets/img/icon.svg'
+            alt={I18NHelper.get('pendu.name')} />
         </div>
         <div className='home-content'>
           <Switch>

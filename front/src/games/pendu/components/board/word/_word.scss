@@ -1,0 +1,29 @@
+.pendu .board {
+
+  .word-status {
+    height: 300px;
+    img {
+      max-height: 100%;
+    }
+  }
+
+  .word-secret {
+    .word-secret-letter {
+      display: inline-block;
+      height: 1rem;
+      width: 1rem;
+      line-height: 1rem;
+      text-align: center;
+    }
+  }
+
+  .word-errors {
+    color: red; 
+  }
+
+  .word-input {
+    position: fixed;
+    top: -500px;
+    margin-bottom: 30px;
+  }
+}

@@ -1,15 +1,18 @@
 const PenduDifficulty = {
   EASY: {
-    text: 'pendu.diffuclty.easy',
-    value: 0
+    text: 'pendu.difficulty.easy',
+    value: 0,
+    maxErrors: 12
   },
   MEDIUM: {
-    text: 'pendu.diffuclty.medium',
-    value: 1
+    text: 'pendu.difficulty.medium',
+    value: 1,
+    maxErrors: 11
   },
   HARD: {
-    text: 'pendu.diffuclty.hard',
-    value: 2
+    text: 'pendu.difficulty.hard',
+    value: 2,
+    maxErrors: 10
   }
 }
 
