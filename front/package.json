@@ -4,6 +4,7 @@
   "description": "game project",
   "main": "main.js",
   "scripts": {
+    "build": "webpack --mode production",
     "lint": "standard --verbose | snazzy",
     "lint-fix": "standard --fix --verbose | snazzy",
     "test": "jest",
