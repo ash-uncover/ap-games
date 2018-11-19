@@ -6,6 +6,8 @@ import Risk from './components/Risk'
 const RiskGame = {
   id: 'risk',
   name: 'risk.name',
+  icon: '/src/games/risk/assets/img/icon.png',
+  actions: RiskActions,
   reducer: RiskReducer,
   component: Risk
 }

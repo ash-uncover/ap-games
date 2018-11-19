@@ -34,6 +34,11 @@ class Home extends React.Component {
             <Route path={url + '/'} component={MainMenu} />
           </Switch>
         </div>
+        <div className='home-logo'>
+          <img
+            src='/src/games/pendu/assets/img/icon.svg'
+            alt={I18NHelper.get('pendu.name')} />
+        </div>
       </div>
     )
   }

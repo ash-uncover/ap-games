@@ -35,19 +35,23 @@ class Board extends React.Component {
   renderStarted() {
     return (
       <div className='board'>
-        <div>
-          {`${I18NHelper.get('pendu.difficulty')}: ${I18NHelper.get(this.props.difficulty.text)}`}
+        <div className='board-header'>
+          <div>
+            {`${I18NHelper.get('pendu.difficulty')}: ${I18NHelper.get(this.props.difficulty.text)}`}
+          </div>
+          <div>
+            {`${I18NHelper.get('pendu.game.played')}: ${this.props.gameWon + this.props.gameLost}`}
+          </div>
+          <div>
+            {`${I18NHelper.get('pendu.game.won')}: ${this.props.gameWon}`}
+          </div>
+          <div>
+            {`${I18NHelper.get('pendu.game.lost')}: ${this.props.gameLost}`}
+          </div>
         </div>
-        <div>
-          {`${I18NHelper.get('pendu.game.played')}: ${this.props.gameWon + this.props.gameLost}`}
+        <div className='board-content'>
+          <Word />
         </div>
-        <div>
-          {`${I18NHelper.get('pendu.game.won')}: ${this.props.gameWon}`}
-        </div>
-        <div>
-          {`${I18NHelper.get('pendu.game.lost')}: ${this.props.gameLost}`}
-        </div>
-        <Word />
       </div>
     )
   }

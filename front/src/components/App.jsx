@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import AppHome from './AppHome'
 
@@ -14,43 +14,52 @@ class App extends React.Component {
     super(props)
   }
 
+  /* LIFECYCLE */
+
+  componentWillMount() {
+    this.checkLoad({
+      loaded: this.props.loaded,
+      loading: this.props.loading,
+      loadingError: this.props.loadingError
+    })
+  }
+
+  componentWillReceiveProps(props) {
+      this.checkLoad(props)
+  }
+
+  checkLoad(args) {
+    if(!args.loaded && !args.loading && !args.loadingError) {
+      this.props.onLoadData()
+    }
+  }
+
   /* RENDERING */
 
   render () {
-    if (this.props.data) {
+    if (this.props.i18n) {
       I18NHelper.reset()
-      I18NHelper.loadData(this.props.data)
+      I18NHelper.loadi18n(this.props.data)
     }
-    //console.log(this.props.data)
     return (
       <main className='app'>
-        <header className='mainMenu'>
-          <nav>
-            <ul>
-              {Object.keys(GameRegistry.GAMES).map((gameId) => (
-                <li><Link to={`/${gameId}`}>{GameRegistry.GAMES[gameId].name}</Link></li>
-              ))}
-            </ul>
-          </nav>
-        </header>
-        <div className='subMenu' />
-        <div className='mainContent'>
-          <Switch>
-            {Object.keys(GameRegistry.GAMES).map((gameId) => (
-              <Route path={`/${gameId}`} component={GameRegistry.GAMES[gameId].component} />
-            ))}
-            <Route path={`/`} component={AppHome} />
-          </Switch>
-        </div>
+        <Switch>
+          {Object.keys(GameRegistry.GAMES).map((gameId) => (
+              <Route
+                path={`/${gameId}`}
+                component={GameRegistry.GAMES[gameId].component} />
+          ))}
+          <Route path={`/`} component={AppHome} />
+        </Switch>
       </main>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  const { data } = state.i18n
+  const { i18n } = state.i18n
   return {
-    data
+    i18n
   }
 }
 

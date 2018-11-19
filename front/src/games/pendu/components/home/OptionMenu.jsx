@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import MenuButton from './MenuButton'
+import I18NHelper from 'utils-lib/i18n/I18NHelper'
 import './_home.scss'
 
 class OptionMenu extends React.Component {
@@ -12,14 +13,18 @@ class OptionMenu extends React.Component {
   render () {
     return (
       <div className='option-menu'>
-        <div className='title'>
+        <div className='menu-title'>
           Options
         </div>
-        <Link to={`/pendu`}>
-          <button className='menu-entry'>
-            {'back'}
-          </button>
-        </Link>
+        <ul className='menu'>
+          <li className='menu-entry'>
+            <Link to={`/pendu`}>
+              <MenuButton>
+                {I18NHelper.get('pendu.menu.back')}
+              </MenuButton>
+            </Link>
+          </li>
+        </ul>
       </div>
     )
   }

@@ -16,12 +16,11 @@ class Pendu extends React.Component {
   /* LIFECYCLE */
 
   componentWillMount() {
-    console.log('will mount')
     this.checkLoad({
-        loaded: this.props.loaded,
-        loading: this.props.loading,
-        loadingError: this.props.loadingError
-      })
+      loaded: this.props.loaded,
+      loading: this.props.loading,
+      loadingError: this.props.loadingError
+    })
   }
 
   componentWillReceiveProps(props) {

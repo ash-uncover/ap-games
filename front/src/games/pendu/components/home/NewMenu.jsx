@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import MenuButton from './MenuButton'
 
 import ActionRegistry from 'core/actions/ActionRegistry'
 import PenduDifficulty from 'games/pendu/model/PenduDifficulty'
@@ -52,41 +53,46 @@ class NewMenu extends React.Component {
         <h2 className='menu-title'>
           {I18NHelper.get('pendu.menu.newgame')}
         </h2>
-
-        <div className='menu-entry menu-selector'>
-          <div className='label'>
-          {I18NHelper.get('pendu.difficulty')}
-          </div>
-          <div className='selector'>
-            <button
-              className='selector-action'
-              disabled={this.state.difficulty === PenduDifficulty.EASY}
-              onClick={this.onPreviousDifficulty}>
-              {'<'}
-            </button>
-            <div className='selector-value'>
-              {I18NHelper.get(this.state.difficulty.text)}
+        <ul className='menu'>
+          <li className='menu-entry'>
+            <div className='menu-selector'>
+              <div className='label'>
+              {I18NHelper.get('pendu.difficulty')}
               </div>
-            <button
-              className='selector-action'
-              disabled={this.state.difficulty === PenduDifficulty.HARD}
-              onClick={this.onNextDifficulty}>
-              {'>'}
-            </button>
-          </div>
-        </div>
-
-        <button
-          className='menu-entry menu-action'
-          onClick={this.onNewGame}>
-          {I18NHelper.get('pendu.menu.newgame')}
-        </button>
-
-        <Link to={`/pendu`}>
-          <button className='menu-entry menu-action'>
-          {I18NHelper.get('pendu.menu.back')}
-          </button>
-        </Link>
+              <div className='selector'>
+                <button
+                  className='selector-action'
+                  disabled={this.state.difficulty === PenduDifficulty.EASY}
+                  onClick={this.onPreviousDifficulty}>
+                  {'<'}
+                </button>
+                <div className='selector-value'>
+                  {I18NHelper.get(this.state.difficulty.text)}
+                  </div>
+                <button
+                  className='selector-action'
+                  disabled={this.state.difficulty === PenduDifficulty.HARD}
+                  onClick={this.onNextDifficulty}>
+                  {'>'}
+                </button>
+              </div>
+            </div>
+          </li>
+          <li className='menu-entry'>
+            <MenuButton
+              className='menu-entry'
+              onClick={this.onNewGame}>
+              {I18NHelper.get('pendu.menu.launchgame')}
+            </MenuButton>
+          </li>
+          <li className='menu-entry'>
+            <Link to={`/pendu`}>
+              <MenuButton className='menu-entry'>
+                {I18NHelper.get('pendu.menu.back')}
+              </MenuButton>
+            </Link>
+          </li>
+        </ul>
       </div>
     )
   }
