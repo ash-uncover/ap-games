@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  align-items: center;
 
   .board-header {
     display: flex;
+    width: 100%;
     background: rgba(255,255,255,0.6);
     >div {
       height: 4rem;
@@ -21,5 +23,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    width: 70%;
+    max-width: 600px;
+  }
+
+  .board-footer {
+    margin-top: 2.5rem;
   }
 }

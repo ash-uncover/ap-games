@@ -14,17 +14,15 @@ class WordErrors extends React.Component {
     return this.props.letters
       .filter((letter) => this.props.secret.indexOf(letter) === -1)
       .map((letter) => (
-        <span key={`word-error-${letter}`}>
+        <div className='word-errors-letter' key={`word-error-${letter}`}>
           {letter}
-        </span>
+        </div>
       ))
   }
   render () {
     return (
       <div className='word-errors' >
-        <div className='failedTiles'>
-          {this.buildLetters()}
-        </div>
+        {this.buildLetters()}
       </div>
     )
   }

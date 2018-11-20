@@ -6,6 +6,7 @@ import AppHome from './AppHome'
 
 import GameRegistry from 'core/games/GameRegistry'
 import I18NHelper from 'utils-lib/i18n/I18NHelper'
+import Helper from '../actions/AppActionsHelper'
 
 import './_app.scss'
 
@@ -37,17 +38,32 @@ class App extends React.Component {
   /* RENDERING */
 
   render () {
+    if (this.props.loaded && !this.props.loading) {
+      return this.renderDefault()
+    }
+    return this.renderLoading()
+  }
+  
+  renderLoading () {
+    return (
+      <main className='app'>
+      loading
+      </main>
+    )
+  }
+  
+  renderDefault () {
     if (this.props.i18n) {
       I18NHelper.reset()
-      I18NHelper.loadi18n(this.props.data)
+      I18NHelper.loadData(this.props.i18n.data)
     }
     return (
       <main className='app'>
         <Switch>
           {Object.keys(GameRegistry.GAMES).map((gameId) => (
-              <Route
-                path={`/${gameId}`}
-                component={GameRegistry.GAMES[gameId].component} />
+            <Route
+              path={`/${gameId}`}
+              component={GameRegistry.GAMES[gameId].component} />
           ))}
           <Route path={`/`} component={AppHome} />
         </Switch>
@@ -57,8 +73,12 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { i18n } = state.i18n
+  const { i18n } = state
+  const { loaded, loading, loadingError } = state.app.data
   return {
+    loaded,
+    loading,
+    loadingError,
     i18n
   }
 }

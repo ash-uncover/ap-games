@@ -4,6 +4,7 @@ import I18NHelper from 'utils-lib/i18n/I18NHelper'
 import ActionRegistry from 'core/actions/ActionRegistry'
 
 import { Link } from 'react-router-dom'
+import Button from '../../commons/Button'
 
 import WordErrors from './WordErrors'
 import WordInput from './WordInput'
@@ -40,22 +41,24 @@ class Word extends React.Component {
         : null}
         {this.props.won || this.props.lost ?
           <div>
-            <button onClick={this.props.onReplay}>
+            <Button onClick={this.props.onReplay}>
               {I18NHelper.get('pendu.menu.replay')}
-            </button>
+            </Button>
           </div>
         :
           <div>
-            <button onClick={this.props.onGiveUp}>
+            <Button onClick={this.props.onGiveUp}>
               {I18NHelper.get('pendu.menu.giveup')}
-            </button>
+            </Button>
           </div>
         }
-        {this.props.won || this.props.lost ?
-          <button onClick={this.props.onEndGame}>
-            {I18NHelper.get('pendu.menu.endgame')}
-          </button>
-        : null }
+        <div className='word-footer'>
+          {this.props.won || this.props.lost ?
+            <Button onClick={this.props.onEndGame}>
+              {I18NHelper.get('pendu.menu.endgame')}
+            </Button>
+          : null }
+        </div>
       </div>
     )
   }

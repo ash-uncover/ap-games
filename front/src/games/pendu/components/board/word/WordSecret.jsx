@@ -10,15 +10,23 @@ class WordSecret extends React.Component {
 
   /* RENDERING */
 
+  buildLetterClassName (found) {
+    let result = 'word-secret-letter'
+    if (found) {
+      result += ' found'
+    }
+    return result
+  }
+
   render () {
     return (
       <div className='word-secret' >
         {this.props.word.map((letter, index) => (
-          <span
+          <div
             key={`letter-${index}`}
-            className='word-secret-letter'>
-            {letter}
-          </span>
+            className={this.buildLetterClassName(letter.found)}>
+            {letter.letter}
+          </div>
         ))}
       </div>
     )
@@ -29,9 +37,15 @@ const mapStateToProps = (state) => {
   const { letters, secret, lost } = state.pendu.game.current
   const word = secret.map((letter) => {
     if (!lost && letters.indexOf(letter) === -1) {
-      return '_'
+      return {
+        letter: '',
+        found: false
+      }
     }
-    return letter
+    return {
+      letter,
+      found: true
+    }
   })
   return {
     word

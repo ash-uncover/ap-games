@@ -1,5 +1,5 @@
 import React from 'react'
-import './StopWatch.scss'
+import './_stop-watch.scss'
 
 import { DateUtils } from 'utils-lib'
 

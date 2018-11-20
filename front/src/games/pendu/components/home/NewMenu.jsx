@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import MenuButton from './MenuButton'
+import Button from '../commons/Button'
 
 import ActionRegistry from 'core/actions/ActionRegistry'
 import PenduDifficulty from 'games/pendu/model/PenduDifficulty'
@@ -79,17 +79,17 @@ class NewMenu extends React.Component {
             </div>
           </li>
           <li className='menu-entry'>
-            <MenuButton
+            <Button
               className='menu-entry'
               onClick={this.onNewGame}>
               {I18NHelper.get('pendu.menu.launchgame')}
-            </MenuButton>
+            </Button>
           </li>
           <li className='menu-entry'>
             <Link to={`/pendu`}>
-              <MenuButton className='menu-entry'>
+              <Button className='menu-entry'>
                 {I18NHelper.get('pendu.menu.back')}
-              </MenuButton>
+              </Button>
             </Link>
           </li>
         </ul>

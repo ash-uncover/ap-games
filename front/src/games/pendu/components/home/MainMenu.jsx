@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import MenuButton from './MenuButton'
+import Button from '../commons/Button'
 import I18NHelper from 'utils-lib/i18n/I18NHelper'
 
 import './_home.scss'
@@ -18,30 +18,30 @@ class MainMenu extends React.Component {
         <ul className='menu'>
           <li className='menu-entry'>
             <Link to={`${url}/new`}>
-              <MenuButton>
+              <Button>
                 {I18NHelper.get('pendu.menu.newgame')}
-              </MenuButton>
+              </Button>
             </Link>
           </li>
           <li className='menu-entry'>
             <Link to={`${url}/options`}>
-              <MenuButton>
+              <Button>
                 {I18NHelper.get('pendu.menu.options')}
-              </MenuButton>
+              </Button>
             </Link>
           </li>
           <li className='menu-entry'>
             <Link to={`${url}/credits`}>
-              <MenuButton>
+              <Button>
                 {I18NHelper.get('pendu.menu.credits')}
-              </MenuButton>
+              </Button>
             </Link>
           </li>
           <li className='menu-entry'>
             <Link to={`/`}>
-              <MenuButton>
+              <Button>
                 {I18NHelper.get('pendu.menu.exit')}
-              </MenuButton>
+              </Button>
             </Link>
           </li>
         </ul>

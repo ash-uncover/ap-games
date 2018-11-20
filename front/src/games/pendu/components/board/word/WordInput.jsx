@@ -12,7 +12,7 @@ class WordInput extends React.Component {
     super(props)
     
     this.onBlur = this.onBlur.bind(this)
-    this.onChange = this.onChange.bind(this)
+    this.onInputChange = this.onInputChange.bind(this)
   }
 
   /* VIEW CALLBACKS */
@@ -21,7 +21,7 @@ class WordInput extends React.Component {
     this.refs.input.focus()
   }
 
-  onChange (event) {
+  onInputChange (event) {
     const v = event.target.value.toUpperCase()
     if (PenduData.REGEX.test(v)) {
       this.props.onSendLetter(v)
@@ -37,7 +37,7 @@ class WordInput extends React.Component {
         autoFocus ref='input'
         onBlur={this.onBlur}
         value={''}
-        onChange={this.onChange} />
+        onChange={this.onInputChange} />
     )
   }
 }

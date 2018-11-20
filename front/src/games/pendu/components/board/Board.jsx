@@ -59,24 +59,28 @@ class Board extends React.Component {
   renderFinished() {
     return (
       <div className='board'>
-        Partie terminée
-        <div>
-          {`${I18NHelper.get('pendu.difficulty')}: ${I18NHelper.get(this.props.difficulty.text)}`}
+        <div className='board-content'>
+          Partie terminée
+          <div>
+            {`${I18NHelper.get('pendu.difficulty')}: ${I18NHelper.get(this.props.difficulty.text)}`}
+          </div>
+          <div>
+            {`${I18NHelper.get('pendu.game.played')}: ${this.props.gameWon + this.props.gameLost}`}
+          </div>
+          <div>
+            {`${I18NHelper.get('pendu.game.won')}: ${this.props.gameWon}`}
+          </div>
+          <div>
+            {`${I18NHelper.get('pendu.game.lost')}: ${this.props.gameLost}`}
+          </div>
+          <div className='board-footer'>
+            <Link to={`/pendu`}>
+              <button className='menu-entry menu-action'>
+              {I18NHelper.get('pendu.menu.back')}
+              </button>
+            </Link>
+          </div>
         </div>
-        <div>
-          {`${I18NHelper.get('pendu.game.played')}: ${this.props.gameWon + this.props.gameLost}`}
-        </div>
-        <div>
-          {`${I18NHelper.get('pendu.game.won')}: ${this.props.gameWon}`}
-        </div>
-        <div>
-          {`${I18NHelper.get('pendu.game.lost')}: ${this.props.gameLost}`}
-        </div>
-        <Link to={`/pendu`}>
-          <button className='menu-entry menu-action'>
-          {I18NHelper.get('pendu.menu.back')}
-          </button>
-        </Link>
       </div>
     )
   }

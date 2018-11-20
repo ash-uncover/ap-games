@@ -1,18 +1,19 @@
 import React from 'react'
 
-import './_home.scss'
+import './_button.scss'
 
 const icon = '/src/games/pendu/assets/img/icon.svg'
-class MenuButton extends React.Component {
+
+class Button extends React.Component {
   constructor (props) {
     super(props)
   }
 
   render () {
     return (
-      <button onClick={this.props.onClick} className='menu-button'>
+      <button onClick={this.props.onClick} className='button'>
         <img src={icon} />
-        <div className='menu-button-inner'>
+        <div className='button-inner'>
           {this.props.children}
         </div>
         <img src={icon} />
@@ -21,4 +22,4 @@ class MenuButton extends React.Component {
   }
 }
 
-export default MenuButton
+export default Button
