@@ -29,16 +29,6 @@ class Word extends React.Component {
         {!this.props.won && !this.props.lost ?
           <WordInput />
         : null }
-        {this.props.won ?
-          <div>
-            {I18NHelper.get('pendu.game.victory')}
-          </div>
-        : null}
-        {this.props.lost ?
-          <div>
-            {I18NHelper.get('pendu.game.defeat')}
-          </div>
-        : null}
         {this.props.won || this.props.lost ?
           <div>
             <Button onClick={this.props.onReplay}>

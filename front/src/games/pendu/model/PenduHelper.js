@@ -9,14 +9,17 @@ PenduHelper.initGame = (difficulty) => {
   const letters = []
   for (let i = 0; i < word.length; i++) {
     secret.push(word[i].toUpperCase())
+    if (!PenduData.REGEX.test(word[i])) {
+      letters.push(word[i].toUpperCase())
+    }
   }
-  if (difficulty === PenduDifficulty.EASY) {
+  if (difficulty.id === PenduDifficulty.EASY.id) {
     letters.push(secret[0])
     if (secret[secret.length - 1] !== secret[0]) {
       letters.push(secret[secret.length - 1])
     }
   }
-  if (difficulty === PenduDifficulty.MEDIUM) {
+  if (difficulty.id === PenduDifficulty.MEDIUM.id) {
     letters.push(secret[0])
   }
   return {

@@ -1,11 +1,13 @@
 {
   "pendu.name": "Le Pendu",
 
+  "pendu.game": "Partie",
   "pendu.game.victory": "Gagné",
   "pendu.game.defeat": "Perdu",
-  "pendu.game.played": "Parties jouées",
-  "pendu.game.won": "Parties gagnées",
-  "pendu.game.lost": "Parties perdues",
+  "pendu.game.played": "Jouées",
+  "pendu.game.won": "Gagnées",
+  "pendu.game.lost": "Perdues",
+  "pendu.game.over": "Partie Terminée",
   
   "pendu.menu.newgame": "Nouvelle Partie",
   "pendu.menu.back": "Retour",

@@ -2,12 +2,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import GameRegistry from 'core/games/GameRegistry'
+import FullscreenHelper from 'utils-lib/FullscreenHelper'
 
 import './_app.scss'
 
 class AppHome extends React.Component {
   constructor (props) {
     super(props)
+  }
+
+  /* VIEW CALLBACKS */
+
+  onOpenGame () {
+    FullscreenHelper.requestFullscreen(document.documentElement)
   }
 
   /* RENDERING */
@@ -32,10 +39,12 @@ class AppHome extends React.Component {
                   key={gameId}
                   className='app-game-entry'>
                   <Link to={`/${gameId}`}>
-                    <img 
-                      className=''
-                      src={GameRegistry.GAMES[gameId].icon}
-                      alt={GameRegistry.GAMES[gameId].name} />
+                    <button onClick={this.onOpenGame}>
+                      <img 
+                        className=''
+                        src={GameRegistry.GAMES[gameId].icon}
+                        alt={GameRegistry.GAMES[gameId].name} />
+                    </button>
                   </Link>
                 </li>
               ))}

@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom'
 import I18NHelper from 'utils-lib/i18n/I18NHelper'
 
 import Word from './word/Word'
+import Button from '../commons/Button'
 
 import './_board.scss'
 
 class Board extends React.Component {
   constructor (props) {
     super(props)
+
+    this.onExitGame = this.onExitGame.bind(this)
   }
 
   /* LIFECYCLE */
@@ -18,6 +21,12 @@ class Board extends React.Component {
     if (!this.props.started) {
       this.props.history.push('/pendu')
     }
+  }
+
+  /* VIEW CALLBACKS */
+
+  onExitGame() {
+    this.props.history.push('/pendu')
   }
 
   /* RENDERING */
@@ -60,25 +69,49 @@ class Board extends React.Component {
     return (
       <div className='board'>
         <div className='board-content'>
-          Partie terminée
-          <div>
-            {`${I18NHelper.get('pendu.difficulty')}: ${I18NHelper.get(this.props.difficulty.text)}`}
-          </div>
-          <div>
-            {`${I18NHelper.get('pendu.game.played')}: ${this.props.gameWon + this.props.gameLost}`}
-          </div>
-          <div>
-            {`${I18NHelper.get('pendu.game.won')}: ${this.props.gameWon}`}
-          </div>
-          <div>
-            {`${I18NHelper.get('pendu.game.lost')}: ${this.props.gameLost}`}
+          <h2>
+          {I18NHelper.get('pendu.game.over')}
+          </h2>
+          <div className='summary'>
+            <div className='entry'>
+              <div className='label'>
+                {I18NHelper.get('pendu.difficulty')}:
+              </div>
+              <div className='value'>
+                {I18NHelper.get(this.props.difficulty.text)}
+              </div>
+            </div>
+            <div className='entry'>
+              <div className='label'>
+                {I18NHelper.get('pendu.game.played')}:
+              </div>
+              <div className='value'>
+                {this.props.gameWon + this.props.gameLost}
+              </div>
+            </div>
+            <div className='entry'>
+              <div className='label'>
+                {I18NHelper.get('pendu.game.won')}:
+              </div>
+              <div className='value'>
+                {this.props.gameWon}
+              </div>
+            </div>
+            <div className='entry'>
+              <div className='label'>
+                {I18NHelper.get('pendu.game.lost')}:
+              </div>
+              <div className='value'>
+                {this.props.gameLost}
+              </div>
+            </div>
           </div>
           <div className='board-footer'>
-            <Link to={`/pendu`}>
-              <button className='menu-entry menu-action'>
+            <Button
+              onClick={this.onExitGame}
+              className='menu-entry menu-action'>
               {I18NHelper.get('pendu.menu.back')}
-              </button>
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

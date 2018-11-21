@@ -47,7 +47,7 @@ class App extends React.Component {
   renderLoading () {
     return (
       <main className='app'>
-      loading
+        loading
       </main>
     )
   }
