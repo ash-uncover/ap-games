@@ -1,15 +1,17 @@
+import GameRegistry from 'core/games/GameRegistry'
+
 import { combineReducers } from 'redux'
 
 import app from 'reducers/app.reducer'
 import i18n from 'reducers/i18n.reducer'
-import risk from 'games/risk/reducers/RiskReducer'
-import pendu from 'games/pendu/reducers/PenduReducer'
 
-const index = combineReducers({
-  app,
-  i18n,
-  pendu,
-  risk
-})
+const reducers = Object.keys(GameRegistry.GAMES).reduce((acc, gameId) => {
+  acc[gameId] = GameRegistry.GAMES[gameId].reducer
+  return acc
+}, {})
+console.log(reducers)
+reducers.app = app
+reducers.i18n = i18n
 
+const index = combineReducers(reducers)
 export default index

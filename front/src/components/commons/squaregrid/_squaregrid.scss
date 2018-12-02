@@ -1,0 +1,28 @@
+.squaregrid {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .container {
+    width: 100%;
+
+    .item {
+
+      .item-inner {
+        width: 100%;
+        padding-top: 100%;
+        position: relative;
+
+        .content {
+          position: absolute;
+          top: 5%;
+          bottom: 5%;
+          left: 5%;
+          right: 5%;
+        }
+      }
+    }
+  }
+}

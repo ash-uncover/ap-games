@@ -17,3 +17,14 @@ body {
 	bottom: 0;
 	right: 0;
 }
+
+
+
+@font-face {
+	font-family: 'asam_kelubiregular';
+	src: url('/assets/fonts/asam_kelubi/asam_kelubi-webfont.woff2') format('woff2'),
+			 url('/assets/fonts/asam_kelubi/asam_kelubi-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+
+}

@@ -5,12 +5,16 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import App from 'components/App'
+
+// Import games - MUST BE DONE FIRST
+import Default from 'games/default'
+import Pendu from 'games/pendu'
+import Memory from 'games/memory'
+// import Risk from 'games/risk'
+
 // Import global FLUX objects
 import actions from 'actions'
 import reducer from 'reducers'
-// Import games
-import Pendu from 'games/pendu'
-import Risk from 'games/risk'
 
 import '../assets/styles/styles.css'
 

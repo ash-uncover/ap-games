@@ -1,0 +1,121 @@
+.memory .game {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  .game-status {
+    margin-top: 1rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #AAA;
+
+    .title {
+      margin: 0 2rem;
+      padding: 1rem;
+      font-size: 1.5rem;
+
+      background: rgba(80,80,80,0.8);
+
+      border: 2px solid yellow;
+      border-radius: 3px;
+    }
+    .info {
+      padding: 0.5rem;
+
+      background: rgba(80,80,80,0.8);
+      
+      display: flex;
+      align-items: center;
+
+      background: #444;
+      border: 2px solid yellow;
+      border-radius: 3px;
+    }
+  }
+
+  .game-board {
+    flex-grow: 1;
+    position: relative;
+    .squaregrid {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .game-footer {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+
+    transition: transform 0.5s;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    button {
+      padding: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s;
+      border: 0;
+      
+      background-image: url("/src/games/memory/assets/img/door.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+
+      outline: none;
+    }
+
+    &.revealed, &.found {
+      button {
+        transform: translateY(-120%)
+      }
+    }
+
+    &.revealed {
+      background: #333;
+    }
+
+    &.found {
+      transform: scale(1.08);
+      background: #AAA;
+    }
+  }
+}
+

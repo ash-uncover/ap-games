@@ -1,6 +1,8 @@
 import ActionRegistry from 'core/actions/ActionRegistry'
 
+import ArrayUtils from 'utils-lib/ArrayUtils'
 import MemoryHelper from '../model/MemoryHelper'
+import MemoryData from '../model/MemoryData'
 
 const defaultState = {
   data: {
@@ -9,40 +11,35 @@ const defaultState = {
     loadingError: null
   },
   game: {
-    started: false,
-    finished: false,
+    startTime: null,
+    endTime: null,
+    won: false,
+    errors: 0,
+    found: 0,
     difficulty: null,
-    gameLost: 0,
-    gameWon: 0,
-    current: {
-      won: false,
-      lost: false,
-      startTime: null,
-      endTime: null,
-      letters: [],
-      secret: []
-    }
+    board: [],
+    blocked: false
   }
 }
 
 const reducer = (state = defaultState, action) => {
   const newState = JSON.parse(JSON.stringify(state))
   switch (action.type) {
-    case ActionRegistry.PENDU_LOAD_DATA_REQUEST:
+    case ActionRegistry.MEMORY_LOAD_DATA_REQUEST:
       newState.data = {
         loading: true,
         loadingError: null
       }
       break
 
-    case ActionRegistry.PENDU_LOAD_DATA_SUCCESS:
+    case ActionRegistry.MEMORY_LOAD_DATA_SUCCESS:
       newState.data = {
         loaded: true,
         loading: false,
         loadingError: null
       }
       break
-    case ActionRegistry.PENDU_LOAD_DATA_FAILURE:
+    case ActionRegistry.MEMORY_LOAD_DATA_FAILURE:
       newState.data = {
         loaded: false,
         loading: false,
@@ -50,43 +47,67 @@ const reducer = (state = defaultState, action) => {
       }
       break
 
-    case ActionRegistry.PENDU_START_GAME: {
-      newState.game.difficulty = action.args.difficulty
-      newState.game.started = true
-      newState.game.finished = false
-      newState.game.gameLost = 0
-      newState.game.gameWon = 0
-      newState.game.current = MemoryHelper.initGame(action.args.difficulty)
-      break
-    }
-
-    case ActionRegistry.PENDU_GIVE_UP_WORD: {
-      newState.game.gameLost++
-      newState.game.current.lost = true
-      break
-    }
-
-    case ActionRegistry.PENDU_NEXT_WORD: {
-      newState.game.current = MemoryHelper.initGame(newState.game.difficulty)
-      break
-    }
-
-    case ActionRegistry.PENDU_SEND_LETTER: {
-      MemoryHelper.addLetter(
-        newState.game.current,
-        action.args.letter
-      )
-      if (newState.game.current.won) {
-        newState.game.gameWon++
-      }
-      if (newState.game.current.lost) {
-        newState.game.gameLost++
+    case ActionRegistry.MEMORY_START_GAME: {
+      const baseItems = ArrayUtils.randomSubArray(MemoryData.ITEMS, action.args.difficulty.items)
+      const items = ArrayUtils.shuffle([].concat(baseItems).concat(baseItems))
+      newState.game = {
+        startTime: new Date(),
+        endTime: null,
+        won: false,
+        errors: 0,
+        found: 0,
+        blocked: false,
+        difficulty: action.args.difficulty,
+        board: items.map((item, index) => ({
+          id: index,
+          item,
+          revealed: false,
+          found: false
+        }))
       }
       break
     }
 
-    case ActionRegistry.PENDU_END_GAME: {
-      newState.game.finished = true
+    case ActionRegistry.MEMORY_REVEAL_CARD: {
+      newState.game.board.find((card) => card.id === action.args.card.id).revealed = true
+      const revealedCards = MemoryHelper.getRevealedCards(newState.game.board)
+      if (revealedCards.length === 2) {
+        if (revealedCards[0].item.id === revealedCards[1].item.id) {
+          revealedCards[0].found = true
+          revealedCards[0].revealed = false
+          revealedCards[1].found = true
+          revealedCards[1].revealed = false
+          newState.game.found += 1
+          if (newState.found === newState.game.board.length / 2) {
+            newState.game.won = true
+            newState.game.endTime = new Date()
+          }
+        } else {
+          newState.game.errors += 1
+          newState.game.blocked = true
+        }
+      }
+      break
+    }
+
+    case ActionRegistry.MEMORY_UNREVEAL_CARDS: {
+      MemoryHelper.getRevealedCards(newState.game.board).forEach(card => {
+        card.revealed = false
+      })
+      newState.game.blocked = false
+      break
+    }
+
+    case ActionRegistry.MEMORY_REVEAL_ALL: {
+      newState.game.board.forEach((card) => {
+        card.revealed = true
+      })
+      newState.game.endTime = new Date()
+      break
+    }
+
+    case ActionRegistry.MEMORY_END_GAME: {
+      newState.game = defaultState.game
       break
     }
   }

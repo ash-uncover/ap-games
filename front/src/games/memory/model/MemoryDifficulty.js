@@ -1,15 +1,15 @@
 const MemoryDifficulty = {
-  EASY: {
-    text: 'memory.difficulty.easy',
-    items: 12
+  5: {
+    text: 'memory.difficulty.5',
+    items: 5
   },
-  NORMAL: {
-    text: 'memory.difficulty.normal',
-    items: 20
+  15: {
+    text: 'memory.difficulty.15',
+    items: 15
   },
-  HARD: {
-    text: 'memory.difficulty.hard',
-    items: 36
+  30: {
+    text: 'memory.difficulty.30',
+    items: 30
   }
 }
 

@@ -1,0 +1,59 @@
+.memory {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  background-image: url("/src/games/memory/assets/img/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .home-page-container {
+      position: relative;
+      width: 70%;
+      max-width: 800px;
+      min-height: 80%;
+      overflow: hidden;
+
+      .home-page {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        background: white;
+
+        transition: transform 0.5s;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &.previous {
+          transform: translateX(-100%);
+        }
+        &.current {
+          
+        }
+        &.next {
+          transform: translateX(100%);
+        }
+      }
+    }
+  }
+}
