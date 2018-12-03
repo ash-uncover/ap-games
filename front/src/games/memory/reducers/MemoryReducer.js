@@ -48,7 +48,7 @@ const reducer = (state = defaultState, action) => {
       break
 
     case ActionRegistry.MEMORY_START_GAME: {
-      const baseItems = ArrayUtils.randomSubArray(MemoryData.ITEMS, action.args.difficulty.items)
+      const baseItems = ArrayUtils.randomSubArray(MemoryData.ITEMS, action.args.difficulty)
       const items = ArrayUtils.shuffle([].concat(baseItems).concat(baseItems))
       newState.game = {
         startTime: new Date(),
@@ -78,7 +78,7 @@ const reducer = (state = defaultState, action) => {
           revealedCards[1].found = true
           revealedCards[1].revealed = false
           newState.game.found += 1
-          if (newState.found === newState.game.board.length / 2) {
+          if (newState.game.found === newState.game.board.length / 2) {
             newState.game.won = true
             newState.game.endTime = new Date()
           }

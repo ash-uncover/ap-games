@@ -13,5 +13,8 @@
   "memory.status.tries": "Essais",
   "memory.status.time": "Durée",
 
-  "memory.difficulty": "Difficulté"
+  "memory.difficulty": "Nombre de Paires",
+
+  "memory.game.victory": "Victoire",
+  "memory.game.defeat": "Défaite"
 }

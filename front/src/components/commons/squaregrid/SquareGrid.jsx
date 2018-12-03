@@ -15,7 +15,13 @@ class SquareGrid extends React.Component {
   /* LIFECYCLE */
 
   updateDimensions () {
-    const ratio = this.container.clientWidth / this.container.clientHeight
+    let ratio = this.container.clientWidth / this.container.clientHeight
+    if (this.props.minRatio && ratio < this.props.minRatio) {
+      ratio = this.props.minRatio
+    }
+    if (this.props.maxRatio && ratio > this.props.maxRatio) {
+      ratio = this.props.maxRatio
+    }
     let seekRatio = this.props.children.length
     let lines = 1
     let result = seekRatio
@@ -96,10 +102,14 @@ SquareGrid.propTypes = {
   children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node
-  ])
+  ]),
+  minRatio: PropTypes.number,
+  maxRatio: PropTypes.number
 }
 SquareGrid.defaultProps = {
-  children: null
+  children: null,
+  minRatio: 0,
+  maxRatio: 0
 }
 
 

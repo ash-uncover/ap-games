@@ -1,0 +1,25 @@
+.page-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  .page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    
+    transition: transform 0.4s;
+
+    &.previous {
+      transform: translateX(-100%);
+    }
+    &.current {
+      
+    }
+    &.next {
+      transform: translateX(100%);
+    }
+  }
+}

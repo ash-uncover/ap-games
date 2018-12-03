@@ -1,6 +1,3 @@
-import MemoryData from './MemoryData'
-import MemoryDifficulty from './MemoryDifficulty'
-
 const MemoryHelper = {}
 
 MemoryHelper.getRevealedCards = function (board) {

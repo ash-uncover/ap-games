@@ -9,7 +9,7 @@ const reducers = Object.keys(GameRegistry.GAMES).reduce((acc, gameId) => {
   acc[gameId] = GameRegistry.GAMES[gameId].reducer
   return acc
 }, {})
-console.log(reducers)
+
 reducers.app = app
 reducers.i18n = i18n
 

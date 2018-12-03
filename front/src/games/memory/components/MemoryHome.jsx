@@ -1,14 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Switch, Route } from 'react-router-dom'
+import PageContainer from 'components/commons/pagecontainer/PageContainer'
 
 import ActionRegistry from 'core/actions/ActionRegistry'
-import MemoryDifficulty from '../model/MemoryDifficulty'
 
 import FullscreenHelper from 'utils-lib/FullscreenHelper'
 import I18NHelper from 'utils-lib/i18n/I18NHelper'
 
 import './_memory.scss'
+
+const PAGE = {
+  MAIN: 0,
+  OPTIONS: 1,
+  CREDITS: 2,
+  NEW_GAME: 3
+}
+
+const NUMBER = {
+  5: 5, 10: 10, 15: 15, 20: 20, 25: 25, 30: 30
+}
 
 class MemoryHome extends React.Component {
   constructor (props) {
@@ -16,7 +26,7 @@ class MemoryHome extends React.Component {
 
     this.state = {
       currentPage: 0,
-      difficulty: Object.values(MemoryDifficulty)[Math.floor(Object.values(MemoryDifficulty).length / 2)]
+      difficulty: NUMBER[20]
     }
 
     this.toGame = this.toGame.bind(this)
@@ -37,19 +47,19 @@ class MemoryHome extends React.Component {
   }
 
   toOptions () {
-    this.setState({ currentPage: 1 })
+    this.setState({ currentPage: PAGE.OPTIONS })
   }
 
   toCredits () {
-    this.setState({ currentPage: 2 })
+    this.setState({ currentPage: PAGE.CREDITS })
   }
 
   toNewGame () {
-    this.setState({ currentPage: 3 })
+    this.setState({ currentPage: PAGE.NEW_GAME })
   }
 
   onBack () {
-    this.setState({ currentPage: 0 })
+    this.setState({ currentPage: PAGE.MAIN })
   }
 
   onExitGame () {
@@ -58,7 +68,7 @@ class MemoryHome extends React.Component {
   }
 
   onPreviousDifficulty () {
-    const values = Object.values(MemoryDifficulty)
+    const values = Object.values(NUMBER)
     const currentIndex = values.indexOf(this.state.difficulty)
     const index = (currentIndex - 1 + values.length) % values.length
     this.setState({
@@ -67,7 +77,7 @@ class MemoryHome extends React.Component {
   }
 
   onNextDifficulty () {
-    const values = Object.values(MemoryDifficulty)
+    const values = Object.values(NUMBER)
     const currentIndex = values.indexOf(this.state.difficulty)
     const index = (currentIndex + 1) % values.length
     this.setState({
@@ -77,91 +87,120 @@ class MemoryHome extends React.Component {
 
   // RENDERING //
 
-  buildClassName (index, isHome) {
-    let result = 'home-page'
-    if (index === this.state.currentPage) {
-      result += ' current'
-    } else if (isHome) {
-      result += ' previous'
-    } else {
-      result += ' next'
-    }
-    return result
-  }
-
   render () {
     return (
       <div className='home'>
-        <div className='home-page-container'>
-          <div
-            className={this.buildClassName(0, true)}>
-            <h2>{I18NHelper.get('memory.name')}</h2>
-            <button
-              onClick={this.toNewGame}>
-              {I18NHelper.get('memory.menu.newgame')}
-            </button>
-            <button
-              onClick={this.toOptions}>
+        <PageContainer page={this.state.currentPage}>
+          
+          <div className='page-content'>
+            <h2
+              className='title'>
+              {I18NHelper.get('memory.name')}
+            </h2>
+            <div className='entry'>
+              <button
+                className='action'
+                onClick={this.toNewGame}>
+                {I18NHelper.get('memory.menu.newgame')}
+              </button>
+            </div>
+            <div className='entry'>
+              <button
+                className='action'
+                onClick={this.toOptions}>
+                {I18NHelper.get('memory.menu.options')}
+              </button>
+            </div>
+            <div className='entry'>
+              <button
+                className='action'
+                onClick={this.toCredits}>
+                {I18NHelper.get('memory.menu.credits')}
+              </button>
+            </div>
+            <div className='entry'>
+              <button
+                className='action'
+                onClick={this.onExitGame}>
+                {I18NHelper.get('memory.menu.exit')}
+              </button>
+            </div>
+          </div>
+
+          <div className='page-content'>
+            <h2
+              className='title'>
               {I18NHelper.get('memory.menu.options')}
-            </button>
-            <button
-              onClick={this.toCredits}>
+            </h2>
+            <div className='entry'>
+              <button
+                className='action'
+                onClick={this.onBack}>
+                {I18NHelper.get('memory.menu.back')}
+              </button>
+            </div>
+          </div>
+
+          <div className='page-content'>
+            <h2
+              className='title'>
               {I18NHelper.get('memory.menu.credits')}
-            </button>
-            <button
-              onClick={this.onExitGame}>
-              {I18NHelper.get('memory.menu.exit')}
-            </button>
+            </h2>
+            <div className='entry'>
+              <button
+                className='action'
+                onClick={this.onBack}>
+                {I18NHelper.get('memory.menu.back')}
+              </button>
+            </div>
           </div>
-          <div
-            className={this.buildClassName(1, false)}>
-            <h2>{I18NHelper.get('memory.menu.options')}</h2>
-            <button
-              onClick={this.onBack}>
-              {I18NHelper.get('memory.menu.back')}
-            </button>
-          </div>
-          <div
-            className={this.buildClassName(2, false)}>
-            <h2>{I18NHelper.get('memory.menu.credits')}</h2>
-            <button
-              onClick={this.onBack}>
-              {I18NHelper.get('memory.menu.back')}
-            </button>
-          </div>
-          <div
-            className={this.buildClassName(3, false)}>
-            <h2>{I18NHelper.get('memory.menu.newgame')}</h2>
-            <div className='selector'>
-              <label className='selector-label'>
+
+          <div className='page-content'>
+            <h2
+              className='title'>
+              {I18NHelper.get('memory.menu.newgame')}
+            </h2>
+            <div className='entry'>
+              <label className='label'>
                 {I18NHelper.get('memory.difficulty')}
               </label>
-              <div className='selector-value'>
+            </div>
+            <div className='entry'>
+              <div className='selector'>
                 <button
-                  disabled={Object.values(MemoryDifficulty).indexOf(this.state.difficulty) === 0}
+                  className='selector-action'
+                  disabled={Object.values(NUMBER).indexOf(this.state.difficulty) === 0}
                   onClick={this.onPreviousDifficulty}>
                   {'<'}
                 </button>
-                <div>
-                  {I18NHelper.get(this.state.difficulty.text)}
+                <div className='selector-label'>
+                  {I18NHelper.get(this.state.difficulty)}
                 </div>
                 <button
-                  disabled={Object.values(MemoryDifficulty).indexOf(this.state.difficulty) === Object.values(MemoryDifficulty).length - 1}
+                  className='selector-action'
+                  disabled={Object.values(NUMBER).indexOf(this.state.difficulty) === Object.values(NUMBER).length - 1}
                   onClick={this.onNextDifficulty}>
                   {'>'}
                 </button>
               </div>
             </div>
-            <button
-              onClick={this.toGame}>
-              {I18NHelper.get('memory.menu.play')}
-            </button>
-            <button
-              onClick={this.onBack}>
-              {I18NHelper.get('memory.menu.back')}
-            </button>
+            <div className='entry'>
+              <button
+                className='action'
+                onClick={this.toGame}>
+                {I18NHelper.get('memory.menu.play')}
+              </button>
+            </div>
+            <div className='entry'>
+              <button
+                className='action'
+                onClick={this.onBack}>
+                {I18NHelper.get('memory.menu.back')}
+              </button>
+            </div>
           </div>
-        </div>
+
+        </PageContainer>
       </div>
     )
   }

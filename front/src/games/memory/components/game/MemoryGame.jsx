@@ -13,7 +13,7 @@ class MemoryGame extends React.Component {
     super(props)
 
     this.onUnrevealCards = this.onUnrevealCards.bind(this)
-    this.onSummary = this.onSummary.bind(this)
+    this.onEndGame = this.onEndGame.bind(this)
     this.onRevealAll = this.onRevealAll.bind(this)
   }
 
@@ -27,8 +27,8 @@ class MemoryGame extends React.Component {
 
   // VIEW CALLBACKS //
 
-  onSummary () {
-    this.props.history.push('/memory/summary')
+  onEndGame () {
+    this.props.history.push('/memory')
   }
 
   onUnrevealCards () {
@@ -42,6 +42,7 @@ class MemoryGame extends React.Component {
   // RENDERING //
 
   render () {
+    console.log(this.props)
     return (
       <div className='game'>
         <div className='game-status'>
@@ -65,23 +66,55 @@ class MemoryGame extends React.Component {
           </SquareGrid>
         </div>
         <div className='game-footer'>
-          {this.props.won || this.props.endTime ?
-            <button
-              onClick={this.onSummary}>
-              Fin de la partie
-            </button>
-          :
+          {!this.props.won && !this.props.endTime ?
             <button
               onClick={this.onRevealAll}>
               Abandonner
             </button>
-          }
-          {this.props.blocked ?
-            <div
-              className='overlay'
-              onClick={this.onUnrevealCards} />
-          : null}
+          : null }
         </div>
+
+        {this.props.won ?
+          <div className='dialog'>
+            <div className='content'>
+              <h2 className='title'>
+                {I18NHelper.get('memory.game.victory')}
+              </h2>
+              <button
+                onClick={this.onEndGame}>
+                Fin de la partie
+              </button>
+            </div>
+          </div>
+        : null }
+
+        {!this.props.won && this.props.endTime ?
+          <div className='dialog'>
+            <div className='content'>
+              <h2 className='title'>
+                {I18NHelper.get('memory.game.defeat')}
+              </h2>
+              <div className='body'>
+                <div>
+                  {this.props.endTime.getTime() - this.props.startTime.getTime()}ms
+                </div>
+              </div>
+              <div className='footer'>
+                <button
+                  className='action'
+                  onClick={this.onEndGame}>
+                  Fin de la partie
+                </button>
+              </div>
+            </div>
+          </div>
+        : null }
+        
+        {this.props.blocked ?
+          <div
+            className='overlay'
+            onClick={this.onUnrevealCards} />
+        : null}
       </div>
     )
   }
@@ -97,10 +130,26 @@ const mapStateToProps = state => {
     startTime,
     endTime
   } = state.memory.game
+  let sTime = null
+  if (startTime) {
+    if (startTime instanceof Date) {
+      sTime = startTime
+    } else {
+      sTime = new Date(startTime)
+    }
+  }
+  let eTime = null
+  if (endTime) {
+    if (endTime instanceof Date) {
+      eTime = endTime
+    } else {
+      eTime = new Date(endTime)
+    }
+  }
   return {
     won,
-    startTime,
-    endTime,
+    startTime: sTime,
+    endTime: eTime,
     errors: errors || 0,
     found,
     blocked, 
