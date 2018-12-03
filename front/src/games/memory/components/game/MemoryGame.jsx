@@ -3,25 +3,62 @@ import { connect } from 'react-redux'
 import ActionRegistry from 'core/actions/ActionRegistry'
 
 import SquareGrid from 'components/commons/squaregrid/SquareGrid'
+import Timer from 'components/commons/timer/Timer'
+
 import MemoryCard from './MemoryCard'
 import I18NHelper from 'utils-lib/i18n/I18NHelper'
 
 import './_game.scss'
 
+let TIMER_INTERVAL
+
 class MemoryGame extends React.Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      duration : 0
+    }
+
     this.onUnrevealCards = this.onUnrevealCards.bind(this)
     this.onEndGame = this.onEndGame.bind(this)
     this.onRevealAll = this.onRevealAll.bind(this)
+
+    this._updateTime = this._updateTime.bind(this)
   }
 
   // LIFECYCLE //
 
-  componentWillMount() {
+  static getDerivedStateFromProps(props, state) {
+    if (props.endTime) {
+      clearInterval(TIMER_INTERVAL)
+    }
+  }
+
+  componentDidMount () {
     if (!this.props.startTime) {
       this.props.history.push('/memory')
+    } else {
+      if (!this.props.endTime) {
+        TIMER_INTERVAL = setInterval(this._updateTime, 80)
+      }
+    }
+  }
+
+  componentWillUnmount () {
+    if (this.timerInterval) {
+      clearInterval(TIMER_INTERVAL)
+    }
+  }
+
+  // INTERNAL METHODS //
+
+  _updateTime () {
+    if (this.props.startTime) {
+      const endTime = this.props.endTime || new Date()
+      this.setState({
+        duration: endTime.getTime() - this.props.startTime.getTime()
+      })
     }
   }
 
@@ -42,7 +79,6 @@ class MemoryGame extends React.Component {
   // RENDERING //
 
   render () {
-    console.log(this.props)
     return (
       <div className='game'>
         <div className='game-status'>
@@ -53,7 +89,7 @@ class MemoryGame extends React.Component {
             {I18NHelper.get('memory.name')}
           </div>
           <div className='info'>
-            {I18NHelper.get('memory.status.time')}: {this.props.found || 0}
+            {I18NHelper.get('memory.status.time')}: <Timer duration={this.state.duration} showNilSeconds={true} />
           </div>
         </div>
         <div className='game-board'>
@@ -80,10 +116,18 @@ class MemoryGame extends React.Component {
               <h2 className='title'>
                 {I18NHelper.get('memory.game.victory')}
               </h2>
-              <button
-                onClick={this.onEndGame}>
-                Fin de la partie
-              </button>
+              <div className='body'>
+                <div>
+                  <Timer duration={this.props.endTime.getTime() - this.props.startTime.getTime()} />
+                </div>
+              </div>
+              <div className='footer'>
+                <button
+                  className='action'
+                  onClick={this.onEndGame}>
+                  Fin de la partie
+                </button>
+              </div>
             </div>
           </div>
         : null }
@@ -96,7 +140,7 @@ class MemoryGame extends React.Component {
               </h2>
               <div className='body'>
                 <div>
-                  {this.props.endTime.getTime() - this.props.startTime.getTime()}ms
+                  <Timer duration={this.props.endTime.getTime() - this.props.startTime.getTime()} />
                 </div>
               </div>
               <div className='footer'>
