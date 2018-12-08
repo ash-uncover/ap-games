@@ -9,6 +9,7 @@ class MemoryCard extends React.Component {
     super(props)
 
     this.onClickCard = this.onClickCard.bind(this)
+    this.onClickImage = this.onClickImage.bind(this)
   }
 
   // VIEW CALLBACKS //
@@ -20,6 +21,16 @@ class MemoryCard extends React.Component {
       !this.props.item.found
     ) {
       this.props.onRevealCard(this.props.item)
+    } else if (this.props.blocked) {
+      this.props.onUnrevealCards()
+      this.props.onRevealCard(this.props.item)
+    }
+
+  }
+
+  onClickImage () {
+    if (this.props.blocked) {
+      this.props.onUnrevealCards()
     }
   }
 
@@ -40,8 +51,14 @@ class MemoryCard extends React.Component {
     return (
       <div className={this.buildClassName()}>
         <div className='background' />
-        <img src={`/src/games/memory/assets/img/${this.props.card.item.src}`}/>
-        <button onClick={this.onClickCard} />
+        <button
+          className='image'
+          onClick={this.onClickImage}>
+          <img src={`/src/games/memory/assets/img/${this.props.card.item.src}`}/>
+        </button>
+        <button
+          className='mask'
+          onClick={this.onClickCard} />
       </div>
     )
   }
@@ -49,13 +66,14 @@ class MemoryCard extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    blocked: state.memory.blocked,
+    blocked: state.memory.game.blocked,
     card: ownProps.item
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    onUnrevealCards: () => dispatch(ActionRegistry.memoryUnrevealCards()),
     onRevealCard: (item) => dispatch(ActionRegistry.memoryRevealCard(item))
   }
 }

@@ -139,8 +139,21 @@ class MemoryGame extends React.Component {
                 {I18NHelper.get('memory.game.defeat')}
               </h2>
               <div className='body'>
-                <div>
-                  <Timer duration={this.props.endTime.getTime() - this.props.startTime.getTime()} />
+                <div className='info'>
+                  <div className='label'>
+                    Nombre d'essais :
+                  </div>
+                  <div className='value'>
+                    {this.props.errors + this.props.found}
+                  </div>
+                </div>
+                <div className='info'>
+                  <div className='label'>
+                    Durée de la partie :
+                  </div>
+                  <div className='value'>
+                    <Timer duration={this.props.endTime.getTime() - this.props.startTime.getTime()} />
+                  </div>
                 </div>
               </div>
               <div className='footer'>
@@ -153,12 +166,6 @@ class MemoryGame extends React.Component {
             </div>
           </div>
         : null }
-        
-        {this.props.blocked ?
-          <div
-            className='overlay'
-            onClick={this.onUnrevealCards} />
-        : null}
       </div>
     )
   }
