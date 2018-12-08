@@ -39,6 +39,7 @@ class MemoryCard extends React.Component {
   render () {
     return (
       <div className={this.buildClassName()}>
+        <div className='background' />
         <img src={`/src/games/memory/assets/img/${this.props.card.item.src}`}/>
         <button onClick={this.onClickCard} />
       </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Button from '../commons/Button'
-import FullscreenHelper from 'utils-lib/FullscreenHelper'
+import { FullscreenHelper } from 'utils-lib'
 import I18NHelper from 'utils-lib/i18n/I18NHelper'
 
 import './_home.scss'

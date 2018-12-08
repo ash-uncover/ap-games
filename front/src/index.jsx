@@ -4,7 +4,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-import App from 'components/App'
+import App from 'components/app/App'
 
 // Import games - MUST BE DONE FIRST
 import Default from 'games/default'

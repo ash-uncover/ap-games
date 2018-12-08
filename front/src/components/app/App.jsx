@@ -6,7 +6,7 @@ import AppHome from './AppHome'
 
 import GameRegistry from 'core/games/GameRegistry'
 import I18NHelper from 'utils-lib/i18n/I18NHelper'
-import Helper from '../actions/AppActionsHelper'
+import Helper from '../../actions/AppActionsHelper'
 
 import './_app.scss'
 

@@ -4,7 +4,7 @@ import PageContainer from 'components/commons/pagecontainer/PageContainer'
 
 import ActionRegistry from 'core/actions/ActionRegistry'
 
-import FullscreenHelper from 'utils-lib/FullscreenHelper'
+import { FullscreenHelper } from 'utils-lib'
 import I18NHelper from 'utils-lib/i18n/I18NHelper'
 
 import './_memory.scss'

@@ -8,7 +8,8 @@ Helper.loadI18N = (dispatch) => {
   return Promise.all([
     request({
       method: 'GET',
-      url: `${urlBase}i18n/app.i18n.json`
+      url: `${urlBase}i18n/app.i18n.json`,
+      url2: 'assets/i18n/app.i18n.json'
     }).then((result) => dispatch(ActionRegistry.i18nLoaded(result)))
   ])
 }

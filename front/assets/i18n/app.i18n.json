@@ -1,5 +1,8 @@
 {
   "app.name": "AP GAMES",
+  
   "app.welcome": "Bienvenue",
-  "app.games": "Jeux"
+  
+  "app.tabs.games": "Jeux",
+  "app.tabs.concept": "Concept"
 }

@@ -1,0 +1,69 @@
+$app-menu-tab-height: 2.5rem;
+
+.app {
+	min-height: 100%;
+	overflow: hidden;
+	user-select: none;
+	position: relative;
+
+	.app-home {
+		display: flex;
+		flex-direction: column;
+		background: rgb(209, 221, 247);
+
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
+		.app-toolbar {
+			background: rgba(30,30,30,1);
+			height: 4rem;
+		}
+		
+		.app-menu {
+			background: rgba(0,0,250,0.2);
+			padding: 0 2rem;
+			display: flex;
+			align-items: center;
+
+			.app-menu-tab {
+				background: none;
+				border: none;
+				text-transform: uppercase;
+				line-height: $app-menu-tab-height;
+				font-size: 0.9rem;
+				margin-right: 1.5rem;
+				color: rgb(215, 215, 215);
+				cursor: pointer;
+				outline: none;
+				
+				border-top: 2px solid transparent;
+				border-bottom: 2px solid transparent;
+				
+				transition: border 0.2s;
+
+				&:hover {
+					color: rgb(235, 235, 235);
+				}
+
+				&.current {
+					cursor: default;
+					color: white;
+					border-bottom: 2px solid white;
+					
+					&:hover {
+						color: white;
+					}
+				}
+			}
+		}
+
+		.app-content {
+			flex-grow: 1;
+			position: relative;
+			overflow: hidden;
+		}
+	}
+}
