@@ -110,33 +110,11 @@ class MemoryGame extends React.Component {
           : null }
         </div>
 
-        {this.props.won ?
+        {this.props.won || this.props.endTime ?
           <div className='dialog'>
             <div className='content'>
               <h2 className='title'>
-                {I18NHelper.get('memory.game.victory')}
-              </h2>
-              <div className='body'>
-                <div>
-                  <Timer duration={this.props.endTime.getTime() - this.props.startTime.getTime()} />
-                </div>
-              </div>
-              <div className='footer'>
-                <button
-                  className='action'
-                  onClick={this.onEndGame}>
-                  Fin de la partie
-                </button>
-              </div>
-            </div>
-          </div>
-        : null }
-
-        {!this.props.won && this.props.endTime ?
-          <div className='dialog'>
-            <div className='content'>
-              <h2 className='title'>
-                {I18NHelper.get('memory.game.defeat')}
+                {this.props.won ? I18NHelper.get('memory.game.victory') : I18NHelper.get('memory.game.defeat')}
               </h2>
               <div className='body'>
                 <div className='info'>
