@@ -16,6 +16,8 @@ class MozaicGame extends React.Component {
     this.state = {
       duration : 0
     }
+
+    this.onQuitGame = this.onQuitGame.bind(this)
   }
 
   // LIFECYCLE //
@@ -29,6 +31,10 @@ class MozaicGame extends React.Component {
   // INTERNAL METHODS //
 
   // VIEW CALLBACKS //
+
+  onQuitGame () {
+    this.props.history.push('/mozaic')
+  }
 
   // RENDERING //
 
@@ -45,14 +51,23 @@ class MozaicGame extends React.Component {
   }
 
   render () {
-    if (this.props.won) {
-      console.log('WON')
-    }
     return (
       <div className='game'>
-        <SquareContainer>
-          {this.buildBoard()}
-        </SquareContainer>
+        <div className='header' />
+        <div className={`body ${this.props.won ? 'won' : ''}`}>
+          <SquareContainer>
+            {this.buildBoard()}
+            <img
+              className={`solution ${this.props.won || this.props.lost ? 'reveal' : ''}`}
+              src='/src/games/mozaic/assets/img/puzzle_0.jpg' />
+          </SquareContainer>
+        </div>
+        <div className='footer'>
+          <button
+            onClick={this.props.won || this.props.lost ? this.onQuitGame : this.props.onEndGame}>
+            {this.props.won || this.props.lost ? 'Quitter' : 'Abandonner' }
+          </button>
+        </div>
       </div>
     )
   }
@@ -61,6 +76,7 @@ class MozaicGame extends React.Component {
 const mapStateToProps = state => {
   const {
     won,
+    lost,
     tries,
     size,
     board,
@@ -85,6 +101,7 @@ const mapStateToProps = state => {
   }
   return {
     won,
+    lost,
     startTime: sTime,
     endTime: eTime,
     tries: tries || 0,
@@ -95,6 +112,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onEndGame: () => dispatch(ActionRegistry.mozaicEndGame()),
   }
 }
 

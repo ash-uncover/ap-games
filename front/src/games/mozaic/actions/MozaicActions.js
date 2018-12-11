@@ -21,3 +21,7 @@ ActionRegistry.register(
   'MOZAIC_CLICK_TILE',
   [ 'tileId' ]
 )
+
+ActionRegistry.register(
+  'MOZAIC_END_GAME'
+)

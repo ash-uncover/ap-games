@@ -17,7 +17,7 @@ const PAGE = {
 }
 
 const NUMBER = {
-  2:2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7
+  3: 3, 4: 4, 5: 5, 6: 6, 7: 7
 }
 
 class MozaicHome extends React.Component {
@@ -26,7 +26,7 @@ class MozaicHome extends React.Component {
 
     this.state = {
       currentPage: 0,
-      size: NUMBER[5]
+      size: NUMBER[4]
     }
 
     this.toGame = this.toGame.bind(this)

@@ -18,7 +18,7 @@ class MozaicTile extends React.Component {
   // VIEW CALLBACKS //
 
   onClick () {
-    if (!this.props.won) {
+    if (!this.props.won && !this.props.lost) {
       this.props.onClick()
     }
   }
@@ -54,12 +54,13 @@ class MozaicTile extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { size, won } = state.mozaic.game
+  const { size, won, lost } = state.mozaic.game
   const { id, x, y, baseX, baseY } = state.mozaic.game.board[ownProps.id]
   
   return {
     size,
     won,
+    lost,
     id,
     x,
     y,

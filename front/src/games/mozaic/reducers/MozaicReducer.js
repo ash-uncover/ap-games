@@ -12,6 +12,7 @@ const defaultState = {
     startTime: null,
     endTime: null,
     won: false,
+    lost: false,
     tries: 0,
     board: []
   }
@@ -62,6 +63,7 @@ const reducer = (state = defaultState, action) => {
         startTime: new Date(),
         endTime: null,
         won: false,
+        lost: false,
         tries: 0,
         size: action.args.size,
         board
@@ -86,9 +88,23 @@ const reducer = (state = defaultState, action) => {
         tile.y = tile.y + 1
       }
 
+      newState.game.tries += newState.game.tries
+
       newState.game.won = !Object.values(newState.game.board).some((tile) => {
         return tile.x !== tile.baseX || tile.y !== tile.baseY
       })
+
+      if (newState.game.won) {
+        newState.game.endTime = new Date()
+      }
+
+      break
+    }
+
+    case ActionRegistry.MOZAIC_END_GAME: {
+      newState.game.endTime = new Date()
+      newState.game.lost = true
+      break
     }
   }
   return newState
