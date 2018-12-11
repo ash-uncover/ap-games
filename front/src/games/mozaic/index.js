@@ -6,7 +6,7 @@ import MozaicApp from 'games/mozaic/components/MozaicApp'
 const MozaicGame = {
   id: 'mozaic',
   name: 'mozaic.name',
-  icon: '/src/games/mozaic/assets/img/icon.svg',
+  icon: '/src/games/mozaic/assets/img/logo.png',
   reducer: MozaicReducer,
   component: MozaicApp
 }
