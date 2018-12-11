@@ -1,4 +1,11 @@
 const ArrayUtils = {
+  createIntArray: function (size) {
+    let result = []
+    for (let i = 0; i < size; i++) {
+      result.push(i)
+    }
+    return result
+  },
   shuffle: function (array) {
     let source = [].concat(array)
     let result = []

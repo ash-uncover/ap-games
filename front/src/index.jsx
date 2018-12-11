@@ -10,6 +10,7 @@ import App from 'components/app/App'
 import Default from 'games/default'
 import Pendu from 'games/pendu'
 import Memory from 'games/memory'
+import Mozaic from 'games/mozaic'
 // import Risk from 'games/risk'
 
 // Import global FLUX objects

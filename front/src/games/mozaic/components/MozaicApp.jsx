@@ -2,13 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 
-import DefaultHome from './DefaultHome3'
+import MozaicHome from './MozaicHome'
+import MozaicGame from './game/MozaicGame'
 
-import Helper from '../actions/DefaultActionsHelper'
+import Helper from '../actions/MozaicActionsHelper'
 
-import './_default.scss'
+import './_mozaic.scss'
 
-class DefaultApp extends React.Component {
+class MozaicApp extends React.Component {
   constructor (props) {
     super(props)
   }
@@ -36,12 +37,12 @@ class DefaultApp extends React.Component {
   /* RENDERING */
 
   render () {
-    console.log('render defaultapp')
     const url = this.props.match.url
     return (
-      <div className='default'>
+      <div className='mozaic'>
         <Switch>
-          <Route path={url + '/'} component={DefaultHome} />
+          <Route path={url + '/game'} component={MozaicGame} />
+          <Route path={url + '/'} component={MozaicHome} />
         </Switch>
       </div>
     )
@@ -49,7 +50,7 @@ class DefaultApp extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { loaded, loading, loadingError } = state.default.data
+  const { loaded, loading, loadingError } = state.mozaic.data
   return {
     loaded,
     loading,
@@ -63,9 +64,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const DefaultAppContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DefaultApp)
-
-export default DefaultAppContainer
+export default connect(mapStateToProps, mapDispatchToProps)(MozaicApp)
