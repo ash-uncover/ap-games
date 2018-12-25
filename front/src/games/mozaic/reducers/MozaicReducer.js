@@ -1,5 +1,6 @@
 import ActionRegistry from 'core/actions/ActionRegistry'
 
+import MozaicData from '../model/MozaicData'
 import ArrayUtils from 'utils-lib/ArrayUtils'
 
 const defaultState = {
@@ -14,6 +15,7 @@ const defaultState = {
     won: false,
     lost: false,
     tries: 0,
+    image: null,
     board: []
   }
 }
@@ -59,6 +61,9 @@ const reducer = (state = defaultState, action) => {
         return acc
       }, {})
 
+      const index = Math.floor(Math.random() * (MozaicData.IMAGES.length))
+      const image = MozaicData.IMAGES[index].image
+
       newState.game = {
         startTime: new Date(),
         endTime: null,
@@ -66,7 +71,8 @@ const reducer = (state = defaultState, action) => {
         lost: false,
         tries: 0,
         size: action.args.size,
-        board
+        board,
+        image
       }
       break
     }

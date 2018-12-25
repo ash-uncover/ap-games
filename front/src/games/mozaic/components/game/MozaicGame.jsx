@@ -59,7 +59,7 @@ class MozaicGame extends React.Component {
             {this.buildBoard()}
             <img
               className={`solution ${this.props.won || this.props.lost ? 'reveal' : ''}`}
-              src='/src/games/mozaic/assets/img/puzzle_0.jpg' />
+              src={this.props.image} />
           </SquareContainer>
         </div>
         <div className='footer'>
@@ -81,7 +81,8 @@ const mapStateToProps = state => {
     size,
     board,
     startTime,
-    endTime
+    endTime,
+    image
   } = state.mozaic.game
   let sTime = null
   if (startTime) {
@@ -106,7 +107,8 @@ const mapStateToProps = state => {
     endTime: eTime,
     tries: tries || 0,
     size,
-    board: board || []
+    board: board || [],
+    image
   }
 }
 

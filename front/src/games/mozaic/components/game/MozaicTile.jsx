@@ -43,7 +43,7 @@ class MozaicTile extends React.Component {
           }}>
           <img
             className='tile-background'
-            src='/src/games/mozaic/assets/img/puzzle_0.jpg' />
+            src={this.props.image} />
         </div>
         <div className='tile-container-inner'>
           <div className='tile-content' />
@@ -54,7 +54,7 @@ class MozaicTile extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { size, won, lost } = state.mozaic.game
+  const { size, won, lost, image } = state.mozaic.game
   const { id, x, y, baseX, baseY } = state.mozaic.game.board[ownProps.id]
   
   return {
@@ -65,7 +65,8 @@ const mapStateToProps = (state, ownProps) => {
     x,
     y,
     baseX,
-    baseY
+    baseY,
+    image
   }
 }
 
