@@ -1,16 +1,19 @@
-const StringUtils = {
-  capitalize (s) {
-    if (s === null || typeof s === 'undefined') {
-      throw new Error('Argument cannot be null or undefined')
-    }
-    if (typeof s !== 'string') {
-      throw new Error('Argument must be a string')
-    }
-    if (s.length) {
-      return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase()
-    }
-    return ''
+const StringUtils = {}
+
+/**
+ * @param {string} string
+ */
+StringUtils.capitalize = function (string) {
+  if (string === null || typeof string === 'undefined') {
+    throw new Error('Argument cannot be null or undefined')
   }
+  if (typeof string !== 'string') {
+    throw new Error('Argument must be a string')
+  }
+  if (string.length) {
+    return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase()
+  }
+  return ''
 }
 
 export default StringUtils

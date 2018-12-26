@@ -7,9 +7,10 @@ import { BrowserRouter } from 'react-router-dom'
 import App from 'components/app/App'
 
 // Import games - MUST BE DONE FIRST
-import Default from 'games/default'
+// import Default from 'games/default'
 import Pendu from 'games/pendu'
 import Memory from 'games/memory'
+// import Minehunter from 'games/minehunter'
 import Mozaic from 'games/mozaic'
 // import Risk from 'games/risk'
 

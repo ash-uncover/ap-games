@@ -1,6 +1,6 @@
 import request from 'request'
 
-const _request = (args) => {
+const Request = (args) => {
   return new Promise((resolve, reject) => {
     request(args, (error, response, body) => {
       if (!error && response.statusCode >= 200 && response.statusCode < 300) {
@@ -24,4 +24,4 @@ const _request = (args) => {
   })
 }
 
-export default _request
+export default Request
