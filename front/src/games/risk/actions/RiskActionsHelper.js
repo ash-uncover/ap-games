@@ -1,6 +1,8 @@
 import request from 'request'
 import ActionRegistry from 'core/actions/ActionRegistry'
 
+import { URLHelper } from 'utils-lib'
+
 const _request = (args) => {
   return new Promise((resolve, reject) => {
     request(args, (error, response, body) => {
@@ -26,17 +28,16 @@ const _request = (args) => {
 }
 
 const Helper = {}
-const urlBase = 'http://localhost:8080/src'
 
 Helper.loadI18N = (result) => {
   return Promise.all([
     _request({
       method: 'GET',
-      url: `${urlBase}/games/risk/assets/i18n/risk.i18n.json`
+      url: URLHelper.getUrl('src/games/risk/assets/i18n/risk.i18n.json')
     }).then(ActionRegistry.i18nLoaded),
     _request({
       method: 'GET',
-      url: `${urlBase}/games/risk/assets/i18n/risk.territories.i18n.json`
+      url: URLHelper.getUrl('src/games/risk/assets/i18n/risk.territories.i18n.json')
     }).then(ActionRegistry.i18nLoaded)
   ])
 }
@@ -44,7 +45,7 @@ Helper.loadI18N = (result) => {
 Helper.loadDataTerritories = (result) => {
   return _request({
     method: 'GET',
-    url: `${urlBase}/games/risk/assets/data/territories.json`
+    url: URLHelper.getUrl('src/games/risk/assets/data/territories.json')
   })
     .then((oResult) => {
       result.territories = oResult
@@ -54,7 +55,7 @@ Helper.loadDataTerritories = (result) => {
 Helper.loadDataTerritoriesLinks = (result) => {
   return _request({
     method: 'GET',
-    url: `${urlBase}/games/risk/assets/data/territories-links.json`
+    url: URLHelper.getUrl('src/games/risk/assets/data/territories-links.json')
   })
     .then((oResult) => {
       result.territoriesLinks = oResult
@@ -64,7 +65,7 @@ Helper.loadDataTerritoriesLinks = (result) => {
 Helper.loadDataContinents = (result) => {
   return _request({
     method: 'GET',
-    url: `${urlBase}/games/risk/assets/data/continents.json`
+    url: URLHelper.getUrl('src/games/risk/assets/data/continents.json')
   })
     .then((oResult) => {
       result.continents = oResult

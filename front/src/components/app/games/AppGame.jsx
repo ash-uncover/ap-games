@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import GameRegistry from 'core/games/GameRegistry'
 
-import { FullscreenHelper } from 'utils-lib'
+import { FullscreenHelper, URLHelper } from 'utils-lib'
 
 import './_app-games.scss'
 
@@ -27,7 +27,7 @@ class AppGame extends React.Component {
           <button onClick={this.onOpenGame}>
             <img 
               className=''
-              src={GameRegistry.GAMES[this.props.gameId].icon}
+              src={URLHelper.getUrl(GameRegistry.GAMES[this.props.gameId].icon)}
               alt={GameRegistry.GAMES[this.props.gameId].name} />
           </button>
         </Link>

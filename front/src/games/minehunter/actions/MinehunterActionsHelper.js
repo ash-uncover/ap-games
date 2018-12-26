@@ -1,14 +1,15 @@
 import request from 'utils-lib/request/request'
 import ActionRegistry from 'core/actions/ActionRegistry'
 
+import { URLHelper } from 'utils-lib'
+
 const Helper = {}
-const urlBase = 'http://localhost:8080/src/games/minehunter/assets/'
 
 Helper.loadI18N = (dispatch) => {
   return Promise.all([
     request({
       method: 'GET',
-      url: `${urlBase}i18n/minehunter.i18n.json`
+      url: URLHelper.getUrl('src/games/minehunter/assets/i18n/minehunter.i18n.json')
     }).then((result) => dispatch(ActionRegistry.i18nLoaded(result)))
   ])
 }

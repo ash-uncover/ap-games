@@ -1,14 +1,15 @@
 import request from 'utils-lib/request/request'
 import ActionRegistry from 'core/actions/ActionRegistry'
 
+import { URLHelper } from 'utils-lib'
+
 const Helper = {}
-const urlBase = 'http://localhost:8080/src/games/memory/assets/'
 
 Helper.loadI18N = (dispatch) => {
   return Promise.all([
     request({
       method: 'GET',
-      url: `${urlBase}i18n/memory.i18n.json`
+      url: URLHelper.getUrl('src/games/memory/assets/i18n/memory.i18n.json')
     }).then((result) => dispatch(ActionRegistry.i18nLoaded(result)))
   ])
 }
