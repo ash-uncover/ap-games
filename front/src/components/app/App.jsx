@@ -45,6 +45,8 @@ class App extends React.Component {
   }
   
   renderLoading () {
+    console.log(this.props)
+    console.log(window.location)
     return (
       <main className='app'>
         loading
