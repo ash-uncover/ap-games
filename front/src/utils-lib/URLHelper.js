@@ -1,3 +1,5 @@
+/* globals ap */
+
 const URLHelper = {}
 
 URLHelper.buildUrl = (protocol, host, port) => {
@@ -9,6 +11,11 @@ URLHelper.BASE_URL = URLHelper.buildUrl(
   window.location.hostname,
   window.location.port
 )
+
+if (ap && ap.location && ap.location.root) {
+  URLHelper.BASE_URL = ap.location.root
+  console.log(`setting root to ${URLHelper.BASE_URL}`)
+}
 
 URLHelper.getUrl = (path) => {
   return `${URLHelper.BASE_URL}/${path}`
