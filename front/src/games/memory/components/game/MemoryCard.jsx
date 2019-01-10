@@ -54,7 +54,7 @@ class MemoryCard extends React.Component {
         <button
           className='image'
           onClick={this.onClickImage}>
-          <img src={`/src/games/memory/assets/img/${this.props.card.item.src}`}/>
+          <img src={`./src/games/memory/assets/img/${this.props.card.item.src}`}/>
         </button>
         <button
           className='mask'
