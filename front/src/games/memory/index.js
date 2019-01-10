@@ -6,7 +6,7 @@ import MemoryApp from './components/MemoryApp'
 const MemoryGame = {
   id: 'memory',
   name: 'memory.name',
-  icon: '/src/games/memory/assets/img/_Castle.svg',
+  icon: './src/games/memory/assets/img/_Castle.svg',
   reducer: MemoryReducer,
   component: MemoryApp
 }

@@ -12,9 +12,13 @@ URLHelper.BASE_URL = URLHelper.buildUrl(
   window.location.port
 )
 
-if (ap && ap.location && ap.location.root) {
-  URLHelper.BASE_URL = ap.location.root
-  console.log(`setting root to ${URLHelper.BASE_URL}`)
+try {
+  if (ap && ap.location && ap.location.root) {
+    URLHelper.BASE_URL = ap.location.root
+    console.log(`setting root to ${URLHelper.BASE_URL}`)
+  }
+} catch (oError) {
+  // not a problem
 }
 
 URLHelper.getUrl = (path) => {

@@ -83,7 +83,7 @@ module.exports = {
         test: /\.scss$/,
         loader: 'style-loader!css-loader!sass-loader'
       }, {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|jpg|svg)$/,
         loader: 'file-loader?name=images/[name].[ext]'
       }, {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -97,9 +97,6 @@ module.exports = {
       }, {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader?mimetype=application/x-font-ttf'
-      }, {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml'
       }
     ],
     noParse: [pathToReact]
