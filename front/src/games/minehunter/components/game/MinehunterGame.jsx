@@ -60,25 +60,41 @@ class MinehunterGame extends React.Component {
 
   /* RENDERING */
 
-  buildRow(row, rowIndex) {
+  buildGrid() {
+    const rows = []
+    for (let i = 0; i < this.props.grid.height; i++) {
+      rows.push(this.buildRow(i))
+    }
     return (
-      <div
-        key={`row-${rowIndex}`}
-        className='grid-row'>
-        { row.map((cell, cellIndex) => this.buildCell(cell, rowIndex, cellIndex)) }
+      <div className='grid'>
+        { rows }
       </div>
     )
   }
 
-  buildCell(cell, rowIndex, cellIndex) {
+  buildRow(rowIndex) {
+    const cells = []
+    for (let i = 0; i < this.props.grid.width; i++) {
+      cells.push(this.buildCell(rowIndex, i))
+    }
+    return (
+      <div
+        key={`row-${rowIndex}`}
+        className='grid-row'>
+        { cells }
+      </div>
+    )
+  }
+
+  buildCell(rowIndex, cellIndex) {
     return (
       <div
         key={`cell-${rowIndex}-${cellIndex}`}
         className='grid-tile'>
         <div className='grid-tile-inner'>
           <MinehunterTile
-            x={cell.x}
-            y={cell.y} />
+            x={rowIndex}
+            y={cellIndex} />
         </div>
       </div>
     )
@@ -143,10 +159,9 @@ class MinehunterGame extends React.Component {
         <div className='header'>
         </div>
         <div className='content'>
-          <FillingContainer ratio={(this.props.grid[0] || []).length / this.props.grid.length}>
-            <div className='grid'>
-              { this.props.grid.map((row, rowIndex) => this.buildRow(row, rowIndex)) }
-            </div>
+          <FillingContainer
+            ratio={this.props.grid.width / this.props.grid.height}>
+            { this.buildGrid() }
           </FillingContainer>
         </div>
         { this.buildFooter() }

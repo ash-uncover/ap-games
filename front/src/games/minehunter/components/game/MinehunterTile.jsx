@@ -17,7 +17,9 @@ class MinehunterTile extends React.Component {
   /* VIEW CALLBACKS */
 
   clickTile() {
-    this.props.onClickTile(this.props.x, this.props.y)
+    if (!this.props.won && ! this.props.lost) {
+      this.props.onClickTile(this.props.x, this.props.y)
+    }
   }
 
   /* RENDERING */
@@ -74,11 +76,12 @@ class MinehunterTile extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { lost, grid } = state.minehunter.game
-  const { flag, question, bomb, near, revealed } = grid[ownProps.x][ownProps.y]
   const { x, y } = ownProps
+  const { won, lost, tiles } = state.minehunter.game
+  const { flag, question, bomb, near, revealed } = tiles[`${x}-${y}`]
   
   return {
+    won,
     lost,
     x,
     y,

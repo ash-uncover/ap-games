@@ -1,11 +1,9 @@
 const MinehunterHelper = {}
 
-MinehunterHelper.createGrid = (width, height, bombs) => {
+MinehunterHelper.createTiles = (width, height, bombs) => {
   // First create the empty grid
-  const grid = []
+  const tiles = {}
   for (let x = 0; x < height; x++) {
-    const row = []
-    grid.push(row)
     for (let y = 0; y < width; y++) {
       const tile = {
         x,
@@ -16,7 +14,7 @@ MinehunterHelper.createGrid = (width, height, bombs) => {
         bomb: false,
         revealed: false
       }
-      row.push(tile)
+      tiles[`${x}-${y}`] = tile
     }
   }
   // Then place the bombs
@@ -25,34 +23,36 @@ MinehunterHelper.createGrid = (width, height, bombs) => {
     const x = Math.floor(Math.random() * height)
     const y = Math.floor(Math.random() * width)
 
-    if (!grid[x][y].bomb) {
-      grid[x][y].bomb = true
+    if (!tiles[`${x}-${y}`].bomb) {
+      tiles[`${x}-${y}`].bomb = true
       remainingBombs--
     }
   }
   // Finally update the bomb counters
   for (let x = 0; x < height; x++) {
     for (let y = 0; y < width; y++) {
-      grid[x][y].near = MinehunterHelper.getNeighboors(grid, x, y).filter((tile) => tile.bomb).length
+      const neighboors = MinehunterHelper.getNeighboors(tiles, x, y)
+      const bombNeighboors = neighboors.filter((tile) => tile.bomb)
+      tiles[`${x}-${y}`].near = bombNeighboors.length
     }
   }
-  return grid
+  return tiles
 }
 
-MinehunterHelper.getNeighboors = (grid, x, y) => {
+MinehunterHelper.getNeighboors = (tiles, x, y) => {
   const result = []
-  for (let x2 = Math.max(x - 1, 0); x2 < Math.min(x + 2, grid.length); x2++) {
-    for (let y2 = Math.max(y - 1, 0); y2 < Math.min(y + 2, grid[x2].length); y2++) {
-      if (x !== x2 || y !== y2) {
-        result.push(grid[x2][y2])
+  for (let x2 = x - 1; x2 < x + 2; x2++) {
+    for (let y2 = y - 1; y2 < y + 2; y2++) {
+      if (tiles[`${x2}-${y2}`] && (x !== x2 || y !== y2)) {
+        result.push(tiles[`${x2}-${y2}`])
       }
     }
   }
   return result
 }
 
-MinehunterHelper.isGameWon = (grid) => {
-  return !grid.find((row) => row.find((cell) => !cell.bomb && !cell.revealed))
+MinehunterHelper.isGameWon = (tiles) => {
+  return !Object.values(tiles).find((tile) => !tile.bomb && !tile.revealed)
 }
 
 export default MinehunterHelper

@@ -14,7 +14,12 @@ const defaultState = {
     won: false,
     lost: false,
     selectMode: 'reveal',
-    grid: []
+    grid: {
+      width: 0,
+      height: 0,
+      bombs: 0
+    },
+    tiles: {}
   }
 }
 
@@ -35,6 +40,7 @@ const reducer = (state = defaultState, action) => {
         loadingError: null
       }
       break
+
     case ActionRegistry.MINEHUNTER_LOAD_DATA_FAILURE:
       newState.data = {
         loaded: false,
@@ -48,9 +54,15 @@ const reducer = (state = defaultState, action) => {
       newState.game = {
         startTime: new Date(),
         endTime: null,
+        selectMode: 'reveal',
         won: false,
         lost: false,
-        grid: MinehunterHelper.createGrid(width, height, bombs)
+        grid: {
+          width,
+          height,
+          bombs
+        },
+        tiles: MinehunterHelper.createTiles(width, height, bombs)
       }
       break
     }
@@ -61,8 +73,12 @@ const reducer = (state = defaultState, action) => {
     }
 
     case ActionRegistry.MINEHUNTER_REVEAL_TILE: {
-      const initialTile = newState.game.grid[action.args.x][action.args.y]
-      switch (newState.game.selectMode) {
+      const {
+        selectMode,
+        tiles
+      } = newState.game
+      const initialTile = tiles[`${action.args.x}-${action.args.y}`]
+      switch (selectMode) {
         case 'flag':
           initialTile.flag = !initialTile.flag
           initialTile.question = false
@@ -90,7 +106,7 @@ const reducer = (state = defaultState, action) => {
                     if (tile.near) {
                       return acc
                     } else {
-                      const neighboors = MinehunterHelper.getNeighboors(newState.game.grid, tile.x, tile.y)
+                      const neighboors = MinehunterHelper.getNeighboors(tiles, tile.x, tile.y)
                       const newTiles = neighboors.filter((t) => !t.revealed && !t.flag && !t.question)
                       return acc.concat(newTiles)
                     }
@@ -99,7 +115,7 @@ const reducer = (state = defaultState, action) => {
               }
             }
             // Check if the game is won
-            newState.game.won = !newState.game.grid.find((row) => row.find((cell) => !cell.bomb && !cell.revealed))
+            newState.game.won = MinehunterHelper.isGameWon(tiles)
           }
           break
       }
