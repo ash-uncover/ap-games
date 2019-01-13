@@ -1,3 +1,7 @@
 {
 
+  "minehunter.game.difficulty.xsmall.text": "extra small",
+  "minehunter.game.difficulty.xsmall.description": "10 x 10 grid with 10 bombs",
+  "minehunter.game.difficulty.small.text": "small",
+  "minehunter.game.difficulty.small.description": "10 x 15 grid with 20 bombs"
 }

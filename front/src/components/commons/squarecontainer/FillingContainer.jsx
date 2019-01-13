@@ -18,21 +18,19 @@ class FillingContainer extends React.Component {
   updateDimensions () {
     const parentRatio = this.container.clientWidth / this.container.clientHeight
     if (parentRatio === this.props.ratio) {
-      console.log('same ratio')
       // parent ratio is ok
       this.setState({
         width: this.container.clientWidth,
         height: this.container.clientHeight
       })
     } else if (parentRatio < this.props.ratio) {
-      console.log('height')
       // the blocking factor is the width
       this.setState({
         width: this.container.clientWidth,
         height: this.container.clientWidth / this.props.ratio
       })
     } else {
-      console.log('width')
+
       // the blocking factor is the height
       this.setState({
         width: this.container.clientHeight * this.props.ratio,
@@ -63,9 +61,6 @@ class FillingContainer extends React.Component {
   }
 
   render () {
-    console.log(this.props)
-    console.log(this.state)
-    console.log(this.buildStyle())
     return (
       <div
         className='filling-container'

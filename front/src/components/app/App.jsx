@@ -45,8 +45,6 @@ class App extends React.Component {
   }
   
   renderLoading () {
-    console.log(this.props)
-    console.log(window.location)
     return (
       <main className='app'>
         loading
@@ -55,8 +53,6 @@ class App extends React.Component {
   }
   
   renderDefault () {
-    console.log(this.props)
-    console.log(window.location)
     if (this.props.i18n) {
       I18NHelper.reset()
       I18NHelper.loadData(this.props.i18n.data)

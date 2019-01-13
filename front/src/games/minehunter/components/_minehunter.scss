@@ -6,14 +6,8 @@
   right: 0;
 
   .home {
+    background: white;
     height: 100%;
     width: 100%;
-
-    .filling-container {
-      background: green;
-      .filling-container-inner {
-        background: yellow;
-      }
-    }
   }
 }
