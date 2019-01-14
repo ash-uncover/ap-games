@@ -2,6 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import PageContainer from 'components/commons/pagecontainer/PageContainer'
+import MenuPage from 'components/commons/menu/MenuPage'
+import MenuLabel from 'components/commons/menu/MenuLabel'
+import MenuAction from 'components/commons/menu/MenuAction'
+import MenuSelector from 'components/commons/menu/MenuSelector'
 
 import ActionRegistry from 'core/actions/ActionRegistry'
 import MinehunterData from '../model/MinehunterData'
@@ -106,118 +110,60 @@ class MinehunterHome extends React.Component {
   render () {
     return (
       <div className='home'>
-        <PageContainer page={this.state.currentPage}>
-          
-          <div className='page-content'>
-            <h2
-              className='title'>
-              {I18NHelper.get('minehunter.name')}
-            </h2>
-            <div className='entry'>
-              <button
-                className='action'
-                onClick={this.toNewGame}>
-                {I18NHelper.get('minehunter.menu.newgame')}
-              </button>
-            </div>
-            <div className='entry'>
-              <button
-                className='action'
-                onClick={this.toOptions}>
-                {I18NHelper.get('minehunter.menu.options')}
-              </button>
-            </div>
-            <div className='entry'>
-              <button
-                className='action'
-                onClick={this.toCredits}>
-                {I18NHelper.get('minehunter.menu.credits')}
-              </button>
-            </div>
-            <div className='entry'>
-              <button
-                className='action'
-                onClick={this.onExitGame}>
-                {I18NHelper.get('minehunter.menu.exit')}
-              </button>
-            </div>
-          </div>
+        <div classname='menu'>
+          <PageContainer page={this.state.currentPage}>
+            <MenuPage
+              title={I18NHelper.get('minehunter.name')}>
+              <MenuAction
+                text={I18NHelper.get('minehunter.menu.newgame')}
+                onClick={this.toNewGame} />
+              <MenuAction
+                text={I18NHelper.get('minehunter.menu.options')}
+                onClick={this.toOptions} />
+              <MenuAction
+                text={I18NHelper.get('minehunter.menu.credits')}
+                onClick={this.toCredits} />
+              <MenuAction
+                text={I18NHelper.get('minehunter.menu.exit')}
+                onClick={this.onExitGame} />
+            </MenuPage>
 
-          <div className='page-content'>
-            <h2
-              className='title'>
-              {I18NHelper.get('minehunter.menu.options')}
-            </h2>
-            <div className='entry'>
-              <button
-                className='action'
-                onClick={this.onBack}>
-                {I18NHelper.get('minehunter.menu.back')}
-              </button>
-            </div>
-          </div>
+            <MenuPage
+              title={I18NHelper.get('minehunter.menu.options')}>
+              <MenuAction
+                text={I18NHelper.get('minehunter.menu.back')}
+                onClick={this.onBack} />
+            </MenuPage>
 
-          <div className='page-content'>
-            <h2
-              className='title'>
-              {I18NHelper.get('minehunter.menu.credits')}
-            </h2>
-            <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-            <div className='entry'>
-              <button
-                className='action'
-                onClick={this.onBack}>
-                {I18NHelper.get('minehunter.menu.back')}
-              </button>
-            </div>
-          </div>
+            <MenuPage
+              title={I18NHelper.get('minehunter.menu.credits')}>
+              <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+              <MenuAction
+                text={I18NHelper.get('minehunter.menu.back')}
+                onClick={this.onBack} />
+            </MenuPage>
 
-          <div className='page-content'>
-            <h2
-              className='title'>
-              {I18NHelper.get('minehunter.menu.newgame')}
-            </h2>
-            <div className='entry'>
-              <label className='label'>
-                {I18NHelper.get('minehunter.menu.difficulty')}
-              </label>
-            </div>
-            <div className='entry'>
-              <div className='selector'>
-                <button
-                  className='selector-action'
-                  disabled={Object.values(MinehunterData.DIFFICULTIES).findIndex((value) => value.id === this.state.difficulty) === 0}
-                  onClick={this.onPreviousDifficulty}>
-                  {'<'}
-                </button>
-                <div className='selector-label'>
-                  {I18NHelper.get(MinehunterData.DIFFICULTIES[this.state.difficulty].text)}
-                </div>
-                <button
-                  className='selector-action'
-                  disabled={Object.values(MinehunterData.DIFFICULTIES).findIndex((value) => value.id === this.state.difficulty) === Object.values(MinehunterData.DIFFICULTIES).length - 1}
-                  onClick={this.onNextDifficulty}>
-                  {'>'}
-                </button>
-              </div>
-            </div>
-            <div className='entry'>
-              <button
-                className='action'
-                onClick={this.toGame}>
-                {I18NHelper.get('minehunter.menu.play')}
-              </button>
-            </div>
-            <div className='entry'>
-              <button
-                className='action'
-                onClick={this.onBack}>
-                {I18NHelper.get('minehunter.menu.back')}
-              </button>
-            </div>
-          </div>
+            <MenuPage
+              title={I18NHelper.get('minehunter.menu.newgame')}>
+              <MenuLabel
+                text={I18NHelper.get('minehunter.menu.difficulty')} />
+              <MenuSelector
+                value={I18NHelper.get(MinehunterData.DIFFICULTIES[this.state.difficulty].text)}
+                previousValueDisabled={Object.values(MinehunterData.DIFFICULTIES).findIndex((value) => value.id === this.state.difficulty) === 0}
+                nextValueDisabled={Object.values(MinehunterData.DIFFICULTIES).findIndex((value) => value.id === this.state.difficulty) === Object.values(MinehunterData.DIFFICULTIES).length - 1}
+                onPreviousValue={this.onPreviousDifficulty}
+                onNextValue={this.onNextDifficulty} />
+              <MenuAction
+                text={I18NHelper.get('minehunter.menu.play')}
+                onClick={this.toGame} />
+              <MenuAction
+                text={I18NHelper.get('minehunter.menu.back')}
+                onClick={this.onBack} />
+            </MenuPage>
 
-        </PageContainer>
+          </PageContainer>
+
+        </div>
       </div>
     )
   }
