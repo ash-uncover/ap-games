@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import PageContainer from 'components/commons/pagecontainer/PageContainer'
+import Menu from 'components/commons/menu/Menu'
 import MenuPage from 'components/commons/menu/MenuPage'
 import MenuLabel from 'components/commons/menu/MenuLabel'
 import MenuAction from 'components/commons/menu/MenuAction'
@@ -21,18 +21,20 @@ const PAGE = {
   NEW_GAME: 3
 }
 
-const NUMBER = {
-  '10x10': '10x10',
-  '10x15': '10x15'
-}
-
 class MinehunterHome extends React.Component {
   constructor (props) {
     super(props)
 
+    const difficulty = Object.values(MinehunterData.DIFFICULTIES)[0]
+
     this.state = {
       currentPage: 0,
-      difficulty: Object.values(MinehunterData.DIFFICULTIES)[0].id
+      difficulty: difficulty.id,
+      hasPrevious: false,
+      hasNext: true,
+      width: difficulty.width,
+      height: difficulty.height,
+      bombs: difficulty.bombs
     }
 
     this.toGame = this.toGame.bind(this)
@@ -41,8 +43,15 @@ class MinehunterHome extends React.Component {
     this.toNewGame = this.toNewGame.bind(this)
     this.onBack = this.onBack.bind(this)
     this.onExitGame = this.onExitGame.bind(this)
+
     this.onPreviousDifficulty = this.onPreviousDifficulty.bind(this)
     this.onNextDifficulty = this.onNextDifficulty.bind(this)
+    this.onLessWidth = this.onLessWidth.bind(this)
+    this.onMoreWidth = this.onMoreWidth.bind(this)
+    this.onLessHeight = this.onLessHeight.bind(this)
+    this.onMoreHeight = this.onMoreHeight.bind(this)
+    this.onLessBombs = this.onLessBombs.bind(this)
+    this.onMoreBombs = this.onMoreBombs.bind(this)
   }
 
   /* LIFECYCLE */
@@ -58,7 +67,7 @@ class MinehunterHome extends React.Component {
       width,
       height,
       bombs
-    } = MinehunterData.DIFFICULTIES[this.state.difficulty]
+    } = this.state
     this.props.onNewGame(width, height, bombs)
     this.props.history.push(`${this.props.match.url}/game`)
   }
@@ -88,82 +97,159 @@ class MinehunterHome extends React.Component {
     const values = Object.values(MinehunterData.DIFFICULTIES)
     const currentIndex = values.findIndex((value) => value.id === this.state.difficulty)
     const index = (currentIndex - 1 + values.length) % values.length
-    this.setState({
-      difficulty: values[index].id
-    })
+    this._updateDifficulty(index)
   }
 
   onNextDifficulty () {
     const values = Object.values(MinehunterData.DIFFICULTIES)
     const currentIndex = values.findIndex((value) => value.id === this.state.difficulty)
     const index = (currentIndex + 1) % values.length
+    this._updateDifficulty(index)
+  }
+
+  onLessWidth () {
     this.setState({
-      difficulty: values[index].id
+      width: Math.max(this.state.width - 1, MinehunterData.MIN_WIDTH)
+    })
+  }
+
+  onMoreWidth () {
+    this.setState({
+      width: Math.min(this.state.width + 1, MinehunterData.MAX_WIDTH)
+    })
+  }
+
+  onLessHeight () {
+    this.setState({
+      height: Math.max(this.state.height - 1, MinehunterData.MIN_HEIGHT)
+    })
+  }
+
+  onMoreHeight () {
+    this.setState({
+      height: Math.min(this.state.height + 1, MinehunterData.MAX_WIDTH)
+    })
+  }
+
+  onLessBombs () {
+    this.setState({
+      bombs: Math.max(this.state.bombs - 1, MinehunterData.MIN_BOMBS)
+    })
+  }
+
+  onMoreBombs () {
+    const maxBombs = (this.state.width - 1) * (this.state.height - 1)
+    this.setState({
+      bombs: Math.min(this.state.bombs + 1, maxBombs)
     })
   }
 
   /* INTERNAL METHODS */
 
+  _updateDifficulty (index) {
+    const values = Object.values(MinehunterData.DIFFICULTIES)
+    const hasPrevious = index > 0
+    const hasNext = index < values.length - 1
+    const difficulty = values[index]
+    if (difficulty.width) {
+      this.setState({
+        difficulty: difficulty.id,
+        hasPrevious,
+        hasNext, 
+        width: difficulty.width,
+        height: difficulty.height,
+        bombs: difficulty.bombs,
+        canEditDifficulty: false
+      })
+    } else {
+      this.setState({
+        difficulty: difficulty.id,
+        hasPrevious,
+        hasNext,
+        canEditDifficulty: true
+      })
+    }
+  }
 
   /* RENDERING */
 
   render () {
     return (
       <div className='home'>
-        <div classname='menu'>
-          <PageContainer page={this.state.currentPage}>
-            <MenuPage
-              title={I18NHelper.get('minehunter.name')}>
-              <MenuAction
-                text={I18NHelper.get('minehunter.menu.newgame')}
-                onClick={this.toNewGame} />
-              <MenuAction
-                text={I18NHelper.get('minehunter.menu.options')}
-                onClick={this.toOptions} />
-              <MenuAction
-                text={I18NHelper.get('minehunter.menu.credits')}
-                onClick={this.toCredits} />
-              <MenuAction
-                text={I18NHelper.get('minehunter.menu.exit')}
-                onClick={this.onExitGame} />
-            </MenuPage>
+        <Menu
+          page={this.state.currentPage}>
+          <MenuPage
+            title={I18NHelper.get('minehunter.name')}>
+            <MenuAction
+              text={I18NHelper.get('minehunter.menu.newgame')}
+              onClick={this.toNewGame} />
+            <MenuAction
+              text={I18NHelper.get('minehunter.menu.options')}
+              onClick={this.toOptions} />
+            <MenuAction
+              text={I18NHelper.get('minehunter.menu.credits')}
+              onClick={this.toCredits} />
+            <MenuAction
+              text={I18NHelper.get('minehunter.menu.exit')}
+              onClick={this.onExitGame} />
+          </MenuPage>
 
-            <MenuPage
-              title={I18NHelper.get('minehunter.menu.options')}>
-              <MenuAction
-                text={I18NHelper.get('minehunter.menu.back')}
-                onClick={this.onBack} />
-            </MenuPage>
+          <MenuPage
+            title={I18NHelper.get('minehunter.menu.options')}>
+            <MenuAction
+              text={I18NHelper.get('minehunter.menu.back')}
+              onClick={this.onBack} />
+          </MenuPage>
 
-            <MenuPage
-              title={I18NHelper.get('minehunter.menu.credits')}>
-              <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-              <MenuAction
-                text={I18NHelper.get('minehunter.menu.back')}
-                onClick={this.onBack} />
-            </MenuPage>
+          <MenuPage
+            title={I18NHelper.get('minehunter.menu.credits')}>
+            <div>
+              Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+            </div>
+            <MenuAction
+              text={I18NHelper.get('minehunter.menu.back')}
+              onClick={this.onBack} />
+          </MenuPage>
 
-            <MenuPage
-              title={I18NHelper.get('minehunter.menu.newgame')}>
-              <MenuLabel
-                text={I18NHelper.get('minehunter.menu.difficulty')} />
-              <MenuSelector
-                value={I18NHelper.get(MinehunterData.DIFFICULTIES[this.state.difficulty].text)}
-                previousValueDisabled={Object.values(MinehunterData.DIFFICULTIES).findIndex((value) => value.id === this.state.difficulty) === 0}
-                nextValueDisabled={Object.values(MinehunterData.DIFFICULTIES).findIndex((value) => value.id === this.state.difficulty) === Object.values(MinehunterData.DIFFICULTIES).length - 1}
-                onPreviousValue={this.onPreviousDifficulty}
-                onNextValue={this.onNextDifficulty} />
-              <MenuAction
-                text={I18NHelper.get('minehunter.menu.play')}
-                onClick={this.toGame} />
-              <MenuAction
-                text={I18NHelper.get('minehunter.menu.back')}
-                onClick={this.onBack} />
-            </MenuPage>
+          <MenuPage
+            title={I18NHelper.get('minehunter.menu.newgame')}>
+            <MenuSelector
+              label={I18NHelper.get('minehunter.menu.difficulty')}
+              value={I18NHelper.get(MinehunterData.DIFFICULTIES[this.state.difficulty].text)}
+              previousValueDisabled={!this.state.hasPrevious}
+              nextValueDisabled={!this.state.hasNext}
+              onPreviousValue={this.onPreviousDifficulty}
+              onNextValue={this.onNextDifficulty} />
+            <MenuSelector
+              label={I18NHelper.get('minehunter.game.difficulty.width')}
+              value={this.state.width}
+              previousValueDisabled={!this.state.canEditDifficulty}
+              nextValueDisabled={!this.state.canEditDifficulty}
+              onPreviousValue={this.onLessWidth}
+              onNextValue={this.onMoreWidth} />
+            <MenuSelector
+              label={I18NHelper.get('minehunter.game.difficulty.height')}
+              value={this.state.height}
+              previousValueDisabled={!this.state.canEditDifficulty}
+              nextValueDisabled={!this.state.canEditDifficulty}
+              onPreviousValue={this.onLessHeight}
+              onNextValue={this.onMoreHeight} />
+            <MenuSelector
+              label={I18NHelper.get('minehunter.game.difficulty.bombs')}
+              value={this.state.bombs}
+              previousValueDisabled={!this.state.canEditDifficulty}
+              nextValueDisabled={!this.state.canEditDifficulty}
+              onPreviousValue={this.onLessBombs}
+              onNextValue={this.onMoreBombs} />
+            <MenuAction
+              text={I18NHelper.get('minehunter.menu.play')}
+              onClick={this.toGame} />
+            <MenuAction
+              text={I18NHelper.get('minehunter.menu.back')}
+              onClick={this.onBack} />
+          </MenuPage>
 
-          </PageContainer>
-
-        </div>
+        </Menu>
       </div>
     )
   }

@@ -1,7 +1,21 @@
 {
 
-  "minehunter.game.difficulty.xsmall.text": "extra small",
-  "minehunter.game.difficulty.xsmall.description": "10 x 10 grid with 10 bombs",
-  "minehunter.game.difficulty.small.text": "small",
-  "minehunter.game.difficulty.small.description": "10 x 15 grid with 20 bombs"
+  "minehunter.name": "Démineur",
+
+  "minehunter.menu.newgame": "Nouvelle partie",
+  "minehunter.menu.options": "Options",
+  "minehunter.menu.credits": "Crédits",
+  "minehunter.menu.back": "Retour",
+  "minehunter.menu.exit": "Quitter",
+
+  "minehunter.menu.difficulty": "Difficulté",
+  "minehunter.menu.play": "Jouer",
+  
+  "minehunter.game.difficulty.small.text": "petit",
+  "minehunter.game.difficulty.normal.text": "normal",
+  "minehunter.game.difficulty.huge.text": "grand",
+  "minehunter.game.difficulty.custom.text": "personnalisé",
+  "minehunter.game.difficulty.width": "largeur",
+  "minehunter.game.difficulty.height": "hauteur",
+  "minehunter.game.difficulty.bombs": "bombes"
 }

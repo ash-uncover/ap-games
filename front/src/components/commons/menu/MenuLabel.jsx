@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './_menu.scss'
+
 class MenuLabel extends React.Component {
   constructor (props) {
     super(props)

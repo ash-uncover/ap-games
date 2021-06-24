@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './_menu.scss'
+
 class MenuPage extends React.Component {
   constructor (props) {
     super(props)
@@ -23,12 +25,19 @@ class MenuPage extends React.Component {
           { this.props.title }
         </h2>
         { children.map((child, index) => (
-          <div
-            key={`menu-page-entry-${index}`}
-            className='menu-page-entry'>
-            { child }
-          </div>
+          index < children.length - 1 ?
+            <div
+              key={`menu-page-entry-${index}`}
+              className='menu-page-entry'>
+              { child }
+            </div>
+          : null
         )) }
+        <div className='menu-page-fill' />
+        <div
+          className='menu-page-entry menu-page-footer'>
+          { children[children.length - 1] }
+        </div>
       </div>
     )
   }
