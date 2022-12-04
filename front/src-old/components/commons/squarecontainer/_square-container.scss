@@ -1,0 +1,21 @@
+.square-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .square-container-inner {
+    position: relative;
+    padding-top: 100%;
+    width: 100%;
+
+    .square-content {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+}

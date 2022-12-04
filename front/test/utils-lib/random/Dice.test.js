@@ -3,7 +3,7 @@ import Dice from 'utils-lib/random/Dice'
 describe('Dice', () => {
   describe('D6', () => {
     test('one run', () => {
-      // make 1k run and check we got all results
+      // make 1 run and check it is bounded
       const result = Dice.D6()
       expect(result).toBeGreaterThan(0)
       expect(result).toBeLessThan(7)
@@ -38,9 +38,9 @@ describe('Dice', () => {
     test('several throws', () => {
       const result = Dice.throw('10D2')
       expect(result).toHaveLength(10)
-      for (let i = 0; i < result.length; i++) {
-        expect(result[i]).toBeGreaterThan(0)
-        expect(result[0]).toBeLessThan(3)
+      result.forEach(r => {
+        expect(r).toBeGreaterThan(0)
+        expect(r).toBeLessThan(3)
       }
     })
   })

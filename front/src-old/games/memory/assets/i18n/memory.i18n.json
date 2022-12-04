@@ -1,0 +1,20 @@
+{
+  "memory.name": "Medieval Memory",
+
+  "memory.menu.newgame": "Nouvelle Partie",
+  "memory.menu.options": "Options",
+  "memory.menu.credits": "Crédits",
+  "memory.menu.exit": "Quitter",
+  "memory.menu.back": "Retour",
+  "memory.menu.play": "Jouer",
+
+  "memory.status.errors": "Erreurs",
+  "memory.status.found": "Trouvé",
+  "memory.status.tries": "Essais",
+  "memory.status.time": "Durée",
+
+  "memory.difficulty": "Nombre de Paires",
+
+  "memory.game.victory": "Victoire",
+  "memory.game.defeat": "Défaite"
+}

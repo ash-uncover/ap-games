@@ -1,0 +1,34 @@
+.risk .risk-board {
+  height: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  
+  .board-top {
+    height: 4rem;
+    background: blue; 
+  }
+  .board-middle {
+    width: 100%;
+    flex-grow: 1;
+
+    display: flex;
+
+    .board-left {
+      width: 5rem;
+      background: green; 
+    }
+    .board-central {
+      flex-grow: 1;
+      position: relative;
+    }
+    .board-right {
+      width: 5rem;
+      background: red; 
+    }
+  }
+  .board-bottom {
+    height: 4rem;
+    background: yellow; 
+  }
+}

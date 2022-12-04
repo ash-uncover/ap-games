@@ -1,0 +1,78 @@
+.pendu .home {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  
+  .home-logo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .home-content {
+    width: 70%;
+    max-width: 600px;
+  }
+
+  .menu-title {
+    text-align: center;
+    margin-top: 2rem;
+    color: #666;
+    font-size: 2rem;
+  }
+
+  .menu {
+    width: 100%;
+    padding: 0;
+  
+    .menu-entry {
+      list-style-type: none;
+      padding: 0;
+      margin: 2rem 0;
+      width: 100%;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    .menu-selector {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      .label {
+        width: 50%;
+        text-align: center;
+        font-size: 1.5rem;
+      }
+      .selector {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        .selector-action {
+          height: 3rem;
+          line-height: 3rem;
+          width: 3rem;
+          font-weight: bold;
+          font-size: 3rem;
+          border: 0;
+          background: none;
+          color: rgba(255,255,255,0.6);
+          outline: none;
+          &:hover {
+            color: rgba(255,255,255,0.85);
+          }
+          &:disabled {
+            color: rgba(150,150,150,0.3);
+          }
+        }
+        .selector-value {
+          flex-grow: 1;
+          text-align: center;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
