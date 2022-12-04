@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 // Libs
 
 import './HomeTile.css'
@@ -27,7 +27,7 @@ const HomeTile = ({
 
   // Events //
 
-  const handleTileClick = (event) => {
+  const handleTileClick = (event: MouseEvent) => {
     event.preventDefault()
     onClick()
     return false

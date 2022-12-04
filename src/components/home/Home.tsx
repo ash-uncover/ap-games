@@ -12,7 +12,7 @@ const Home = () => {
 
   // Hooks //
 
-  const [game, setGame] = useState(null)
+  const [game, setGame] = useState('')
 
   useEffect(() => {
     return Audio.play(
@@ -32,7 +32,7 @@ const Home = () => {
 
   // Events //
 
-  const handleGameClick = (gameId) => {
+  const handleGameClick = (gameId: string) => {
     setGame(gameId)
   }
 
