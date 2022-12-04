@@ -1,10 +1,102 @@
 .menu {
-  .menu-page {
-    .menu-page-title {
+  background:#181818;
+  overflow: hidden;
 
+  .menu-page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .menu-page-title {
+      margin: 2rem 0;
+      color: #CCC;
+      text-transform: uppercase;
+      text-align: center;
     }
     .menu-page-entry {
-      
+      margin: 0 2.5rem;
+      height: 4rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      * {
+        text-transform: uppercase;
+        color: #A7A7A7;
+        font-size: 1.25rem;
+      }
     }
+    .menu-page-entry + .menu-page-entry {
+      margin-top: 1.5rem;
+    }
+    .menu-page-fill {
+      flex-grow: 1;
+    }
+    .menu-page-footer {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .menu-action {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    background: none;
+
+    background :#2D2D2D;
+    border-radius: 2px;
+
+    &:hover {
+      background :#2988BE;
+      * {
+        color: #E7E7E7;
+      }
+    }
+  }
+
+  .menu-label {
+      
+  }
+  
+  .menu-selector {
+    height: 100%;
+    width: 100%;
+    
+    .menu-selector-label {
+      text-align: center;
+    }
+
+    .menu-selector-control {
+      display: flex;
+      align-items: center;
+
+      .menu-selector-action {
+        
+      }
+  
+      .menu-selector-value {
+        margin: 0 1rem;
+        flex-grow: 2;
+        text-align: center;
+      }
+    }
+
+    &.horizontal {
+      display: flex;
+      align-items: center;
+  
+      .menu-selector-label {
+        width: 50%;
+      }
+      .menu-selector-control {
+        width: 50%;
+      }
+    }
+
+    &.vertical {
+    }
+
   }
 }
