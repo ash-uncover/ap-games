@@ -27,7 +27,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      title: 'AP Maze',
+      title: 'AP Games',
     }),
     new CopyPlugin({
       patterns: [

@@ -33,12 +33,12 @@ module.exports = {
       ],
     }),
     new webpack.EnvironmentPlugin({
-      AP_GAMES_MOZAIC_PUBLIC: '/ap-games-mozaic'
+      AP_GAMES_PUBLIC: '/ap-games'
     }),
     new HtmlWebpackPlugin({
       template: './src/index_docs.html',
-      title: 'AP Mozaic',
-      publicPath: '/ap-games-mozaic'
+      title: 'AP Games',
+      publicPath: '/ap-games'
     }),
   ],
 
