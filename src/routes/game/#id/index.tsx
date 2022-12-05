@@ -13,10 +13,12 @@ export const RouteGame = () => {
 
   // Rendering //
 
-  const game = Games[gameId]
+  if (gameId) {
+    const game = Games[gameId]
 
-  if (game) {
-    return <Game gameId={gameId} />
+    if (game) {
+      return <Game gameId={gameId} />
+    }
   }
 
   return (
