@@ -33,7 +33,8 @@ module.exports = {
       ],
     }),
     new webpack.EnvironmentPlugin({
-      AP_GAMES_PUBLIC: '/ap-games'
+      AP_GAMES_PUBLIC: '/ap-games',
+      AP_GAMES_ENVIRONMENT: 'github'
     }),
     new HtmlWebpackPlugin({
       template: './src/index_docs.html',

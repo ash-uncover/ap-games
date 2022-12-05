@@ -7,12 +7,13 @@ import { Games } from 'lib/data'
 import HomeTile from './HomeTile'
 
 import './Home.css'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
 
   // Hooks //
 
-  const [game, setGame] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     return Audio.play(
@@ -33,7 +34,7 @@ const Home = () => {
   // Events //
 
   const handleGameClick = (gameId: string) => {
-    setGame(gameId)
+    navigate(`/games/${gameId}`)
   }
 
   // Rendering //
@@ -44,29 +45,17 @@ const Home = () => {
         HOME HEADER
       </div>
       <div className='home-content'>
-        {!game ?
-          <ul>
-            {Object.values(Games).map(game => {
-              return (
-                <HomeTile
-                  key={game.id}
-                  {...game}
-                  onClick={() => handleGameClick(game.id)}
-                />
-              )
-            })}
-          </ul>
-          : null}
-        {game ?
-          <iframe
-            width={'100%'}
-            height={'100%'}
-            style={{
-              border: 0
-            }}
-            src={Games[game].url}
-          />
-          : null}
+        <ul>
+          {Object.values(Games).map(game => {
+            return (
+              <HomeTile
+                key={game.id}
+                {...game}
+                onClick={() => handleGameClick(game.id)}
+              />
+            )
+          })}
+        </ul>
       </div>
     </div>
   )
