@@ -5,6 +5,7 @@ import { Message, MessageService } from '@uncover/games-common'
 import { Games } from 'lib/data'
 
 import './Game.css'
+import CONFIG from 'config'
 
 interface GameProperties {
   gameId: string
@@ -37,7 +38,7 @@ const Game = ({
       style={{
         border: 0
       }}
-      src={`${Games[gameId].url}?embedded=true`}
+      src={`${Games[gameId].url}${CONFIG.AP_GAMES_ENVIRONMENT === 'local' ? '' : '#'}?embedded=true`}
     />
   )
 }
