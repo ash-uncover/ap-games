@@ -10,6 +10,7 @@ import RouteGames from 'routes/game'
 import RouteGame from 'routes/game/#id'
 
 import Audio from 'components/utils/Audio'
+import Home from 'components/home/Home'
 
 const Root = () => {
 
@@ -19,9 +20,10 @@ const Root = () => {
     <>
       <Routes>
         <Route path='/' element={<RouteRoot />}>
-        </Route>
-        <Route path='/games' element={<RouteGames />}>
-          <Route path=':gameId' element={<RouteGame />} />
+          <Route path='' element={<Home />} />
+          <Route path='/games' element={<RouteGames />}>
+            <Route path=':gameId' element={<RouteGame />} />
+          </Route>
         </Route>
       </Routes>
       <Audio />

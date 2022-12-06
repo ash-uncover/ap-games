@@ -40,12 +40,15 @@ module.exports = {
   ],
   devtool: 'source-map',
   devServer: {
+    client: {
+      progress: false,
+    },
+    compress: true,
+    historyApiFallback: true,
+    port: 8080,
     static: {
       directory: path.join(__dirname, 'public'),
     },
-    compress: true,
-    port: 8080,
-    historyApiFallback: true,
   },
 
   module: {

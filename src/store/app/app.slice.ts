@@ -67,6 +67,11 @@ const closeDialog: CaseReducer<AppState, PayloadAction<void>> = (state, action) 
   state.dialogParams = null
 }
 
+const exitGame: CaseReducer<AppState, PayloadAction<any>> = (state, action) => {
+  console.log('EXIT GAME REQUEST')
+  console.log(action)
+}
+
 // SLICE //
 
 const AppSlice = createSlice({
@@ -81,6 +86,10 @@ const AppSlice = createSlice({
     openDialog,
     closeDialog,
   },
+
+  extraReducers: {
+    'exitGame': exitGame
+  }
 })
 
 export default AppSlice

@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Message, MessageService } from '@uncover/games-common'
 // Libs
 import { Games } from 'lib/data'
 
@@ -12,6 +14,19 @@ const Game = ({
   gameId
 }: GameProperties) => {
 
+  // Hooks //
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const Service = new MessageService()
+    return Service.init((message: Message) => {
+      if (message.type === 'exitGame') {
+        navigate('/')
+      }
+    })
+  }, [])
+
   // Rendering //
 
   return (
@@ -22,7 +37,7 @@ const Game = ({
       style={{
         border: 0
       }}
-      src={Games[gameId].url}
+      src={`${Games[gameId].url}?embedded=true`}
     />
   )
 }

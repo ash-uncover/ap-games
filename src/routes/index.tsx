@@ -2,7 +2,6 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 
 import App from 'components/App'
-import Home from 'components/home/Home'
 
 const RouteRoot = () => {
 
@@ -10,7 +9,7 @@ const RouteRoot = () => {
 
   return (
     <App>
-      <Home />
+      <Outlet />
     </App>
   )
 }
