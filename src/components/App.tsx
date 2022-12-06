@@ -5,7 +5,7 @@ import AppSelectors from 'store/app/app.selectors'
 import AppSlice from 'store/app/app.slice'
 // Libs
 import { loadData } from 'lib/data'
-import MessageService from 'services/message.service'
+import MessageServiceCentral from 'services/message.service'
 
 interface AppProperties {
   children: ReactElement
@@ -21,7 +21,7 @@ const App = ({
   const loaded = useSelector(AppSelectors.loaded)
 
   useEffect(() => {
-    return MessageService.init(dispatch)
+    return MessageServiceCentral.init(dispatch)
   }, [])
 
   useEffect(() => {

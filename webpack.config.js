@@ -38,7 +38,7 @@ module.exports = {
       ],
     }),
   ],
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   devServer: {
     client: {
       progress: false,
@@ -58,7 +58,8 @@ module.exports = {
         include: DIR_SRC,
         exclude: DIR_NODE_MODULES,
         use: [
-          { loader: 'babel-loader' },
+          { loader: 'source-map-loader' },
+          { loader: 'babel-loader' }
         ],
       },
       {
@@ -66,6 +67,7 @@ module.exports = {
         include: DIR_SRC,
         exclude: DIR_NODE_MODULES,
         use: [
+          { loader: 'source-map-loader' },
           { loader: 'ts-loader' },
         ],
       },
@@ -73,17 +75,19 @@ module.exports = {
         test: /\.css$/i,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader', options: {
-            url: {
-              filter: (url, resourcePath) => {
-                // Don't handle `images` urls
-                if (url.includes('images/')) {
-                  return false;
-                }
-                return true;
+          {
+            loader: 'css-loader', options: {
+              url: {
+                filter: (url, resourcePath) => {
+                  // Don't handle `images` urls
+                  if (url.includes('images/')) {
+                    return false
+                  }
+                  return true
+                },
               },
-            },
-          } },
+            }
+          },
           { loader: 'postcss-loader' },
         ],
       },

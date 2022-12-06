@@ -1,5 +1,5 @@
-import { MessageService as Service } from '@uncover/games-common'
+import MessageService from '@uncover/js-utils-microfrontend'
 
-const MessageService = new Service('GAM')
+const MessageServiceCentral = new MessageService('GAM')
 
-export default MessageService
+export default MessageServiceCentral
