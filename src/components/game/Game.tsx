@@ -38,7 +38,7 @@ const Game = ({
       style={{
         border: 0
       }}
-      src={`${Games[gameId].url}${CONFIG.AP_GAMES_ENVIRONMENT === 'local' ? '' : '#'}?embedded=true`}
+      src={`${Games[gameId].url}${CONFIG.AP_GAMES_ENVIRONMENT === 'github' ? '#' : ''}?embedded=true`}
     />
   )
 }
