@@ -1,5 +1,6 @@
-import MessageService from '@uncover/js-utils-microfrontend'
+import MessageDispatcher, { MessageService } from '@uncover/js-utils-microfrontend'
 
-const MessageServiceCentral = new MessageService('GAM')
+MessageDispatcher.start('GAD')
+const MessageServiceCentral = new MessageService('GAS')
 
 export default MessageServiceCentral

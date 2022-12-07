@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import MessageService, { Message } from '@uncover/js-utils-microfrontend'
+import { MessageService,Message } from '@uncover/js-utils-microfrontend'
 // Libs
 import { Games } from 'lib/data'
 
