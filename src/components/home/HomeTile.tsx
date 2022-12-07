@@ -37,12 +37,28 @@ const HomeTile = ({
 
   return (
     <li className='home-tile'>
-      <a
-        href={url}
-        onClick={handleTileClick}
-      >
-        {name}
-      </a>
+      <div className='tile-image'>
+        <img
+          className='tile-image-background'
+          src={`${url}${thumbnail}`}
+        />
+        <div
+          className='tile-image-hover'
+        >
+          <img
+            src={`/images/icon-play.png`}
+          />
+        </div>
+        <a
+          href={url}
+          onClick={handleTileClick}
+        >
+        </a>
+      </div>
+      <div style={{ padding: '0 0.1rem' }}>
+        <div style={{ fontSize: '1rem', fontWeight: 'bold', margin: '0.2rem 0' }}>{name}</div>
+        <div>{description}</div>
+      </div>
     </li>
   )
 }

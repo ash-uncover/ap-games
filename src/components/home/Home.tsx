@@ -8,6 +8,7 @@ import HomeTile from './HomeTile'
 
 import './Home.css'
 import { useNavigate } from 'react-router-dom'
+import HomeTiles from './HomeTiles'
 
 const Home = () => {
 
@@ -45,7 +46,7 @@ const Home = () => {
         HOME HEADER
       </div>
       <div className='home-content'>
-        <ul>
+        <HomeTiles>
           {Object.values(Games).map(game => {
             return (
               <HomeTile
@@ -55,7 +56,7 @@ const Home = () => {
               />
             )
           })}
-        </ul>
+        </HomeTiles>
       </div>
     </div>
   )
