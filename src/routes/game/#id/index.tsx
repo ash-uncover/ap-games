@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 // Libs
-import { Games } from 'lib/data'
+import { Plugins } from 'lib/data'
 import Game from 'components/game/Game'
 
 export const RouteGame = () => {
@@ -14,7 +14,7 @@ export const RouteGame = () => {
   // Rendering //
 
   if (gameId) {
-    const game = Games[gameId]
+    const game = Plugins[gameId]
 
     if (game) {
       return <Game gameId={gameId} />

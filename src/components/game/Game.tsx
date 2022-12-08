@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { MessageService,Message } from '@uncover/js-utils-microfrontend'
 // Libs
-import { Games } from 'lib/data'
+import { Plugins } from 'lib/data'
 
 import './Game.css'
 import CONFIG from 'config'
@@ -38,7 +38,7 @@ const Game = ({
       style={{
         border: 0
       }}
-      src={`${Games[gameId].url}${CONFIG.AP_GAMES_ENVIRONMENT === 'github' ? '#' : ''}?embedded=true`}
+      src={`${Plugins[gameId].url}${CONFIG.AP_GAMES_ENVIRONMENT === 'github' ? '#' : ''}?embedded=true`}
     />
   )
 }

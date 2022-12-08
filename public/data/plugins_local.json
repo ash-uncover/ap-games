@@ -1,0 +1,6 @@
+{
+  "plugins": [
+    "http://localhost:8081/plugin.json",
+    "http://localhost:8082/plugin.json"
+  ]
+}

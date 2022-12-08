@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AudioTypes, ShortcutManager, Shortcuts } from '@uncover/games-common'
 // Libs
 import Audio, { AudioFiles } from 'lib/utils/Audio'
-import { Games } from 'lib/data'
+import { Plugins } from 'lib/data'
 // Components
 import HomeTile from './HomeTile'
 
@@ -47,7 +47,7 @@ const Home = () => {
       </div>
       <div className='home-content'>
         <HomeTiles>
-          {Object.values(Games).map(game => {
+          {Object.values(Plugins).map(game => {
             return (
               <HomeTile
                 key={game.id}

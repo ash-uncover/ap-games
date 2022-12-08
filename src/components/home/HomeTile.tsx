@@ -46,7 +46,7 @@ const HomeTile = ({
           className='tile-image-hover'
         >
           <img
-            src={`/images/icon-play.png`}
+            src={`images/icon-play.png`}
           />
         </div>
         <a

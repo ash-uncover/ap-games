@@ -1,8 +1,8 @@
-export interface GamesData {
-  games: string[]
+export interface PluginsData {
+  plugins: string[]
 }
 
-export interface Game {
+export interface Plugin {
   id: string
   url: string
   name: string

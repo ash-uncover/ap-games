@@ -2,26 +2,25 @@ import { DataManager } from '@uncover/games-common'
 
 import CONFIG from 'config'
 
-import { Game, GamesData } from './game.helper'
+import { Plugin, PluginsData } from './plugin.helper'
 
-export const Games: { [key: string]: Game } = {}
+export const Plugins: { [key: string]: Plugin } = {}
 
 const Data = new DataManager(`${CONFIG.AP_GAMES_PUBLIC}/data/`)
 
-export const loadGamesData = async () => {
-  const games = await Data.load<GamesData>(`games_${CONFIG.AP_GAMES_ENVIRONMENT}.json`)
-  return Promise.all(games.games.map(async (game: string) => {
-    const dataAccess = new DataManager(game)
-    const gameData = await dataAccess.load<Game>('game-info.json', { mode: 'cors' })
-    Games[gameData.id] = {
-      ...gameData,
-      url: game
+export const loadPluginsData = async () => {
+  const plugins = await Data.load<PluginsData>(`plugins_${CONFIG.AP_GAMES_ENVIRONMENT}.json`)
+  return Promise.all(plugins.plugins.map(async (plugin: string) => {
+    const dataAccess = new DataManager('')
+    const pluginData = await dataAccess.load<Plugin>(plugin, { mode: 'cors' })
+    Plugins[pluginData.id] = {
+      ...pluginData
     }
   }))
 }
 
 export const loadData = async () => {
   return Promise.all([
-    loadGamesData(),
+    loadPluginsData(),
   ])
 }
