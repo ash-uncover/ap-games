@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "build": "webpack",
+    "build:tsc": "tsc",
     "build:docs": "npm i && webpack --config webpack.config.docs.js --mode production",
     "build:all": "concurrently \"npm:build:docs\" \"npm:build-docs:*\"",
     "build-docs:maze": "cd ../ap-games-maze && npm run build:docs",

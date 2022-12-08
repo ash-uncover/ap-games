@@ -5,6 +5,7 @@
 }
 
 .home {
+  background: var(--base_background);
   color: var(--text-color);
 
   position: absolute;

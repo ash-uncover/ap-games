@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import AppSelectors from 'store/app/app.selectors'
 import AppSlice from 'store/app/app.slice'
 // Libs
+import 'lib/utils/icons'
 import { loadData } from 'lib/data'
 import MessageServiceCentral from 'services/message.service'
 

@@ -5,10 +5,12 @@ import Audio, { AudioFiles } from 'lib/utils/Audio'
 import { Plugins } from 'lib/data'
 // Components
 import HomeTile from './HomeTile'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './Home.css'
 import { useNavigate } from 'react-router-dom'
 import HomeTiles from './HomeTiles'
+import PageMenu from 'components/commons/pagemenu/PageMenu'
 
 const Home = () => {
 
@@ -40,11 +42,8 @@ const Home = () => {
 
   // Rendering //
 
-  return (
-    <div className='home'>
-      <div className='home-header'>
-        HOME HEADER
-      </div>
+  const renderHome = () => {
+    return (
       <div className='home-content'>
         <HomeTiles>
           {Object.values(Plugins).map(game => {
@@ -58,6 +57,54 @@ const Home = () => {
           })}
         </HomeTiles>
       </div>
+    )
+  }
+
+  return (
+    <div className='home'>
+      <div className='home-header'>
+        HOME HEADER
+      </div>
+      <PageMenu
+        page={{
+          id: 'home',
+          title: 'Home',
+          content: null,
+          pages: [{
+            id: 'library',
+            icon: <FontAwesomeIcon icon={['fas', 'gamepad']} />,
+            title: 'Library',
+            content: renderHome()
+          }, {
+            id: 'settings',
+            icon: <FontAwesomeIcon icon={['fas', 'gear']} />,
+            title: 'Settings',
+            content: null,
+            pages: [{
+              id: 'settings-general',
+              icon: <FontAwesomeIcon icon={['fas', 'wrench']} />,
+              title: 'General',
+              content: <div>General</div>,
+            }, {
+              id: 'settings-audio',
+              icon: <FontAwesomeIcon icon={['fas', 'sliders']} />,
+              title: 'Audio',
+              content: <div>Audio</div>,
+            }, {
+              id: 'settings-video',
+              icon: <FontAwesomeIcon icon={['fas', 'desktop']} />,
+              title: 'Video',
+              content: <div>Video</div>,
+            }]
+          }, {
+            id: 'credits',
+            icon: <FontAwesomeIcon icon={['fas', 'gifts']} />,
+            title: 'Credits',
+            content: <div>Credits</div>
+          }]
+        }}
+      />
+
     </div>
   )
 }
