@@ -1,5 +1,8 @@
 import React, { MouseEvent } from 'react'
 // Libs
+// Components
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 
 import './HomeTile.css'
 
@@ -55,9 +58,19 @@ const HomeTile = ({
         >
         </a>
       </div>
-      <div style={{ padding: '0 0.1rem' }}>
-        <div style={{ fontSize: '1rem', fontWeight: 'bold', margin: '0.2rem 0' }}>{name}</div>
-        <div>{description}</div>
+      <div className='tile-info'>
+        <div className='tile-info-text'>
+          <div className='title'>
+            {name}
+          </div>
+          <div className='description'>
+            {description}
+          </div>
+        </div>
+        <FontAwesomeIcon
+          className='tile-info-icon'
+          icon={faCircleInfo}
+        />
       </div>
     </li>
   )
