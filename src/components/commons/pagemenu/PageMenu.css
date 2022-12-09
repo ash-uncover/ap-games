@@ -4,11 +4,17 @@
 
   & .page-menu-side {
     flex-shrink: 0;
-    width: 12rem;
+    width: 15rem;
+
+    & .page-menu-side-title {
+      margin: 2rem 0;
+      padding: 0 2rem;
+    }
 
     & .page-menu-side-items {
       list-style: none;
-      padding: 0 1rem;
+      margin: 2rem 0;
+      padding: 0 2rem;
 
       & .page-side-menu-item {
         display: block;

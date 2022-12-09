@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { AudioTypes, ShortcutManager, Shortcuts } from '@uncover/games-common'
 // Libs
 import Audio, { AudioFiles } from 'lib/utils/Audio'
-import { Plugins } from 'lib/data'
 // Components
-import HomeTile from './HomeTile'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import PageMenu from '../commons/pagemenu/PageMenu'
+import HomeSettingsGeneral from './settings/HomeSettingsGeneral'
+import HomeSettingsAudio from './settings/HomeSettingsAudio'
+import HomeSettingsVideo from './settings/HomeSettingsVideo'
+import HomeCredits from './credits/HomeCredits'
+import HomeLibrary from './library/HomeLibrary'
 
 import './Home.css'
-import { useNavigate } from 'react-router-dom'
-import HomeTiles from './HomeTiles'
-import PageMenu from 'components/commons/pagemenu/PageMenu'
 
 const Home = () => {
 
   // Hooks //
 
-  const navigate = useNavigate()
+
 
   useEffect(() => {
     return Audio.play(
@@ -34,31 +35,7 @@ const Home = () => {
     return ShortcutManager.addShortcuts(shortcuts)
   }, [])
 
-  // Events //
-
-  const handleGameClick = (gameId: string) => {
-    navigate(`/games/${gameId}`)
-  }
-
   // Rendering //
-
-  const renderHome = () => {
-    return (
-      <div className='home-content'>
-        <HomeTiles>
-          {Object.values(Plugins).map(game => {
-            return (
-              <HomeTile
-                key={game.id}
-                {...game}
-                onClick={() => handleGameClick(game.id)}
-              />
-            )
-          })}
-        </HomeTiles>
-      </div>
-    )
-  }
 
   return (
     <div className='home'>
@@ -74,7 +51,7 @@ const Home = () => {
             id: 'library',
             icon: <FontAwesomeIcon icon={['fas', 'gamepad']} />,
             title: 'Library',
-            content: renderHome()
+            content: <HomeLibrary />
           }, {
             id: 'settings',
             icon: <FontAwesomeIcon icon={['fas', 'gear']} />,
@@ -84,23 +61,23 @@ const Home = () => {
               id: 'settings-general',
               icon: <FontAwesomeIcon icon={['fas', 'wrench']} />,
               title: 'General',
-              content: <div>General</div>,
+              content: <HomeSettingsGeneral />,
             }, {
               id: 'settings-audio',
               icon: <FontAwesomeIcon icon={['fas', 'sliders']} />,
               title: 'Audio',
-              content: <div>Audio</div>,
+              content: <HomeSettingsAudio />,
             }, {
               id: 'settings-video',
               icon: <FontAwesomeIcon icon={['fas', 'desktop']} />,
               title: 'Video',
-              content: <div>Video</div>,
+              content: <HomeSettingsVideo />,
             }]
           }, {
             id: 'credits',
             icon: <FontAwesomeIcon icon={['fas', 'gifts']} />,
             title: 'Credits',
-            content: <div>Credits</div>
+            content: <HomeCredits />
           }]
         }}
       />

@@ -34,7 +34,9 @@ const PageMenuSide = ({
     <div className='page-menu-side'>
 
       {title ?
-        <h1>{title}</h1>
+        <h1 className='page-menu-side-title'>
+          {title}
+          </h1>
         : null}
 
       <ul className='page-menu-side-items'>
