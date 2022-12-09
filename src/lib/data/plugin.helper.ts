@@ -9,4 +9,14 @@ export interface Plugin {
   description: string
   icon: string
   thumbnail: string
+  consumes?: PluginCapabilities
+  provides?: PluginCapabilities
+}
+
+interface PluginCapabilities {
+  [key: string]: PluginCapability
+}
+
+interface PluginCapability {
+
 }

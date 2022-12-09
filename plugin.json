@@ -4,5 +4,12 @@
   "url": "",
   "description": "The Game Platform",
   "icon": "/favicon.png",
-  "thumbnail": "/thumbnail.jpg"
+  "thumbnail": "/thumbnail.jpg",
+  "consumes": {
+    "audio": {},
+    "games": {}
+  },
+  "provides": {
+    "audio": {}
+  }
 }

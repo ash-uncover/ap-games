@@ -1,7 +1,6 @@
 .home-tile {
   display: inline-block;
 
-
   &:hover {
     & .tile-image {
       & .tile-image-hover {
@@ -9,7 +8,7 @@
       }
     }
     & .tile-info {
-      color: grey;
+      color: var(--base_selected_color);
     }
   }
 
@@ -61,6 +60,8 @@
     align-items: center;
 
     transition: color 0.15s ease-out;
+
+    color: var(--base_color);
 
     & .tile-info-text {
       flex-grow: 1;

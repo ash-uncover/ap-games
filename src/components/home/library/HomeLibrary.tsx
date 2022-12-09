@@ -27,15 +27,18 @@ const HomeLibrary = ({
   return (
     <div className='home-content'>
       <HomeTiles>
-        {Object.values(Plugins).map(game => {
-          return (
-            <HomeTile
-              key={game.id}
-              {...game}
-              onClick={() => handleGameClick(game.id)}
-            />
-          )
-        })}
+        {Object.values(Plugins)
+          .sort((game1, game2) => game1.name.localeCompare(game2.name))
+          .map(game => {
+            return (
+              <HomeTile
+                key={game.id}
+                {...game}
+                onClick={() => handleGameClick(game.id)}
+              />
+            )
+          })
+        }
       </HomeTiles>
     </div>
   )

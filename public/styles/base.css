@@ -23,13 +23,13 @@ h5, h6 {
 
 :root {
   --base_background: #121212;
-  --base_color: #767676;
+  --base_color: #A8A8A8;
 
   --base_item_background: #343434;
-  --base_item_color: #989898;
+  --base_item_color: #BCBCBC;
 
   --base_selected_background: #565656;
-  --base_selected_color: #AAAAAA;
+  --base_selected_color: #D3D3D3;
 
   --base_highlight_background: #DDDDDD;
   --base_highlight_color: #060606;

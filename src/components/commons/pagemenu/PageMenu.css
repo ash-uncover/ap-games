@@ -5,6 +5,8 @@
   & .page-menu-side {
     flex-shrink: 0;
     width: 15rem;
+    background: var(--base_background);
+    color: var(--base_color);
 
     & .page-menu-side-title {
       margin: 2rem 0;
@@ -44,5 +46,7 @@
   & .page-menu-content {
     flex-grow: 1;
     overflow: auto;
+    color: var(--base_color);
+    background: rgba(0,0,0,0.85);
   }
 }

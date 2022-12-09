@@ -7,12 +7,9 @@ MessageDispatcher.start()
 const MessageServiceCentral = new MessageService()
 
 export const useDispatchMessage = (dispatch?: Dispatch<AnyAction>) => {
-  let dispatcher = dispatch
-  if (!dispatcher) {
-    dispatcher = useDispatch()
-  }
+  let dispatcher = dispatch || useDispatch()
   return (message: Message) => {
-    dispatch(message)
+    dispatcher(message)
     MessageServiceCentral.sendMessage(message)
   }
 }
