@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react'
 
+import './PageMenuContent.css'
+
 interface PageMenuContentProperties {
   children: ReactNode
 }

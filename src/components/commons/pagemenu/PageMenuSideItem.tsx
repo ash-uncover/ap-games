@@ -1,6 +1,6 @@
 import React, { MouseEvent, ReactElement } from 'react'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import './PageMenuSideItem.css'
 
 export interface PageMenuSideItemProperties {
   collapsed: boolean
@@ -28,7 +28,7 @@ const PageMenuSideItem = ({
 
   // Rendering //
 
-  const classes = ['page-side-menu-item']
+  const classes = ['page-menu-side-item']
   if (selected) {
     classes.push('selected')
   }
@@ -39,15 +39,16 @@ const PageMenuSideItem = ({
       onClick={handleClick}
     >
       <a
+        className='page-menu-side-item__content'
         role='button'
         onClick={() => false}
       >
         {icon ?
-          <span style={{ marginRight: '0.55rem' }}>
+          <span className='page-menu-side-item__icon'>
             {icon ? icon : null}
           </span>
         :null}
-        <span>
+        <span className='page-menu-side-item__text'>
           {collapsed ? null : text}
         </span>
       </a>

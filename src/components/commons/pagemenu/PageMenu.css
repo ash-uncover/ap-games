@@ -1,52 +1,75 @@
 .page-menu {
   flex-grow: 1;
-  display: flex;
+
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  --page-menu-side__height: 5rem;
+  --page-menu-side__width: 100%;
 
   & .page-menu-side {
-    flex-shrink: 0;
-    width: 15rem;
-    background: var(--base_background);
-    color: var(--base_color);
-
-    & .page-menu-side-title {
-      margin: 2rem 0;
-      padding: 0 2rem;
-    }
-
-    & .page-menu-side-items {
-      list-style: none;
-      margin: 2rem 0;
-      padding: 0 2rem;
-
-      & .page-side-menu-item {
-        display: block;
-        background: var(--base_item_background);
-        color: var(--base_item_color);
-        padding: 1rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
-
-        &.selected {
-          background: var(--base_selected_background);
-          color: var(--base_selected_color);
-        }
-
-        &:hover {
-          background: var(--base_highlight_background);
-          color: var(--base_highlight_color);
-        }
-
-        & + .page-side-menu-item {
-          margin-top: 1rem;
-        }
-      }
-    }
+    position: absolute;
+    bottom: 0;
+    height: var(--page-menu-side__height);
+    left: 0;
+    width: var(--page-menu-side__width);
   }
 
   & .page-menu-content {
-    flex-grow: 1;
-    overflow: auto;
-    color: var(--base_color);
-    background: rgba(0,0,0,0.85);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--page-menu-side__width);
+    bottom: var(--page-menu-side__height);
   }
+}
+
+/* S Screen layout */
+
+@media (min-width: 576px) {
+  .page-menu {
+    --page-menu-side__height: 100%;
+    --page-menu-side__width: 7rem;
+    & .page-menu-side {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      left: 0;
+      width: var(--page-menu-side__width);
+    }
+    & .page-menu-content {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      left: var(--page-menu-side__width);
+      right: 0;
+    }
+  }
+}
+
+/* M Screen layout */
+
+@media (min-width: 768px) {
+
+}
+
+/* L Screen layout */
+
+@media (min-width: 992px) {
+
+}
+
+/* XL Screen layout */
+
+@media (min-width: 1200px) {
+
+}
+
+/* XXL Screen layout */
+
+@media (min-width: 1400px) {
+
 }

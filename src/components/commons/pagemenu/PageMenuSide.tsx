@@ -1,5 +1,8 @@
-import React, { ReactElement, ReactNode } from 'react'
-import PageMenuSideItem, { PageMenuSideItemProperties } from './PageMenuSideItem'
+import React, { ReactElement } from 'react'
+import PageMenuSideItem from './PageMenuSideItem'
+import PageMenuSideItems from './PageMenuSideItems'
+
+import './PageMenuSide.css'
 
 export interface PageMenuSideProperties {
   collapsed: boolean
@@ -34,12 +37,12 @@ const PageMenuSide = ({
     <div className='page-menu-side'>
 
       {title ?
-        <h1 className='page-menu-side-title'>
+        <h1 className='page-menu-side__title'>
           {title}
-          </h1>
+        </h1>
         : null}
 
-      <ul className='page-menu-side-items'>
+      <PageMenuSideItems>
         {items.map((item) => {
           return (
             <PageMenuSideItem
@@ -50,7 +53,7 @@ const PageMenuSide = ({
             />
           )
         })}
-      </ul>
+      </PageMenuSideItems>
 
     </div>
   )

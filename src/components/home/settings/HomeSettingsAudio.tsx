@@ -61,7 +61,7 @@ const HomeSettingsAudio = ({
   // Rendering //
 
   return (
-    <>
+    <div>
       <h2 style={{ fontWeight: 'normal' }}>
         Audio Settings
       </h2>
@@ -134,7 +134,7 @@ const HomeSettingsAudio = ({
         value={soundMusicVolume}
         onChange={handleMusicVolumeChange}
       />
-    </>
+    </div>
   )
 }
 
