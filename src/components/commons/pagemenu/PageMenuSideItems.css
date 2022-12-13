@@ -6,8 +6,11 @@
 
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 1rem;
 }
+
+/* S Screen layout */
 
 @container (min-height: 100px) {
   .page-menu-side-items {
@@ -18,11 +21,25 @@
   }
 }
 
+/* M Screen layout */
+
 @container (min-height: 100px) and (min-width: 10rem) {
   .page-menu-side-items {
     flex-direction: column;
     justify-content: flex-start;
-    gap: 1rem;
-    padding: 1rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
   }
 }
+
+/* L+ Screen layout */
+
+@container (min-height: 100px) and (min-width: 12rem) {
+  .page-menu-side-items {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+}
+

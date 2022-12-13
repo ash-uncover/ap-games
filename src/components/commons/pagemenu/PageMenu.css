@@ -22,8 +22,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: var(--page-menu-side__width);
     bottom: var(--page-menu-side__height);
+    width: 100%;
   }
 }
 
@@ -42,6 +42,7 @@
     }
     & .page-menu-content {
       position: absolute;
+      width: auto;
       top: 0;
       height: 100%;
       left: var(--page-menu-side__width);
@@ -53,19 +54,22 @@
 /* M Screen layout */
 
 @media (min-width: 768px) {
-
+  .page-menu {
+    --page-menu-side__width: 10rem;
+  }
 }
 
 /* L Screen layout */
 
 @media (min-width: 992px) {
-
+  .page-menu {
+    --page-menu-side__width: 12rem;
+  }
 }
 
 /* XL Screen layout */
 
 @media (min-width: 1200px) {
-
 }
 
 /* XXL Screen layout */
