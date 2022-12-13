@@ -19,15 +19,25 @@ import store from 'store'
 import Root from 'routes/__layout'
 import { ShortcutManager } from '@uncover/games-common'
 
+import { PluginManager } from 'lib/data/PluginManager'
+import CONFIG from 'config'
+
 ShortcutManager.reset()
 
-const containerRoot = document.getElementById('reactroot')!
-const root = createRoot(containerRoot)
+PluginManager.loadPlugin(CONFIG.AP_GAMES_PLUGIN)
+  .then(() => {
+    console.log(PluginManager.plugins)
+    console.log(PluginManager.defines)
+    console.log(PluginManager.providers)
 
-root.render(
-  <Provider store={store}>
-    <Router>
-      <Root />
-    </Router>
-  </Provider>
-)
+    const containerRoot = document.getElementById('reactroot')!
+    const root = createRoot(containerRoot)
+
+    root.render(
+      <Provider store={store}>
+        <Router>
+          <Root />
+        </Router>
+      </Provider>
+    )
+  })
