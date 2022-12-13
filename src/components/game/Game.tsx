@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { MessageService,Message } from '@uncover/js-utils-microfrontend'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { MessageService, Message } from '@uncover/js-utils-microfrontend'
 // Libs
-import { Plugins } from 'lib/data'
+import CONFIG from 'config'
 
 import './Game.css'
-import CONFIG from 'config'
+import { PluginManager } from 'lib/data/PluginManager'
 
 interface GameProperties {
   gameId: string
@@ -30,6 +30,14 @@ const Game = ({
 
   // Rendering //
 
+  const game = PluginManager.providers['game'].find(g => g.plugin === gameId)
+
+  if (!game) {
+    return (
+      <Navigate to='/' />
+    )
+  }
+
   return (
     <iframe
       allowFullScreen
@@ -38,7 +46,7 @@ const Game = ({
       style={{
         border: 0
       }}
-      src={`${Plugins[gameId].url}${CONFIG.AP_GAMES_ENVIRONMENT === 'github' ? '#' : ''}?embedded=true`}
+      src={`${game.url}${CONFIG.AP_GAMES_ENVIRONMENT === 'github' ? '#' : ''}?embedded=true`}
     />
   )
 }

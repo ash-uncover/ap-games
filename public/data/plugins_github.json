@@ -1,6 +1,0 @@
-{
-  "plugins": [
-    "https://ash-uncover.github.io/ap-games-maze/plugin.json",
-    "https://ash-uncover.github.io/ap-games-memory/plugin.json"
-  ]
-}

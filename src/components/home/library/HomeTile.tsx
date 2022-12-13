@@ -11,7 +11,6 @@ interface HomeTileProperties {
   url: string
   name: string
   description: string
-  icon: string
   thumbnail: string
 
   onClick: () => void
@@ -22,7 +21,6 @@ const HomeTile = ({
   url,
   name,
   description,
-  icon,
   thumbnail,
 
   onClick
@@ -43,7 +41,7 @@ const HomeTile = ({
       <div className='tile-image'>
         <img
           className='tile-image-background'
-          src={`${url}${thumbnail}`}
+          src={`${thumbnail}`}
         />
         <div
           className='tile-image-hover'

@@ -1,5 +1,4 @@
-import MenuCheckbox from 'components/commons/menu/MenuCheckbox'
-import { MenuStepInput } from 'components/commons/menu/MenuStepInput'
+import { MenuCheckbox, MenuStepInput } from '@uncover/games-common'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDispatchMessage } from 'services/message.service'

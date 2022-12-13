@@ -1,6 +1,8 @@
-import { Plugins } from 'lib/data'
+import { PluginManager } from 'lib/data/PluginManager'
 import React from 'react'
+// Hooks
 import { useNavigate } from 'react-router-dom'
+// Components
 import HomeTile from './HomeTile'
 import HomeTiles from './HomeTiles'
 
@@ -24,16 +26,23 @@ const HomeLibrary = ({
 
   // Rendering //
 
+  const games = PluginManager.providers['game']
+  console.log(games)
+
   return (
     <HomeTiles>
-      {Object.values(Plugins)
-        .sort((game1, game2) => game1.name.localeCompare(game2.name))
+      {games
+        .sort((game1, game2) => game1.properties.name.localeCompare(game2.properties.name))
         .map(game => {
           return (
             <HomeTile
-              key={game.id}
-              {...game}
-              onClick={() => handleGameClick(game.id)}
+              key={game.plugin}
+              id={game.plugin}
+              url={game.url}
+              name={game.properties.name}
+              description={game.properties.description}
+              thumbnail={game.properties.thumbnail}
+              onClick={() => handleGameClick(game.plugin)}
             />
           )
         })

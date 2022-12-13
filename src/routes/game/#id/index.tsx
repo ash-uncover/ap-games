@@ -1,8 +1,8 @@
 import React from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 // Libs
-import { Plugins } from 'lib/data'
 import Game from 'components/game/Game'
+import { PluginManager } from 'lib/data/PluginManager'
 
 export const RouteGame = () => {
 
@@ -14,7 +14,7 @@ export const RouteGame = () => {
   // Rendering //
 
   if (gameId) {
-    const game = Plugins[gameId]
+    const game = PluginManager.providers['game'].find(g => g.plugin === gameId)
 
     if (game) {
       return <Game gameId={gameId} />

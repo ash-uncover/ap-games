@@ -35,6 +35,10 @@ module.exports = {
           from: path.resolve(__dirname, '_redirects'),
           to: '.',
         },
+        {
+          from: path.resolve(__dirname, 'plugin.json'),
+          to: '.',
+        },
       ],
     }),
   ],

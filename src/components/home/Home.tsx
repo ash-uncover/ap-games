@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
-import { AudioTypes, ShortcutManager, Shortcuts } from '@uncover/games-common'
+import { AudioTypes, PageMenu, ShortcutManager, Shortcuts } from '@uncover/games-common'
 // Libs
 import Audio, { AudioFiles } from 'lib/utils/Audio'
 // Components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import PageMenu from '../commons/pagemenu/PageMenu'
 import HomeSettingsGeneral from './settings/HomeSettingsGeneral'
 import HomeSettingsAudio from './settings/HomeSettingsAudio'
 import HomeSettingsVideo from './settings/HomeSettingsVideo'

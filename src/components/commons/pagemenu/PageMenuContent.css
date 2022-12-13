@@ -1,7 +1,0 @@
-.page-menu-content {
-  --page-menu-content__color: var(--base_color);
-
-  overflow: auto;
-  color: var(--page-menu-content__color);
-  background: rgba(0,0,0,0.75);
-}
