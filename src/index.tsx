@@ -4,8 +4,10 @@ import { createRoot } from 'react-dom/client'
 import {
   Provider
 } from 'react-redux'
+
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
+  HashRouter,
 } from 'react-router-dom'
 
 // Import translation module
@@ -22,6 +24,11 @@ import { PluginManager } from 'lib/data/PluginManager'
 import CONFIG from 'config'
 
 ShortcutManager.reset()
+
+let Router = BrowserRouter
+if (CONFIG.AP_GAMES_ENVIRONMENT === 'github') {
+  Router = HashRouter
+}
 
 PluginManager.loadPlugin(CONFIG.AP_GAMES_PLUGIN)
   .then(() => {
