@@ -16,8 +16,6 @@ const Home = () => {
 
   // Hooks //
 
-
-
   useEffect(() => {
     return Audio.play(
       AudioFiles.home,
