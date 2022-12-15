@@ -20,17 +20,3 @@ h1, h2 {
 h5, h6 {
   line-height: 1.5rem;
 }
-
-:root {
-  --base_background: #121212;
-  --base_color: #A8A8A8;
-
-  --base_item_background: #343434;
-  --base_item_color: #BCBCBC;
-
-  --base_selected_background: #565656;
-  --base_selected_color: #D3D3D3;
-
-  --base_highlight_background: #DDDDDD;
-  --base_highlight_color: #060606;
-}

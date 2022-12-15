@@ -1,9 +1,11 @@
-import { MenuCheckbox, MenuStepInput } from '@uncover/games-common'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDispatchMessage } from 'services/message.service'
-import AudioSelectors from 'store/audio/audio.selectors'
+// Hooks
 import AudioSlice from 'store/audio/audio.slice'
+import AudioSelectors from 'store/audio/audio.selectors'
+// Components
+import { MenuCheckbox, MenuStepInput } from '@uncover/games-common'
 
 interface HomeSettingsAudioProperties {
 
