@@ -1,3 +1,47 @@
 {
+  "LOADING": "Loading...",
+  "BACK": "Back",
 
+  "home": {
+    "header": "Home header",
+    "title": "Home",
+    "library": {
+      "title": "Library"
+    },
+    "settings": {
+      "title": "Settings",
+      "general": {
+        "title": "General",
+        "header": "General Settings"
+      },
+      "audio": {
+        "title": "Audio",
+        "header": "Audio Settings",
+        "master": {
+          "title": "Master Volume",
+          "enable": "Enable Sounds"
+        },
+        "game": {
+          "title": "Game Volume",
+          "enable": "Enbale Game Volume"
+        },
+        "interface": {
+          "title": "Interface Volume",
+          "enable": "Enable Interface Volume"
+        },
+        "music": {
+          "title": "Music Volume",
+          "enable": "Enable Music Volume"
+        }
+      },
+      "video": {
+        "title": "Video",
+        "header": "Video Settings"
+      }
+    },
+    "credits": {
+      "title": "Credits",
+      "content": "Credits content"
+    }
+  }
 }

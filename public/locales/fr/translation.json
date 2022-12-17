@@ -1,42 +1,42 @@
 {
-  "LOADING": "Loading...",
-  "BACK": "Back",
+  "LOADING": "Chargement...",
+  "BACK": "Retour",
 
   "home": {
-    "header": "Home header",
-    "title": "Home",
+    "header": "Accueil",
+    "title": "Accueil",
     "library": {
-      "title": "Library"
+      "title": "Jeux"
     },
     "settings": {
-      "title": "Settings",
+      "title": "Paramètres",
       "general": {
-        "title": "General",
-        "header": "General Settings"
+        "title": "Général",
+        "header": "Paramètres Généraux"
       },
       "audio": {
-        "title": "Audio",
-        "header": "Audio Settings",
+        "title": "Son",
+        "header": "Paramètres de Son",
         "master": {
-          "title": "Master Volume",
-          "enable": "Enable Sounds"
+          "title": "Volume Principal",
+          "enable": "Activer les sons"
         },
         "game": {
-          "title": "Game Volume",
-          "enable": "Enbale Game Volume"
+          "title": "Volume de Jeu",
+          "enable": "Activer les sons du jeu"
         },
         "interface": {
-          "title": "Interface Volume",
-          "enable": "Enable Interface Volume"
+          "title": "Volume d'Interface",
+          "enable": "Activer les sons de l'interface"
         },
         "music": {
-          "title": "Music Volume",
-          "enable": "Enable Music Volume"
+          "title": "Volume de Musique",
+          "enable": "Activer la musique"
         }
       },
       "video": {
-        "title": "Video",
-        "header": "Video Settings"
+        "title": "Affichage",
+        "header": "Paramètres d'Affichage"
       }
     },
     "credits": {
