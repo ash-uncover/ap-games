@@ -1,9 +1,12 @@
-import { MenuCheckbox, MenuStepInput } from '@uncover/games-common'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDispatchMessage } from 'services/message.service'
-import AudioSelectors from 'store/audio/audio.selectors'
+// Hooks
 import AudioSlice from 'store/audio/audio.slice'
+import AudioSelectors from 'store/audio/audio.selectors'
+// Components
+import { MenuCheckbox, MenuStepInput } from '@uncover/games-common'
+import { useTranslation } from 'react-i18next'
 
 interface HomeSettingsAudioProperties {
 
@@ -14,6 +17,8 @@ const HomeSettingsAudio = ({
 }: HomeSettingsAudioProperties) => {
 
   // Hooks //
+
+  const { t } = useTranslation()
 
   const dispatch = useDispatch()
   const dispatchMessage = useDispatchMessage(dispatch)
@@ -62,20 +67,20 @@ const HomeSettingsAudio = ({
   return (
     <div>
       <h2 style={{ fontWeight: 'normal' }}>
-        Audio Settings
+        {t('home.settings.audio.header')}
       </h2>
 
       <h3 style={{ fontWeight: 'normal' }}>
-        Master
+        {t('home.settings.audio.master.title')}
       </h3>
 
       <MenuCheckbox
-        label='Enable Sounds'
+        label={t('home.settings.audio.master.enable')}
         checked={soundMaster}
         onChange={handleMasterChange}
       />
       <MenuStepInput
-        label='Master Volume'
+        label={t('home.settings.audio.master.title')}
         min={0}
         max={100}
         value={soundMasterVolume}
@@ -83,16 +88,16 @@ const HomeSettingsAudio = ({
       />
 
       <h3 style={{ fontWeight: 'normal' }}>
-        Game
+        {t('home.settings.audio.game.title')}
       </h3>
 
       <MenuCheckbox
-        label='Enable Game Sounds'
+        label={t('home.settings.audio.game.enable')}
         checked={soundGame}
         onChange={handleGameChange}
       />
       <MenuStepInput
-        label='Enable Game Sounds'
+        label={t('home.settings.audio.game.title')}
         min={0}
         max={100}
         value={soundGameVolume}
@@ -101,16 +106,16 @@ const HomeSettingsAudio = ({
 
 
       <h3 style={{ fontWeight: 'normal' }}>
-        Interface
+        {t('home.settings.audio.interface.title')}
       </h3>
 
       <MenuCheckbox
-        label='Enable Interface Sounds'
+        label={t('home.settings.audio.interface.enable')}
         checked={soundInterface}
         onChange={handleInterfaceChange}
       />
       <MenuStepInput
-        label='Interface Volumne'
+        label={t('home.settings.audio.interface.title')}
         min={0}
         max={100}
         value={soundInterfaceVolume}
@@ -118,16 +123,16 @@ const HomeSettingsAudio = ({
       />
 
       <h3 style={{ fontWeight: 'normal' }}>
-        Music
+        {t('home.settings.audio.music.title')}
       </h3>
 
       <MenuCheckbox
-        label='Enable Music'
+        label={t('home.settings.audio.music.enable')}
         checked={soundMusic}
         onChange={handleMusicChange}
       />
       <MenuStepInput
-        label='Music Volumne'
+        label={t('home.settings.audio.music.title')}
         min={0}
         max={100}
         value={soundMusicVolume}

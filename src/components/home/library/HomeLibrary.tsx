@@ -27,7 +27,6 @@ const HomeLibrary = ({
   // Rendering //
 
   const games = PluginManager.providers['game']
-  console.log(games)
 
   return (
     <HomeTiles>

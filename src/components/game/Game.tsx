@@ -46,7 +46,7 @@ const Game = ({
       style={{
         border: 0
       }}
-      src={`${game.url}${CONFIG.AP_GAMES_ENVIRONMENT === 'github' ? '#' : ''}?embedded=true`}
+      src={`${game.url}?embedded=true`}
     />
   )
 }

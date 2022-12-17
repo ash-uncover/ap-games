@@ -3,8 +3,9 @@
   "description": "The Game Platform",
   "url": "http://localhost:8080",
   "dependencies": [
-    "http://localhost:8081/plugin.json",
-    "http://localhost:8082/plugin.json"
+    "https://ash-uncover.github.io/ap-games-maze/plugin.json",
+    "https://ash-uncover.github.io/ap-games-memory/plugin.json",
+    "https://ash-uncover.github.io/ap-games-mozaic/plugin.json"
   ],
   "defines": {
     "game": {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface HomeCreditsProperties {
 
@@ -10,9 +11,11 @@ const HomeCredits = ({
 
   // Rendering //
 
+  const { t } = useTranslation()
+
   return (
     <div>
-      Home Credits
+      {t('home.credits.content')}
     </div>
   )
 }

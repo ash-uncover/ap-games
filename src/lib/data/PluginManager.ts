@@ -16,32 +16,30 @@ export interface Plugin {
 interface PluginDefines {
   [key: string]: PluginDefine
 }
-
 interface PluginDefine {
-  properties: { [key: string]: string }
+  properties: PluginDefineProperties
+}
+interface PluginDefineProperties {
+  [key: string]: string
 }
 
 interface PluginProvides {
   [key: string]: PluginProvide
 }
-
 interface PluginProvide {
+  url: string
+  type: string
+  properties: PluginProvideProperties
+}
+interface PluginProvideProperties {
   [key: string]: string
 }
 
 interface PluginProviders {
   [key: string]: PluginProvider[]
 }
-
-interface PluginProvider {
+interface PluginProvider extends PluginProvide {
   plugin: string
-  url: string
-  type: string
-  properties: PluginProviderProperties
-}
-
-interface PluginProviderProperties {
-  [key: string]: string
 }
 
 const LOGGER = new Logger('PluginManager', LogLevels.DEBUG)
@@ -86,21 +84,23 @@ export const checkPlugin = (data: Plugin) => {
 }
 
 export const loadPluginDefines = (data: Plugin) => {
-  Object.keys(data.defines).forEach((define) => {
+  const dataDefines = data.defines || {}
+  Object.keys(dataDefines).forEach((define: string) => {
     if (defines[define]) {
       LOGGER.warn(`Define '${define}' from '${data.url}' already registered from '${plugins[data.name].url}'`)
     } else {
-      defines[define] = data.defines[define]
+      defines[define] = dataDefines[define]
     }
   })
 }
 
 export const loadPluginProvides = (data: Plugin) => {
-  Object.keys(data.provides).forEach((provide) => {
+  const dataProvides: PluginProvides = data.provides || {}
+  Object.keys(dataProvides).forEach((provide: string) => {
     if (!defines[provide]) {
       LOGGER.warn(`Provide '${provide}' from '${data.url}' is not defined`)
     } else {
-      const providerData = data.provides[provide]
+      const providerData: PluginProvide = dataProvides[provide]
       providers[provide] = providers[provide] || []
       const provider: PluginProvider = {
         plugin: data.name,
@@ -108,14 +108,15 @@ export const loadPluginProvides = (data: Plugin) => {
         url: `${data.url}${providerData.url || ''}`,
         properties: {}
       }
-      Object.keys(providerData.properties).forEach((property: string) => {
+      const providerProperties = providerData.properties || {}
+      Object.keys(providerProperties).forEach((property: string) => {
         switch (defines[provide].properties[property]) {
           case 'url': {
-            provider.properties[property] = `${data.url}${providerData.properties[property]}`
+            provider.properties[property] = `${data.url}${providerProperties[property]}`
             break
           }
           default: {
-            provider.properties[property] = providerData.properties[property]
+            provider.properties[property] = providerProperties[property]
             break
           }
         }
@@ -142,7 +143,7 @@ export const loadPluginInternal = async (url: string, master: boolean) => {
     loadPluginDefines(data)
     loadPluginProvides(data)
     const dependencyLoaders = loadPluginDependencies(data)
-    return Promise.all(dependencyLoaders)
+    await Promise.all(dependencyLoaders)
 
   } catch (error) {
     LOGGER.warn(`Failed to load plugin from '${url}'`)
@@ -151,8 +152,8 @@ export const loadPluginInternal = async (url: string, master: boolean) => {
 }
 
 export class PluginManager {
-  static loadPlugin(url: string) {
-    return loadPluginInternal(url, true)
+  static async loadPlugin(url: string) {
+    await loadPluginInternal(url, true)
   }
   static get plugins() {
     return plugins

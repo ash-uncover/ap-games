@@ -1,0 +1,47 @@
+{
+  "LOADING": "Chargement...",
+  "BACK": "Retour",
+
+  "home": {
+    "header": "Accueil",
+    "title": "Accueil",
+    "library": {
+      "title": "Jeux"
+    },
+    "settings": {
+      "title": "Paramètres",
+      "general": {
+        "title": "Général",
+        "header": "Paramètres Généraux"
+      },
+      "audio": {
+        "title": "Son",
+        "header": "Paramètres de Son",
+        "master": {
+          "title": "Volume Principal",
+          "enable": "Activer les sons"
+        },
+        "game": {
+          "title": "Volume de Jeu",
+          "enable": "Activer les sons du jeu"
+        },
+        "interface": {
+          "title": "Volume d'Interface",
+          "enable": "Activer les sons de l'interface"
+        },
+        "music": {
+          "title": "Volume de Musique",
+          "enable": "Activer la musique"
+        }
+      },
+      "video": {
+        "title": "Affichage",
+        "header": "Paramètres d'Affichage"
+      }
+    },
+    "credits": {
+      "title": "Credits",
+      "content": "Credits content"
+    }
+  }
+}
