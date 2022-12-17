@@ -6,6 +6,7 @@ import AppSlice from 'store/app/app.slice'
 // Libs
 import 'lib/utils/icons'
 import MessageServiceCentral from 'services/message.service'
+import { useTranslation } from 'react-i18next'
 
 interface AppProperties {
   children: ReactElement
@@ -19,6 +20,8 @@ const App = ({
 
   const dispatch = useDispatch()
   const loaded = useSelector(AppSelectors.loaded)
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     return MessageServiceCentral.init(dispatch)
@@ -36,7 +39,7 @@ const App = ({
 
   return (
     <div>
-      loading
+      {t('LOADING')}
     </div>
   )
 }

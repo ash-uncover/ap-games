@@ -8,11 +8,13 @@
     "build:all": "concurrently \"npm:build:docs\" \"npm:build-docs:*\"",
     "build-docs:maze": "cd ../ap-games-maze && npm run build:docs",
     "build-docs:memory": "cd ../ap-games-memory && npm run build:docs",
+    "build-docs:mozaic": "cd ../ap-games-mozaic && npm run build:docs",
     "postinstall": "npm update @uncover/games-common",
     "start": "npm i && webpack serve --progress --mode development",
     "start:all": "concurrently \"npm:start\" \"npm:start-game:*\"",
     "start-game:maze": "cd ../ap-games-maze && npm run start",
-    "start-game:memory": "cd ../ap-games-memory && npm run start"
+    "start-game:memory": "cd ../ap-games-memory && npm run start",
+    "start-game:mozaic": "cd ../ap-games-mozaic && npm run start"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
