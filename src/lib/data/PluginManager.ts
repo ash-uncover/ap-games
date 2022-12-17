@@ -110,7 +110,8 @@ export const loadPluginProvides = (data: Plugin) => {
       }
       const providerProperties = providerData.properties || {}
       Object.keys(providerProperties).forEach((property: string) => {
-        switch (defines[provide].properties[property]) {
+        const propertyType = defines[provide].properties[property]
+        switch (propertyType) {
           case 'url': {
             provider.properties[property] = `${data.url}${providerProperties[property]}`
             break
