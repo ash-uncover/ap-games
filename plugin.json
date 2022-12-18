@@ -1,5 +1,5 @@
 {
-  "name": "games",
+  "name": "ap-games",
   "description": "The Game Platform",
   "url": "http://localhost:8080",
   "dependencies": [
@@ -9,10 +9,13 @@
   ],
   "defines": {
     "game": {
-      "properties": {
+      "attributes": {
         "name": "string",
         "description": "string",
         "thumbnail": "url"
+      },
+      "elements": {
+        "main": {}
       }
     }
   }

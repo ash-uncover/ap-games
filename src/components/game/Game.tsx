@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { MessageService, Message } from '@uncover/js-utils-microfrontend'
+import { MessageService, Message, PluginManager } from '@uncover/js-utils-microfrontend'
 // Libs
-import CONFIG from 'config'
 
 import './Game.css'
-import { PluginManager } from 'lib/data/PluginManager'
 
 interface GameProperties {
   gameId: string
@@ -30,7 +28,7 @@ const Game = ({
 
   // Rendering //
 
-  const game = PluginManager.providers['game'].find(g => g.plugin === gameId)
+  const game = PluginManager.providers['ap-games/game'].find(g => g.plugin === gameId)
 
   if (!game) {
     return (
@@ -46,7 +44,7 @@ const Game = ({
       style={{
         border: 0
       }}
-      src={`${game.url}?embedded=true`}
+      src={`${game.elements.main.url}?embedded=true`}
     />
   )
 }

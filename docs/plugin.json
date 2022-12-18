@@ -1,5 +1,5 @@
 {
-  "name": "games",
+  "name": "ap-games",
   "description": "The Game Platform",
   "url": "https://ash-uncover.github.io/ap-games",
   "dependencies": [
@@ -9,10 +9,13 @@
   ],
   "defines": {
     "game": {
-      "properties": {
+      "attributes": {
         "name": "string",
         "description": "string",
         "thumbnail": "url"
+      },
+      "elements": {
+        "main": {}
       }
     }
   }
