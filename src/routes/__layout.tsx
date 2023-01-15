@@ -6,11 +6,11 @@ import {
 } from 'react-router-dom'
 
 import RouteRoot from 'routes/index'
+import RouteHome from 'routes/home'
 import RouteGames from 'routes/game'
 import RouteGame from 'routes/game/#id'
 
 import Audio from 'components/utils/Audio'
-import Home from 'components/home/Home'
 
 const Root = () => {
 
@@ -20,10 +20,11 @@ const Root = () => {
     <>
       <Routes>
         <Route path='/' element={<RouteRoot />}>
-          <Route path='' element={<Home />} />
+          <Route path='' element={<RouteHome />} />
           <Route path='/games' element={<RouteGames />}>
             <Route path=':gameId' element={<RouteGame />} />
           </Route>
+          <Route path='*' element={<RouteHome />} />
         </Route>
       </Routes>
       <Audio />

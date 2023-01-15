@@ -4,6 +4,7 @@ html, body, #reactroot {
   height: 100%;
   overflow: hidden;
   position: relative;
+  background: black;
 
   font-family: 'Roboto', sans-serif;
 

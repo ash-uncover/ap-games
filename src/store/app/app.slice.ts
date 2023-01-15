@@ -17,7 +17,7 @@ const initialState: AppState = {
   dialog: null,
   dialogParams: null,
 
-  language: Language.DEFAULT.id,
+  language: Language.FRENCH.id,
 
   loaded: false,
   started: false,

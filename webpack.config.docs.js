@@ -17,6 +17,7 @@ const transformPlugin = (buffer) => {
 }
 
 module.exports = {
+  mode: 'production',
   entry: path.resolve(DIR_SRC, 'index.tsx'),
 
   output: {
@@ -68,9 +69,6 @@ module.exports = {
         use: [
           {
             loader: 'ts-loader',
-            options: {
-              configFile: 'tsconfig.webpack.json'
-            }
           },
         ],
       },

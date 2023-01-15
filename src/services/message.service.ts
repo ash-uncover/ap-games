@@ -1,5 +1,5 @@
 import { AnyAction } from '@reduxjs/toolkit'
-import MessageDispatcher, { Message, MessageService } from '@uncover/js-utils-microfrontend'
+import MessageDispatcher, { Message, MessageService } from '@uncover/ward'
 import { Dispatch } from 'react'
 import { useDispatch } from 'react-redux'
 

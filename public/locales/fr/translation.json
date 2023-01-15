@@ -6,17 +6,25 @@
     "header": "Accueil",
     "title": "Accueil",
     "library": {
-      "title": "Jeux"
+      "title": "Bibliothèque",
+      "menu": "Jeux",
+      "games": {
+        "title": "Tous les jeux"
+      }
     },
     "settings": {
       "title": "Paramètres",
+      "menu": "Options",
       "general": {
-        "title": "Général",
-        "header": "Paramètres Généraux"
+        "menu": "Général",
+        "title": "Paramètres Généraux",
+        "lang": {
+          "title": "Langue"
+        }
       },
       "audio": {
-        "title": "Son",
-        "header": "Paramètres de Son",
+        "menu": "Sons",
+        "title": "Paramètres de Son",
         "master": {
           "title": "Volume Principal",
           "enable": "Activer les sons"
@@ -34,14 +42,21 @@
           "enable": "Activer la musique"
         }
       },
-      "video": {
-        "title": "Affichage",
-        "header": "Paramètres d'Affichage"
+      "display": {
+        "menu": "Affichage",
+        "title": "Paramètres d'Affichage",
+        "brightness": {
+          "title": "Luminosité"
+        },
+        "contrast": {
+          "title": "Contraste"
+        }
       }
     },
     "credits": {
-      "title": "Credits",
-      "content": "Credits content"
+      "title": "Crédits",
+      "menu": "Crédits",
+      "content": "Crédits content"
     }
   }
 }

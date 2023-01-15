@@ -21,7 +21,8 @@ import Root from 'routes/__layout'
 import { ShortcutManager } from '@uncover/games-common'
 
 import CONFIG from 'config'
-import { PluginManager } from '@uncover/js-utils-microfrontend'
+import { PluginManager } from '@uncover/ward'
+import { WardProvider } from '@uncover/ward-react'
 
 ShortcutManager.reset()
 
@@ -31,21 +32,18 @@ if (CONFIG.AP_GAMES_ENVIRONMENT === 'github') {
 }
 
 PluginManager.loadPlugin(CONFIG.AP_GAMES_PLUGIN)
-  .then(() => {
-    console.log(PluginManager.plugins)
-    console.log(PluginManager.definitions)
-    console.log(PluginManager.providers)
 
-    const containerRoot = document.getElementById('reactroot')!
-    const root = createRoot(containerRoot)
+const containerRoot = document.getElementById('reactroot')!
+const root = createRoot(containerRoot)
 
-    root.render(
-      <Provider store={store}>
-        <Router>
-          <Root />
-        </Router>
-      </Provider>
-    )
-  })
+root.render(
+  <WardProvider plugin={CONFIG.AP_GAMES_PLUGIN}>
+    <Provider store={store}>
+      <Router>
+        <Root />
+      </Router>
+    </Provider>
+  </WardProvider>
+)
 
 

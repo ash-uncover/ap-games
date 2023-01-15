@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { MessageService, Message, PluginManager } from '@uncover/js-utils-microfrontend'
-// Libs
+import { WardElement, useProvider } from '@uncover/ward-react'
+import { MessageService, Message } from '@uncover/ward'
 
 import './Game.css'
 
@@ -14,6 +14,8 @@ const Game = ({
 }: GameProperties) => {
 
   // Hooks //
+
+  const game = useProvider(`ap-games/game/${gameId}`)
 
   const navigate = useNavigate()
 
@@ -28,7 +30,6 @@ const Game = ({
 
   // Rendering //
 
-  const game = PluginManager.providers['ap-games/game'].find(g => g.plugin === gameId)
 
   if (!game) {
     return (
@@ -36,15 +37,15 @@ const Game = ({
     )
   }
 
+  const element = {
+    ...game.elements.main,
+    url: `${game.elements.main.url}?embedded=true`
+  }
+
   return (
-    <iframe
-      allowFullScreen
-      width={'100%'}
-      height={'100%'}
-      style={{
-        border: 0
-      }}
-      src={`${game.elements.main.url}?embedded=true`}
+    <WardElement
+      key={gameId}
+      element={element}
     />
   )
 }

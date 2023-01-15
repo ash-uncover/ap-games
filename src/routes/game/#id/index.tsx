@@ -1,8 +1,7 @@
 import React from 'react'
 import { Navigate, useParams } from 'react-router-dom'
-// Libs
+import { useProvider } from '@uncover/ward-react'
 import Game from 'components/game/Game'
-import { PluginManager } from '@uncover/js-utils-microfrontend'
 
 export const RouteGame = () => {
 
@@ -10,11 +9,11 @@ export const RouteGame = () => {
 
   const params = useParams()
   const gameId = params.gameId
+  const game = useProvider(`ap-games/game/${gameId}`)
 
   // Rendering //
 
   if (gameId) {
-    const game = PluginManager.providers['ap-games/game'].find(g => g.plugin === gameId)
 
     if (game) {
       return <Game gameId={gameId} />
