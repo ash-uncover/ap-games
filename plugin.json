@@ -1,6 +1,5 @@
 {
   "name": "ap-games",
-  "description": "The Game Platform",
   "url": "http://localhost:8080",
   "dependencies": [
     "https://ash-uncover.github.io/ap-games-maze/plugin.json",

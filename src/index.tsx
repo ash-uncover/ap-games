@@ -31,8 +31,6 @@ if (CONFIG.AP_GAMES_ENVIRONMENT === 'github') {
   Router = HashRouter
 }
 
-PluginManager.loadPlugin(CONFIG.AP_GAMES_PLUGIN)
-
 const containerRoot = document.getElementById('reactroot')!
 const root = createRoot(containerRoot)
 
