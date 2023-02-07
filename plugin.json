@@ -2,9 +2,9 @@
   "name": "ap-games",
   "url": "http://localhost:8080",
   "dependencies": [
+    "http://localhost:8083/plugin.json",
     "https://ash-uncover.github.io/ap-games-maze/plugin.json",
-    "https://ash-uncover.github.io/ap-games-memory/plugin.json",
-    "https://ash-uncover.github.io/ap-games-mozaic/plugin.json"
+    "https://ash-uncover.github.io/ap-games-memory/plugin.json"
   ],
   "defines": {
     "game": {
