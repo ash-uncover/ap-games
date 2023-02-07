@@ -5,9 +5,9 @@ import AppSelectors from 'store/app/app.selectors'
 import AppSlice from 'store/app/app.slice'
 // Libs
 import 'lib/utils/icons'
-import MessageServiceCentral from 'services/message.service'
 import { useTranslation } from 'react-i18next'
 import i18n from 'lib/utils/i18n'
+import { useWardService } from '@uncover/ward-react'
 
 interface AppProperties {
   children: ReactElement
@@ -26,13 +26,11 @@ const App = ({
 
   const { t } = useTranslation()
 
+  useWardService(dispatch)
+
   useEffect(() => {
     i18n.changeLanguage(language)
   }, [language])
-
-  useEffect(() => {
-    return MessageServiceCentral.init(dispatch)
-  }, [])
 
   useEffect(() => {
     dispatch(AppSlice.actions.setLoaded(true))

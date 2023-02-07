@@ -10,8 +10,6 @@ import RouteHome from 'routes/home'
 import RouteGames from 'routes/game'
 import RouteGame from 'routes/game/#id'
 
-import Audio from 'components/utils/Audio'
-
 const Root = () => {
 
   // Rendering //
@@ -27,7 +25,6 @@ const Root = () => {
           <Route path='*' element={<RouteHome />} />
         </Route>
       </Routes>
-      <Audio />
     </>
   )
 }

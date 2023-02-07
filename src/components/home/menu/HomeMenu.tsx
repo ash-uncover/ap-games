@@ -1,6 +1,5 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatchMessage } from '../../../services/message.service'
 import { useLocation, useNavigate } from 'react-router-dom'
 // Components
 import { Menu } from '@uncover/games-common'
@@ -13,7 +12,6 @@ export const HomeMenu = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const dispatchMessage = useDispatchMessage()
 
   // Events //
 

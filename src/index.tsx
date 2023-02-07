@@ -20,7 +20,7 @@ import store from 'store'
 import Root from 'routes/__layout'
 import CONFIG from 'config'
 import { ShortcutManager } from '@uncover/games-common'
-import { WardProvider } from '@uncover/ward-react'
+import { WardDevTools, WardProvider } from '@uncover/ward-react'
 
 ShortcutManager.reset()
 
@@ -39,6 +39,9 @@ root.render(
         <Root />
       </Router>
     </Provider>
+    {CONFIG.AP_GAMES_ENVIRONMENT === 'local' ?
+      <WardDevTools />
+      : null}
   </WardProvider>
 )
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigate, useParams } from 'react-router-dom'
-import { useProvider } from '@uncover/ward-react'
+import { useWardProvider } from '@uncover/ward-react'
 import Game from 'components/game/Game'
 
 export const RouteGame = () => {
@@ -9,7 +9,7 @@ export const RouteGame = () => {
 
   const params = useParams()
   const gameId = params.gameId
-  const game = useProvider(`ap-games/game/${gameId}`)
+  const game = useWardProvider(`ap-games/game/${gameId}`)
 
   // Rendering //
 

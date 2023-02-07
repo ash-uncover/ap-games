@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { WardElement, useProvider } from '@uncover/ward-react'
-import { MessageService, Message } from '@uncover/ward'
+import {
+  WardElement,
+  useWardProvider,
+  useWardService
+} from '@uncover/ward-react'
+import {
+  Message
+} from '@uncover/ward'
 
 import './Game.css'
 
@@ -15,21 +21,20 @@ const Game = ({
 
   // Hooks //
 
-  const game = useProvider(`ap-games/game/${gameId}`)
-
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const Service = new MessageService()
-    return Service.init((message: Message) => {
-      if (message.type === 'exitGame') {
-        navigate('/')
-      }
-    })
-  }, [])
+  const game = useWardProvider(`ap-games/game/${gameId}`)
+  useWardService((message) => handleMessage(message))
+
+  // Events //
+
+  const handleMessage = (message: Message) => {
+    if (message.type === 'exitGame') {
+      navigate('/')
+    }
+  }
 
   // Rendering //
-
 
   if (!game) {
     return (

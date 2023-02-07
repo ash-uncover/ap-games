@@ -1,7 +1,7 @@
 import React from 'react'
 // Hooks
 import { useNavigate } from 'react-router-dom'
-import { useProviders } from '@uncover/ward-react'
+import { useWardProviders } from '@uncover/ward-react'
 import { useTranslation } from 'react-i18next'
 // Components
 import HomeTile from './HomeTile'
@@ -22,7 +22,7 @@ export const HomeContentLibrary = ({
 
   const { t } = useTranslation()
 
-  const games = useProviders('ap-games/game')
+  const games = useWardProviders('ap-games/game')
 
   // Events //
 
@@ -44,8 +44,8 @@ export const HomeContentLibrary = ({
         <HomeTiles>
           {games
             .sort((game1, game2) => {
-              const name1 = game1.attributes.name as string
-              const name2 = game2.attributes.name as string
+              const name1 = game1.attributes.name
+              const name2 = game2.attributes.name
               return name1.localeCompare(name2)
             })
             .map(game => {
@@ -59,9 +59,9 @@ export const HomeContentLibrary = ({
                   key={game.plugin}
                   id={game.plugin}
                   url={game.elements.main.url}
-                  name={name as string}
-                  description={description as string}
-                  thumbnail={thumbnail as string}
+                  name={name}
+                  description={description}
+                  thumbnail={thumbnail}
                   onClick={() => handleGameClick(game.plugin)}
                 />
               )
